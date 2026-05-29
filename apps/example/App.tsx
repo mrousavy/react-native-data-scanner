@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import { DataScanner } from 'react-native-data-scanner'
 
@@ -15,6 +15,10 @@ export default function App() {
       setStatus(message)
     }
   }, [])
+
+  useEffect(() => {
+    createDataScanner()
+  }, [createDataScanner])
 
   return (
     <View style={styles.container}>
