@@ -7,9 +7,55 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `DataScannerTarget` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerTarget; }
+// Forward declaration of `DataScannerDataType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
+// Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; }
+// Forward declaration of `DataScannerTextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
+// Forward declaration of `DataScannerIOSConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerIOSConfiguration; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerRect; }
+// Forward declaration of `DataScannerAndroidConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerAndroidConfiguration; }
 
-
-
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "JHybridDataScannerSpec.hpp"
+#include "DataScannerConfiguration.hpp"
+#include <optional>
+#include "JDataScannerConfiguration.hpp"
+#include "DataScannerTarget.hpp"
+#include <vector>
+#include "JDataScannerTarget.hpp"
+#include "DataScannerDataType.hpp"
+#include "JDataScannerDataType.hpp"
+#include "DataScannerBarcodeFormat.hpp"
+#include "JDataScannerBarcodeFormat.hpp"
+#include "DataScannerBarcodeValueType.hpp"
+#include "JDataScannerBarcodeValueType.hpp"
+#include <string>
+#include "DataScannerTextContentType.hpp"
+#include "JDataScannerTextContentType.hpp"
+#include "DataScannerIOSConfiguration.hpp"
+#include "JDataScannerIOSConfiguration.hpp"
+#include "DataScannerQualityLevel.hpp"
+#include "JDataScannerQualityLevel.hpp"
+#include "DataScannerRect.hpp"
+#include "JDataScannerRect.hpp"
+#include "DataScannerAndroidConfiguration.hpp"
+#include "JDataScannerAndroidConfiguration.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -44,9 +90,10 @@ namespace margelo::nitro::datascanner {
   
 
   // Methods
-  void JHybridDataScannerFactorySpec::createDataScanner() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("createDataScanner");
-    method(_javaPart);
+  std::shared_ptr<HybridDataScannerSpec> JHybridDataScannerFactorySpec::createDataScanner(const std::optional<DataScannerConfiguration>& configuration) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerSpec::JavaPart>(jni::alias_ref<JDataScannerConfiguration> /* configuration */)>("createDataScanner");
+    auto __result = method(_javaPart, configuration.has_value() ? JDataScannerConfiguration::fromCpp(configuration.value()) : nullptr);
+    return __result->getJHybridDataScannerSpec();
   }
 
 } // namespace margelo::nitro::datascanner

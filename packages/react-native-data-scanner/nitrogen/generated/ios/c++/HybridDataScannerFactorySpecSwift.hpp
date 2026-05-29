@@ -12,9 +12,44 @@
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `DataScannerTarget` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerTarget; }
+// Forward declaration of `DataScannerDataType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
+// Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; }
+// Forward declaration of `DataScannerTextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
+// Forward declaration of `DataScannerIOSConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerIOSConfiguration; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerRect; }
+// Forward declaration of `DataScannerAndroidConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerAndroidConfiguration; }
 
-
-
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "DataScannerConfiguration.hpp"
+#include <optional>
+#include "DataScannerTarget.hpp"
+#include <vector>
+#include "DataScannerDataType.hpp"
+#include "DataScannerBarcodeFormat.hpp"
+#include "DataScannerBarcodeValueType.hpp"
+#include <string>
+#include "DataScannerTextContentType.hpp"
+#include "DataScannerIOSConfiguration.hpp"
+#include "DataScannerQualityLevel.hpp"
+#include "DataScannerRect.hpp"
+#include "DataScannerAndroidConfiguration.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -66,11 +101,13 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Methods
-    inline void createDataScanner() override {
-      auto __result = _swiftPart.createDataScanner();
+    inline std::shared_ptr<HybridDataScannerSpec> createDataScanner(const std::optional<DataScannerConfiguration>& configuration) override {
+      auto __result = _swiftPart.createDataScanner(configuration);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:

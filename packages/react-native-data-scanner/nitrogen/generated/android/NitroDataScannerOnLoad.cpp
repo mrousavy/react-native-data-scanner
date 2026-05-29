@@ -15,6 +15,12 @@
 #include <fbjni/fbjni.h>
 #include <NitroModules/HybridObjectRegistry.hpp>
 
+#include "JHybridDataScannerSpec.hpp"
+#include "JFunc_void_DataScannerItemsChangedEvent.hpp"
+#include "JFunc_void_DataScannerItemTappedEvent.hpp"
+#include "JFunc_void_DataScannerZoomChangedEvent.hpp"
+#include "JFunc_void_DataScannerUnavailableEvent.hpp"
+#include "JFunc_void_DataScannerErrorEvent.hpp"
 #include "JHybridDataScannerFactorySpec.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
@@ -40,6 +46,12 @@ void registerAllNatives() {
   using namespace margelo::nitro::datascanner;
 
   // Register native JNI methods
+  margelo::nitro::datascanner::JHybridDataScannerSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_DataScannerItemsChangedEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_DataScannerItemTappedEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_DataScannerZoomChangedEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_DataScannerUnavailableEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_DataScannerErrorEvent_cxx::registerNatives();
   margelo::nitro::datascanner::JHybridDataScannerFactorySpec::CxxPart::registerNatives();
 
   // Register Nitro Hybrid Objects

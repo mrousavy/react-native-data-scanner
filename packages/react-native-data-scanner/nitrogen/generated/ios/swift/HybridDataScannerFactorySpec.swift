@@ -13,7 +13,7 @@ public protocol HybridDataScannerFactorySpec_protocol: HybridObject {
   
 
   // Methods
-  func createDataScanner() throws -> Void
+  func createDataScanner(configuration: DataScannerConfiguration?) throws -> (any HybridDataScannerSpec)
 }
 
 public extension HybridDataScannerFactorySpec_protocol {

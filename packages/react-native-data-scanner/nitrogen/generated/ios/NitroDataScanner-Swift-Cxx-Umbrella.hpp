@@ -8,14 +8,155 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `DataScannerAddressType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerAddressType; }
+// Forward declaration of `DataScannerAddressValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerAddressValue; }
+// Forward declaration of `DataScannerAndroidConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerAndroidConfiguration; }
+// Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
+// Forward declaration of `DataScannerBarcodeParsedValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerBarcodeParsedValue; }
+// Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; }
+// Forward declaration of `DataScannerBounds` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerBounds; }
+// Forward declaration of `DataScannerCalendarDateTimeValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCalendarDateTimeValue; }
+// Forward declaration of `DataScannerCalendarEventValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCalendarEventValue; }
+// Forward declaration of `DataScannerCameraPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerCameraPermissionStatus; }
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `DataScannerContactInfoValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerContactInfoValue; }
+// Forward declaration of `DataScannerDataType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerDriverLicenseValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerDriverLicenseValue; }
+// Forward declaration of `DataScannerEmailAddressType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerEmailAddressType; }
+// Forward declaration of `DataScannerEmailValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerEmailValue; }
+// Forward declaration of `DataScannerErrorCode` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerErrorCode; }
+// Forward declaration of `DataScannerErrorEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerErrorEvent; }
+// Forward declaration of `DataScannerGeoValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerGeoValue; }
+// Forward declaration of `DataScannerIOSConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerIOSConfiguration; }
+// Forward declaration of `DataScannerItemTappedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerItemTappedEvent; }
+// Forward declaration of `DataScannerItem` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerItem; }
+// Forward declaration of `DataScannerItemsChangeType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerItemsChangeType; }
+// Forward declaration of `DataScannerItemsChangedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerItemsChangedEvent; }
+// Forward declaration of `DataScannerPersonNameValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerPersonNameValue; }
+// Forward declaration of `DataScannerPhoneNumberType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerPhoneNumberType; }
+// Forward declaration of `DataScannerPhoneValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerPhoneValue; }
+// Forward declaration of `DataScannerPhotoMimeType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerPhotoMimeType; }
+// Forward declaration of `DataScannerPhoto` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerPhoto; }
+// Forward declaration of `DataScannerPlatform` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerPlatform; }
+// Forward declaration of `DataScannerPoint` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerPoint; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerRect; }
+// Forward declaration of `DataScannerResultSource` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerResultSource; }
+// Forward declaration of `DataScannerSmsValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerSmsValue; }
+// Forward declaration of `DataScannerTarget` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerTarget; }
+// Forward declaration of `DataScannerTextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
+// Forward declaration of `DataScannerUnavailableEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerUnavailableEvent; }
+// Forward declaration of `DataScannerUnavailableReason` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerUnavailableReason; }
+// Forward declaration of `DataScannerUrlValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerUrlValue; }
+// Forward declaration of `DataScannerWifiEncryptionType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerWifiEncryptionType; }
+// Forward declaration of `DataScannerWifiValue` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerWifiValue; }
+// Forward declaration of `DataScannerZoomChangedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerZoomChangedEvent; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
 
 // Include C++ defined types
+#include "DataScannerAddressType.hpp"
+#include "DataScannerAddressValue.hpp"
+#include "DataScannerAndroidConfiguration.hpp"
+#include "DataScannerBarcodeFormat.hpp"
+#include "DataScannerBarcodeParsedValue.hpp"
+#include "DataScannerBarcodeValueType.hpp"
+#include "DataScannerBounds.hpp"
+#include "DataScannerCalendarDateTimeValue.hpp"
+#include "DataScannerCalendarEventValue.hpp"
+#include "DataScannerCameraPermissionStatus.hpp"
+#include "DataScannerCapabilities.hpp"
+#include "DataScannerConfiguration.hpp"
+#include "DataScannerContactInfoValue.hpp"
+#include "DataScannerDataType.hpp"
+#include "DataScannerDriverLicenseValue.hpp"
+#include "DataScannerEmailAddressType.hpp"
+#include "DataScannerEmailValue.hpp"
+#include "DataScannerErrorCode.hpp"
+#include "DataScannerErrorEvent.hpp"
+#include "DataScannerGeoValue.hpp"
+#include "DataScannerIOSConfiguration.hpp"
+#include "DataScannerItem.hpp"
+#include "DataScannerItemTappedEvent.hpp"
+#include "DataScannerItemsChangeType.hpp"
+#include "DataScannerItemsChangedEvent.hpp"
+#include "DataScannerPersonNameValue.hpp"
+#include "DataScannerPhoneNumberType.hpp"
+#include "DataScannerPhoneValue.hpp"
+#include "DataScannerPhoto.hpp"
+#include "DataScannerPhotoMimeType.hpp"
+#include "DataScannerPlatform.hpp"
+#include "DataScannerPoint.hpp"
+#include "DataScannerQualityLevel.hpp"
+#include "DataScannerRect.hpp"
+#include "DataScannerResultSource.hpp"
+#include "DataScannerSmsValue.hpp"
+#include "DataScannerTarget.hpp"
+#include "DataScannerTextContentType.hpp"
+#include "DataScannerUnavailableEvent.hpp"
+#include "DataScannerUnavailableReason.hpp"
+#include "DataScannerUrlValue.hpp"
+#include "DataScannerWifiEncryptionType.hpp"
+#include "DataScannerWifiValue.hpp"
+#include "DataScannerZoomChangedEvent.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
+#include "HybridDataScannerSpec.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
+#include <functional>
 #include <memory>
+#include <optional>
+#include <string>
+#include <vector>
 
 // C++ helpers for Swift
 #include "NitroDataScanner-Swift-Cxx-Bridge.hpp"
@@ -29,6 +170,8 @@ namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
+// Forward declaration of `HybridDataScannerSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridDataScannerSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("NitroDataScanner-Swift.h")

@@ -30,7 +30,7 @@ abstract class HybridDataScannerFactorySpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun createDataScanner(): Unit
+  abstract fun createDataScanner(configuration: DataScannerConfiguration?): HybridDataScannerSpec
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

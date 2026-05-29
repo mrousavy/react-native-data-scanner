@@ -54,7 +54,7 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Methods
-    void createDataScanner() override;
+    std::shared_ptr<HybridDataScannerSpec> createDataScanner(const std::optional<DataScannerConfiguration>& configuration) override;
 
   private:
     jni::global_ref<JHybridDataScannerFactorySpec::JavaPart> _javaPart;
