@@ -1,0 +1,30 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": [
+    "datascanner"
+  ],
+  "ios": {
+    "iosModuleName": "NitroDataScanner"
+  },
+  "android": {
+    "androidNamespace": [
+      "datascanner"
+    ],
+    "androidCxxLibName": "NitroDataScanner"
+  },
+  "autolinking": {
+    "DataScannerFactory": {
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridDataScannerFactory"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridDataScannerFactory"
+      }
+    }
+  },
+  "ignorePaths": [
+    "**/node_modules"
+  ]
+}

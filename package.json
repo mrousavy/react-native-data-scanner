@@ -1,0 +1,17 @@
+{
+  "name": "react-native-data-scanner-repo",
+  "private": true,
+  "packageManager": "bun@1.3.14",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "specs": "bun run --cwd packages/react-native-data-scanner specs",
+    "typecheck": "bun run --cwd packages/react-native-data-scanner typecheck",
+    "example": "bun run --cwd apps/example",
+    "example:android": "bun run --cwd apps/example android",
+    "example:ios": "bun run --cwd apps/example ios",
+    "example:start": "bun run --cwd apps/example start"
+  }
+}
