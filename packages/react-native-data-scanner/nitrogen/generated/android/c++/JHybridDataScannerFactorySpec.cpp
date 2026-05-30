@@ -7,9 +7,51 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `TextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TextContentType; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `RecognizedDataTypes` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct RecognizedDataTypes; }
+// Forward declaration of `BarcodeRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeRecognitionOptions; }
+// Forward declaration of `TextRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct TextRecognitionOptions; }
+// Forward declaration of `QualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class QualityLevel; }
+// Forward declaration of `Rect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Rect; }
 
-
-
+#include "DataScannerCapabilities.hpp"
+#include "JDataScannerCapabilities.hpp"
+#include "BarcodeFormat.hpp"
+#include <vector>
+#include "JBarcodeFormat.hpp"
+#include "TextContentType.hpp"
+#include "JTextContentType.hpp"
+#include <string>
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "JHybridDataScannerSpec.hpp"
+#include "DataScannerConfiguration.hpp"
+#include <optional>
+#include "JDataScannerConfiguration.hpp"
+#include "RecognizedDataTypes.hpp"
+#include "JRecognizedDataTypes.hpp"
+#include "BarcodeRecognitionOptions.hpp"
+#include "JBarcodeRecognitionOptions.hpp"
+#include "TextRecognitionOptions.hpp"
+#include "JTextRecognitionOptions.hpp"
+#include "QualityLevel.hpp"
+#include "JQualityLevel.hpp"
+#include "Rect.hpp"
+#include "JRect.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -41,12 +83,17 @@ namespace margelo::nitro::datascanner {
   }
 
   // Properties
-  
+  DataScannerCapabilities JHybridDataScannerFactorySpec::getCapabilities() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JDataScannerCapabilities>()>("getCapabilities");
+    auto __result = method(_javaPart);
+    return __result->toCpp();
+  }
 
   // Methods
-  void JHybridDataScannerFactorySpec::createDataScanner() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("createDataScanner");
-    method(_javaPart);
+  std::shared_ptr<HybridDataScannerSpec> JHybridDataScannerFactorySpec::createDataScanner(const std::optional<DataScannerConfiguration>& configuration) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerSpec::JavaPart>(jni::alias_ref<JDataScannerConfiguration> /* configuration */)>("createDataScanner");
+    auto __result = method(_javaPart, configuration.has_value() ? JDataScannerConfiguration::fromCpp(configuration.value()) : nullptr);
+    return __result->getJHybridDataScannerSpec();
   }
 
 } // namespace margelo::nitro::datascanner

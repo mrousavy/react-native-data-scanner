@@ -8,14 +8,137 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BarcodeAddressType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeAddressType; }
+// Forward declaration of `BarcodeAddress` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeAddress; }
+// Forward declaration of `BarcodeCalendarDateTime` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeCalendarDateTime; }
+// Forward declaration of `BarcodeCalendarEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeCalendarEvent; }
+// Forward declaration of `BarcodeContactInfo` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeContactInfo; }
+// Forward declaration of `BarcodeDriverLicense` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeDriverLicense; }
+// Forward declaration of `BarcodeEmailType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeEmailType; }
+// Forward declaration of `BarcodeEmail` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeEmail; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `BarcodeGeoPoint` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeGeoPoint; }
+// Forward declaration of `BarcodePayload` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodePayload; }
+// Forward declaration of `BarcodePersonName` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodePersonName; }
+// Forward declaration of `BarcodePhoneType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodePhoneType; }
+// Forward declaration of `BarcodePhone` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodePhone; }
+// Forward declaration of `BarcodeRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeRecognitionOptions; }
+// Forward declaration of `BarcodeSms` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeSms; }
+// Forward declaration of `BarcodeUrl` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeUrl; }
+// Forward declaration of `BarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
+// Forward declaration of `BarcodeWifiEncryptionType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeWifiEncryptionType; }
+// Forward declaration of `BarcodeWifi` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeWifi; }
+// Forward declaration of `Bounds` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Bounds; }
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `HybridCapturedPhotoSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridCapturedPhotoSpec; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `HybridListenerSubscriptionSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridListenerSubscriptionSpec; }
+// Forward declaration of `HybridScannedBarcodeSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridScannedBarcodeSpec; }
+// Forward declaration of `HybridScannedItemSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridScannedItemSpec; }
+// Forward declaration of `HybridScannedTextSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridScannedTextSpec; }
+// Forward declaration of `ItemTappedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ItemTappedEvent; }
+// Forward declaration of `ItemsChangedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ItemsChangedEvent; }
+// Forward declaration of `Point` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Point; }
+// Forward declaration of `QualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class QualityLevel; }
+// Forward declaration of `RecognizedDataTypes` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct RecognizedDataTypes; }
+// Forward declaration of `Rect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Rect; }
+// Forward declaration of `ScannedItemType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ScannedItemType; }
+// Forward declaration of `TextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TextContentType; }
+// Forward declaration of `TextRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct TextRecognitionOptions; }
+// Forward declaration of `ZoomChangedEvent` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ZoomChangedEvent; }
 
 // Include C++ defined types
+#include "BarcodeAddress.hpp"
+#include "BarcodeAddressType.hpp"
+#include "BarcodeCalendarDateTime.hpp"
+#include "BarcodeCalendarEvent.hpp"
+#include "BarcodeContactInfo.hpp"
+#include "BarcodeDriverLicense.hpp"
+#include "BarcodeEmail.hpp"
+#include "BarcodeEmailType.hpp"
+#include "BarcodeFormat.hpp"
+#include "BarcodeGeoPoint.hpp"
+#include "BarcodePayload.hpp"
+#include "BarcodePersonName.hpp"
+#include "BarcodePhone.hpp"
+#include "BarcodePhoneType.hpp"
+#include "BarcodeRecognitionOptions.hpp"
+#include "BarcodeSms.hpp"
+#include "BarcodeUrl.hpp"
+#include "BarcodeValueType.hpp"
+#include "BarcodeWifi.hpp"
+#include "BarcodeWifiEncryptionType.hpp"
+#include "Bounds.hpp"
+#include "DataScannerCapabilities.hpp"
+#include "DataScannerConfiguration.hpp"
+#include "HybridCapturedPhotoSpec.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
+#include "HybridDataScannerSpec.hpp"
+#include "HybridListenerSubscriptionSpec.hpp"
+#include "HybridScannedBarcodeSpec.hpp"
+#include "HybridScannedItemSpec.hpp"
+#include "HybridScannedTextSpec.hpp"
+#include "ItemTappedEvent.hpp"
+#include "ItemsChangedEvent.hpp"
+#include "Point.hpp"
+#include "QualityLevel.hpp"
+#include "RecognizedDataTypes.hpp"
+#include "Rect.hpp"
+#include "ScannedItemType.hpp"
+#include "TextContentType.hpp"
+#include "TextRecognitionOptions.hpp"
+#include "ZoomChangedEvent.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
+#include <functional>
 #include <memory>
+#include <optional>
+#include <string>
+#include <vector>
 
 // C++ helpers for Swift
 #include "NitroDataScanner-Swift-Cxx-Bridge.hpp"
@@ -27,8 +150,20 @@ namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
 #include <NitroModules/DateToChronoDate.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridCapturedPhotoSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridCapturedPhotoSpec_cxx; }
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
+// Forward declaration of `HybridDataScannerSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridDataScannerSpec_cxx; }
+// Forward declaration of `HybridListenerSubscriptionSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridListenerSubscriptionSpec_cxx; }
+// Forward declaration of `HybridScannedBarcodeSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridScannedBarcodeSpec_cxx; }
+// Forward declaration of `HybridScannedItemSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridScannedItemSpec_cxx; }
+// Forward declaration of `HybridScannedTextSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridScannedTextSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("NitroDataScanner-Swift.h")

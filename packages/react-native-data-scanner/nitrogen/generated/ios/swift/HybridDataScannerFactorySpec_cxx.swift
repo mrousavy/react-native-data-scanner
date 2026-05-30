@@ -121,17 +121,26 @@ open class HybridDataScannerFactorySpec_cxx {
   }
 
   // Properties
-  
+  public final var capabilities: DataScannerCapabilities {
+    @inline(__always)
+    get {
+      return self.__implementation.capabilities
+    }
+  }
 
   // Methods
   @inline(__always)
-  public final func createDataScanner() -> bridge.Result_void_ {
+  public final func createDataScanner(configuration: bridge.std__optional_DataScannerConfiguration_) -> bridge.Result_std__shared_ptr_HybridDataScannerSpec__ {
     do {
-      try self.__implementation.createDataScanner()
-      return bridge.create_Result_void_()
+      let __result = try self.__implementation.createDataScanner(configuration: configuration.value)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_void_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerSpec__(__exceptionPtr)
     }
   }
 }

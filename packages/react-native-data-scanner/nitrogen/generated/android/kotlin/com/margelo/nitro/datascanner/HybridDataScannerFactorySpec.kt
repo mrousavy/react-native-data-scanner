@@ -25,12 +25,14 @@ import com.margelo.nitro.core.HybridObject
 )
 abstract class HybridDataScannerFactorySpec: HybridObject() {
   // Properties
-  
+  @get:DoNotStrip
+  @get:Keep
+  abstract val capabilities: DataScannerCapabilities
 
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun createDataScanner(): Unit
+  abstract fun createDataScanner(configuration: DataScannerConfiguration?): HybridDataScannerSpec
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

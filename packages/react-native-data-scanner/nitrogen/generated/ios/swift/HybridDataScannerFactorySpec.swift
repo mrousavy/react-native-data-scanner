@@ -10,10 +10,10 @@ import NitroModules
 /// See ``HybridDataScannerFactorySpec``
 public protocol HybridDataScannerFactorySpec_protocol: HybridObject {
   // Properties
-  
+  var capabilities: DataScannerCapabilities { get }
 
   // Methods
-  func createDataScanner() throws -> Void
+  func createDataScanner(configuration: DataScannerConfiguration?) throws -> (any HybridDataScannerSpec)
 }
 
 public extension HybridDataScannerFactorySpec_protocol {

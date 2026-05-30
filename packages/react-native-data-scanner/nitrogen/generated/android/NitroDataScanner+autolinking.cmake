@@ -33,8 +33,20 @@ target_sources(
   # Autolinking Setup
   ../nitrogen/generated/android/NitroDataScannerOnLoad.cpp
   # Shared Nitrogen C++ sources
+  ../nitrogen/generated/shared/c++/HybridScannedItemSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridScannedTextSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridScannedBarcodeSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridListenerSubscriptionSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridCapturedPhotoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridDataScannerFactorySpec.cpp
   # Android-specific Nitrogen C++ sources
+  ../nitrogen/generated/android/c++/JHybridScannedItemSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridScannedTextSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridScannedBarcodeSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridListenerSubscriptionSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridCapturedPhotoSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridDataScannerFactorySpec.cpp
 )
 

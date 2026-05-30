@@ -12,9 +12,41 @@
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `TextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TextContentType; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
+// Forward declaration of `RecognizedDataTypes` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct RecognizedDataTypes; }
+// Forward declaration of `BarcodeRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct BarcodeRecognitionOptions; }
+// Forward declaration of `TextRecognitionOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct TextRecognitionOptions; }
+// Forward declaration of `QualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class QualityLevel; }
+// Forward declaration of `Rect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Rect; }
 
-
-
+#include "DataScannerCapabilities.hpp"
+#include "BarcodeFormat.hpp"
+#include <vector>
+#include "TextContentType.hpp"
+#include <string>
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "DataScannerConfiguration.hpp"
+#include <optional>
+#include "RecognizedDataTypes.hpp"
+#include "BarcodeRecognitionOptions.hpp"
+#include "TextRecognitionOptions.hpp"
+#include "QualityLevel.hpp"
+#include "Rect.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -62,15 +94,19 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+    inline DataScannerCapabilities getCapabilities() noexcept override {
+      return _swiftPart.getCapabilities();
+    }
 
   public:
     // Methods
-    inline void createDataScanner() override {
-      auto __result = _swiftPart.createDataScanner();
+    inline std::shared_ptr<HybridDataScannerSpec> createDataScanner(const std::optional<DataScannerConfiguration>& configuration) override {
+      auto __result = _swiftPart.createDataScanner(configuration);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:
