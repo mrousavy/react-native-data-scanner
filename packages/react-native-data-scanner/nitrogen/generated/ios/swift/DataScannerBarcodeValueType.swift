@@ -21,8 +21,10 @@ public extension DataScannerBarcodeValueType {
         self = .unknown
       case "text":
         self = .text
-      case "contactInfo":
-        self = .contactinfo
+      case "url":
+        self = .url
+      case "contact-info":
+        self = .contactInfo
       case "email":
         self = .email
       case "isbn":
@@ -33,16 +35,14 @@ public extension DataScannerBarcodeValueType {
         self = .product
       case "sms":
         self = .sms
-      case "url":
-        self = .url
       case "wifi":
         self = .wifi
       case "geo":
         self = .geo
-      case "calendarEvent":
-        self = .calendarevent
-      case "driverLicense":
-        self = .driverlicense
+      case "calendar-event":
+        self = .calendarEvent
+      case "driver-license":
+        self = .driverLicense
       default:
         return nil
     }
@@ -57,8 +57,10 @@ public extension DataScannerBarcodeValueType {
         return "unknown"
       case .text:
         return "text"
-      case .contactinfo:
-        return "contactInfo"
+      case .url:
+        return "url"
+      case .contactInfo:
+        return "contact-info"
       case .email:
         return "email"
       case .isbn:
@@ -69,16 +71,14 @@ public extension DataScannerBarcodeValueType {
         return "product"
       case .sms:
         return "sms"
-      case .url:
-        return "url"
       case .wifi:
         return "wifi"
       case .geo:
         return "geo"
-      case .calendarevent:
-        return "calendarEvent"
-      case .driverlicense:
-        return "driverLicense"
+      case .calendarEvent:
+        return "calendar-event"
+      case .driverLicense:
+        return "driver-license"
     }
   }
 }

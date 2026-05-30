@@ -20,9 +20,6 @@ import java.util.Objects
 data class DataScannerCapabilities(
   @DoNotStrip
   @Keep
-  val platform: DataScannerPlatform,
-  @DoNotStrip
-  @Keep
   val isSupported: Boolean,
   @DoNotStrip
   @Keep
@@ -32,19 +29,19 @@ data class DataScannerCapabilities(
   val unavailableReason: DataScannerUnavailableReason?,
   @DoNotStrip
   @Keep
-  val supportedTargets: Array<DataScannerDataType>,
+  val availableValueTypes: Array<DataScannerValueType>,
   @DoNotStrip
   @Keep
-  val supportedBarcodeFormats: Array<DataScannerBarcodeFormat>,
+  val availableBarcodeFormats: Array<DataScannerBarcodeFormat>,
   @DoNotStrip
   @Keep
-  val supportedBarcodeValueTypes: Array<DataScannerBarcodeValueType>,
+  val availableBarcodeValueTypes: Array<DataScannerBarcodeValueType>,
   @DoNotStrip
   @Keep
-  val supportedTextContentTypes: Array<DataScannerTextContentType>,
+  val availableTextContentTypes: Array<DataScannerTextContentType>,
   @DoNotStrip
   @Keep
-  val supportedTextRecognitionLanguages: Array<String>,
+  val availableTextRecognitionLanguages: Array<String>,
   @DoNotStrip
   @Keep
   val supportsOneShotScanning: Boolean,
@@ -53,13 +50,7 @@ data class DataScannerCapabilities(
   val supportsLiveScanning: Boolean,
   @DoNotStrip
   @Keep
-  val supportsTextRecognition: Boolean,
-  @DoNotStrip
-  @Keep
-  val supportsBarcodeRecognition: Boolean,
-  @DoNotStrip
-  @Keep
-  val supportsMultipleItems: Boolean,
+  val supportsMultipleValues: Boolean,
   @DoNotStrip
   @Keep
   val supportsHighFrameRateTracking: Boolean,
@@ -92,30 +83,27 @@ data class DataScannerCapabilities(
   val supportsManualInput: Boolean,
   @DoNotStrip
   @Keep
-  val requiresCameraPermission: Boolean,
+  val canPrepareScanner: Boolean,
   @DoNotStrip
   @Keep
-  val requiresGooglePlayServices: Boolean
+  val requiresCameraPermission: Boolean
 ) {
   /* primary constructor */
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (other !is DataScannerCapabilities) return false
-    return Objects.deepEquals(this.platform, other.platform)
-      && Objects.deepEquals(this.isSupported, other.isSupported)
+    return Objects.deepEquals(this.isSupported, other.isSupported)
       && Objects.deepEquals(this.isAvailable, other.isAvailable)
       && Objects.deepEquals(this.unavailableReason, other.unavailableReason)
-      && Objects.deepEquals(this.supportedTargets, other.supportedTargets)
-      && Objects.deepEquals(this.supportedBarcodeFormats, other.supportedBarcodeFormats)
-      && Objects.deepEquals(this.supportedBarcodeValueTypes, other.supportedBarcodeValueTypes)
-      && Objects.deepEquals(this.supportedTextContentTypes, other.supportedTextContentTypes)
-      && Objects.deepEquals(this.supportedTextRecognitionLanguages, other.supportedTextRecognitionLanguages)
+      && Objects.deepEquals(this.availableValueTypes, other.availableValueTypes)
+      && Objects.deepEquals(this.availableBarcodeFormats, other.availableBarcodeFormats)
+      && Objects.deepEquals(this.availableBarcodeValueTypes, other.availableBarcodeValueTypes)
+      && Objects.deepEquals(this.availableTextContentTypes, other.availableTextContentTypes)
+      && Objects.deepEquals(this.availableTextRecognitionLanguages, other.availableTextRecognitionLanguages)
       && Objects.deepEquals(this.supportsOneShotScanning, other.supportsOneShotScanning)
       && Objects.deepEquals(this.supportsLiveScanning, other.supportsLiveScanning)
-      && Objects.deepEquals(this.supportsTextRecognition, other.supportsTextRecognition)
-      && Objects.deepEquals(this.supportsBarcodeRecognition, other.supportsBarcodeRecognition)
-      && Objects.deepEquals(this.supportsMultipleItems, other.supportsMultipleItems)
+      && Objects.deepEquals(this.supportsMultipleValues, other.supportsMultipleValues)
       && Objects.deepEquals(this.supportsHighFrameRateTracking, other.supportsHighFrameRateTracking)
       && Objects.deepEquals(this.supportsPinchToZoom, other.supportsPinchToZoom)
       && Objects.deepEquals(this.supportsGuidance, other.supportsGuidance)
@@ -126,26 +114,23 @@ data class DataScannerCapabilities(
       && Objects.deepEquals(this.supportsZoomFactor, other.supportsZoomFactor)
       && Objects.deepEquals(this.supportsAutoZoom, other.supportsAutoZoom)
       && Objects.deepEquals(this.supportsManualInput, other.supportsManualInput)
+      && Objects.deepEquals(this.canPrepareScanner, other.canPrepareScanner)
       && Objects.deepEquals(this.requiresCameraPermission, other.requiresCameraPermission)
-      && Objects.deepEquals(this.requiresGooglePlayServices, other.requiresGooglePlayServices)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
-      platform,
       isSupported,
       isAvailable,
       unavailableReason,
-      supportedTargets,
-      supportedBarcodeFormats,
-      supportedBarcodeValueTypes,
-      supportedTextContentTypes,
-      supportedTextRecognitionLanguages,
+      availableValueTypes,
+      availableBarcodeFormats,
+      availableBarcodeValueTypes,
+      availableTextContentTypes,
+      availableTextRecognitionLanguages,
       supportsOneShotScanning,
       supportsLiveScanning,
-      supportsTextRecognition,
-      supportsBarcodeRecognition,
-      supportsMultipleItems,
+      supportsMultipleValues,
       supportsHighFrameRateTracking,
       supportsPinchToZoom,
       supportsGuidance,
@@ -156,8 +141,8 @@ data class DataScannerCapabilities(
       supportsZoomFactor,
       supportsAutoZoom,
       supportsManualInput,
-      requiresCameraPermission,
-      requiresGooglePlayServices
+      canPrepareScanner,
+      requiresCameraPermission
     ).contentDeepHashCode()
   }
 
@@ -169,8 +154,8 @@ data class DataScannerCapabilities(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(platform: DataScannerPlatform, isSupported: Boolean, isAvailable: Boolean, unavailableReason: DataScannerUnavailableReason?, supportedTargets: Array<DataScannerDataType>, supportedBarcodeFormats: Array<DataScannerBarcodeFormat>, supportedBarcodeValueTypes: Array<DataScannerBarcodeValueType>, supportedTextContentTypes: Array<DataScannerTextContentType>, supportedTextRecognitionLanguages: Array<String>, supportsOneShotScanning: Boolean, supportsLiveScanning: Boolean, supportsTextRecognition: Boolean, supportsBarcodeRecognition: Boolean, supportsMultipleItems: Boolean, supportsHighFrameRateTracking: Boolean, supportsPinchToZoom: Boolean, supportsGuidance: Boolean, supportsHighlighting: Boolean, supportsRegionOfInterest: Boolean, supportsCustomOverlays: Boolean, supportsPhotoCapture: Boolean, supportsZoomFactor: Boolean, supportsAutoZoom: Boolean, supportsManualInput: Boolean, requiresCameraPermission: Boolean, requiresGooglePlayServices: Boolean): DataScannerCapabilities {
-      return DataScannerCapabilities(platform, isSupported, isAvailable, unavailableReason, supportedTargets, supportedBarcodeFormats, supportedBarcodeValueTypes, supportedTextContentTypes, supportedTextRecognitionLanguages, supportsOneShotScanning, supportsLiveScanning, supportsTextRecognition, supportsBarcodeRecognition, supportsMultipleItems, supportsHighFrameRateTracking, supportsPinchToZoom, supportsGuidance, supportsHighlighting, supportsRegionOfInterest, supportsCustomOverlays, supportsPhotoCapture, supportsZoomFactor, supportsAutoZoom, supportsManualInput, requiresCameraPermission, requiresGooglePlayServices)
+    private fun fromCpp(isSupported: Boolean, isAvailable: Boolean, unavailableReason: DataScannerUnavailableReason?, availableValueTypes: Array<DataScannerValueType>, availableBarcodeFormats: Array<DataScannerBarcodeFormat>, availableBarcodeValueTypes: Array<DataScannerBarcodeValueType>, availableTextContentTypes: Array<DataScannerTextContentType>, availableTextRecognitionLanguages: Array<String>, supportsOneShotScanning: Boolean, supportsLiveScanning: Boolean, supportsMultipleValues: Boolean, supportsHighFrameRateTracking: Boolean, supportsPinchToZoom: Boolean, supportsGuidance: Boolean, supportsHighlighting: Boolean, supportsRegionOfInterest: Boolean, supportsCustomOverlays: Boolean, supportsPhotoCapture: Boolean, supportsZoomFactor: Boolean, supportsAutoZoom: Boolean, supportsManualInput: Boolean, canPrepareScanner: Boolean, requiresCameraPermission: Boolean): DataScannerCapabilities {
+      return DataScannerCapabilities(isSupported, isAvailable, unavailableReason, availableValueTypes, availableBarcodeFormats, availableBarcodeValueTypes, availableTextContentTypes, availableTextRecognitionLanguages, supportsOneShotScanning, supportsLiveScanning, supportsMultipleValues, supportsHighFrameRateTracking, supportsPinchToZoom, supportsGuidance, supportsHighlighting, supportsRegionOfInterest, supportsCustomOverlays, supportsPhotoCapture, supportsZoomFactor, supportsAutoZoom, supportsManualInput, canPrepareScanner, requiresCameraPermission)
     }
   }
 }

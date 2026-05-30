@@ -45,24 +45,24 @@ namespace margelo::nitro::datascanner {
         case DataScannerTextContentType::URL:
           static const auto fieldURL = clazz->getStaticField<JDataScannerTextContentType>("URL");
           return clazz->getStaticFieldValue(fieldURL);
-        case DataScannerTextContentType::DATETIMEDURATION:
-          static const auto fieldDATETIMEDURATION = clazz->getStaticField<JDataScannerTextContentType>("DATETIMEDURATION");
-          return clazz->getStaticFieldValue(fieldDATETIMEDURATION);
-        case DataScannerTextContentType::EMAILADDRESS:
-          static const auto fieldEMAILADDRESS = clazz->getStaticField<JDataScannerTextContentType>("EMAILADDRESS");
-          return clazz->getStaticFieldValue(fieldEMAILADDRESS);
-        case DataScannerTextContentType::FLIGHTNUMBER:
-          static const auto fieldFLIGHTNUMBER = clazz->getStaticField<JDataScannerTextContentType>("FLIGHTNUMBER");
-          return clazz->getStaticFieldValue(fieldFLIGHTNUMBER);
-        case DataScannerTextContentType::FULLSTREETADDRESS:
-          static const auto fieldFULLSTREETADDRESS = clazz->getStaticField<JDataScannerTextContentType>("FULLSTREETADDRESS");
-          return clazz->getStaticFieldValue(fieldFULLSTREETADDRESS);
-        case DataScannerTextContentType::SHIPMENTTRACKINGNUMBER:
-          static const auto fieldSHIPMENTTRACKINGNUMBER = clazz->getStaticField<JDataScannerTextContentType>("SHIPMENTTRACKINGNUMBER");
-          return clazz->getStaticFieldValue(fieldSHIPMENTTRACKINGNUMBER);
-        case DataScannerTextContentType::TELEPHONENUMBER:
-          static const auto fieldTELEPHONENUMBER = clazz->getStaticField<JDataScannerTextContentType>("TELEPHONENUMBER");
-          return clazz->getStaticFieldValue(fieldTELEPHONENUMBER);
+        case DataScannerTextContentType::DATE_TIME_DURATION:
+          static const auto fieldDATE_TIME_DURATION = clazz->getStaticField<JDataScannerTextContentType>("DATE_TIME_DURATION");
+          return clazz->getStaticFieldValue(fieldDATE_TIME_DURATION);
+        case DataScannerTextContentType::EMAIL_ADDRESS:
+          static const auto fieldEMAIL_ADDRESS = clazz->getStaticField<JDataScannerTextContentType>("EMAIL_ADDRESS");
+          return clazz->getStaticFieldValue(fieldEMAIL_ADDRESS);
+        case DataScannerTextContentType::FLIGHT_NUMBER:
+          static const auto fieldFLIGHT_NUMBER = clazz->getStaticField<JDataScannerTextContentType>("FLIGHT_NUMBER");
+          return clazz->getStaticFieldValue(fieldFLIGHT_NUMBER);
+        case DataScannerTextContentType::FULL_STREET_ADDRESS:
+          static const auto fieldFULL_STREET_ADDRESS = clazz->getStaticField<JDataScannerTextContentType>("FULL_STREET_ADDRESS");
+          return clazz->getStaticFieldValue(fieldFULL_STREET_ADDRESS);
+        case DataScannerTextContentType::SHIPMENT_TRACKING_NUMBER:
+          static const auto fieldSHIPMENT_TRACKING_NUMBER = clazz->getStaticField<JDataScannerTextContentType>("SHIPMENT_TRACKING_NUMBER");
+          return clazz->getStaticFieldValue(fieldSHIPMENT_TRACKING_NUMBER);
+        case DataScannerTextContentType::TELEPHONE_NUMBER:
+          static const auto fieldTELEPHONE_NUMBER = clazz->getStaticField<JDataScannerTextContentType>("TELEPHONE_NUMBER");
+          return clazz->getStaticFieldValue(fieldTELEPHONE_NUMBER);
         case DataScannerTextContentType::CURRENCY:
           static const auto fieldCURRENCY = clazz->getStaticField<JDataScannerTextContentType>("CURRENCY");
           return clazz->getStaticFieldValue(fieldCURRENCY);

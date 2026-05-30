@@ -30,7 +30,7 @@ namespace margelo::nitro::datascanner {
    */
   enum class DataScannerResultSource {
     CAMERA      SWIFT_NAME(camera) = 0,
-    MANUALINPUT      SWIFT_NAME(manualinput) = 1,
+    MANUAL_INPUT      SWIFT_NAME(manualInput) = 1,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::datascanner
@@ -44,7 +44,7 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("camera"): return margelo::nitro::datascanner::DataScannerResultSource::CAMERA;
-        case hashString("manualInput"): return margelo::nitro::datascanner::DataScannerResultSource::MANUALINPUT;
+        case hashString("manual-input"): return margelo::nitro::datascanner::DataScannerResultSource::MANUAL_INPUT;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerResultSource - invalid value!");
       }
@@ -52,7 +52,7 @@ namespace margelo::nitro {
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::datascanner::DataScannerResultSource arg) {
       switch (arg) {
         case margelo::nitro::datascanner::DataScannerResultSource::CAMERA: return JSIConverter<std::string>::toJSI(runtime, "camera");
-        case margelo::nitro::datascanner::DataScannerResultSource::MANUALINPUT: return JSIConverter<std::string>::toJSI(runtime, "manualInput");
+        case margelo::nitro::datascanner::DataScannerResultSource::MANUAL_INPUT: return JSIConverter<std::string>::toJSI(runtime, "manual-input");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerResultSource to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -65,7 +65,7 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("camera"):
-        case hashString("manualInput"):
+        case hashString("manual-input"):
           return true;
         default:
           return false;

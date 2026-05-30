@@ -28,12 +28,10 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-// Forward declaration of `DataScannerPlatform` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerPlatform; }
 // Forward declaration of `DataScannerUnavailableReason` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerUnavailableReason; }
-// Forward declaration of `DataScannerDataType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerValueType; }
 // Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
 // Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
@@ -41,10 +39,9 @@ namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; 
 // Forward declaration of `DataScannerTextContentType` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
 
-#include "DataScannerPlatform.hpp"
 #include "DataScannerUnavailableReason.hpp"
 #include <optional>
-#include "DataScannerDataType.hpp"
+#include "DataScannerValueType.hpp"
 #include <vector>
 #include "DataScannerBarcodeFormat.hpp"
 #include "DataScannerBarcodeValueType.hpp"
@@ -58,20 +55,17 @@ namespace margelo::nitro::datascanner {
    */
   struct DataScannerCapabilities final {
   public:
-    DataScannerPlatform platform     SWIFT_PRIVATE;
     bool isSupported     SWIFT_PRIVATE;
     bool isAvailable     SWIFT_PRIVATE;
     std::optional<DataScannerUnavailableReason> unavailableReason     SWIFT_PRIVATE;
-    std::vector<DataScannerDataType> supportedTargets     SWIFT_PRIVATE;
-    std::vector<DataScannerBarcodeFormat> supportedBarcodeFormats     SWIFT_PRIVATE;
-    std::vector<DataScannerBarcodeValueType> supportedBarcodeValueTypes     SWIFT_PRIVATE;
-    std::vector<DataScannerTextContentType> supportedTextContentTypes     SWIFT_PRIVATE;
-    std::vector<std::string> supportedTextRecognitionLanguages     SWIFT_PRIVATE;
+    std::vector<DataScannerValueType> availableValueTypes     SWIFT_PRIVATE;
+    std::vector<DataScannerBarcodeFormat> availableBarcodeFormats     SWIFT_PRIVATE;
+    std::vector<DataScannerBarcodeValueType> availableBarcodeValueTypes     SWIFT_PRIVATE;
+    std::vector<DataScannerTextContentType> availableTextContentTypes     SWIFT_PRIVATE;
+    std::vector<std::string> availableTextRecognitionLanguages     SWIFT_PRIVATE;
     bool supportsOneShotScanning     SWIFT_PRIVATE;
     bool supportsLiveScanning     SWIFT_PRIVATE;
-    bool supportsTextRecognition     SWIFT_PRIVATE;
-    bool supportsBarcodeRecognition     SWIFT_PRIVATE;
-    bool supportsMultipleItems     SWIFT_PRIVATE;
+    bool supportsMultipleValues     SWIFT_PRIVATE;
     bool supportsHighFrameRateTracking     SWIFT_PRIVATE;
     bool supportsPinchToZoom     SWIFT_PRIVATE;
     bool supportsGuidance     SWIFT_PRIVATE;
@@ -82,12 +76,12 @@ namespace margelo::nitro::datascanner {
     bool supportsZoomFactor     SWIFT_PRIVATE;
     bool supportsAutoZoom     SWIFT_PRIVATE;
     bool supportsManualInput     SWIFT_PRIVATE;
+    bool canPrepareScanner     SWIFT_PRIVATE;
     bool requiresCameraPermission     SWIFT_PRIVATE;
-    bool requiresGooglePlayServices     SWIFT_PRIVATE;
 
   public:
     DataScannerCapabilities() = default;
-    explicit DataScannerCapabilities(DataScannerPlatform platform, bool isSupported, bool isAvailable, std::optional<DataScannerUnavailableReason> unavailableReason, std::vector<DataScannerDataType> supportedTargets, std::vector<DataScannerBarcodeFormat> supportedBarcodeFormats, std::vector<DataScannerBarcodeValueType> supportedBarcodeValueTypes, std::vector<DataScannerTextContentType> supportedTextContentTypes, std::vector<std::string> supportedTextRecognitionLanguages, bool supportsOneShotScanning, bool supportsLiveScanning, bool supportsTextRecognition, bool supportsBarcodeRecognition, bool supportsMultipleItems, bool supportsHighFrameRateTracking, bool supportsPinchToZoom, bool supportsGuidance, bool supportsHighlighting, bool supportsRegionOfInterest, bool supportsCustomOverlays, bool supportsPhotoCapture, bool supportsZoomFactor, bool supportsAutoZoom, bool supportsManualInput, bool requiresCameraPermission, bool requiresGooglePlayServices): platform(platform), isSupported(isSupported), isAvailable(isAvailable), unavailableReason(unavailableReason), supportedTargets(supportedTargets), supportedBarcodeFormats(supportedBarcodeFormats), supportedBarcodeValueTypes(supportedBarcodeValueTypes), supportedTextContentTypes(supportedTextContentTypes), supportedTextRecognitionLanguages(supportedTextRecognitionLanguages), supportsOneShotScanning(supportsOneShotScanning), supportsLiveScanning(supportsLiveScanning), supportsTextRecognition(supportsTextRecognition), supportsBarcodeRecognition(supportsBarcodeRecognition), supportsMultipleItems(supportsMultipleItems), supportsHighFrameRateTracking(supportsHighFrameRateTracking), supportsPinchToZoom(supportsPinchToZoom), supportsGuidance(supportsGuidance), supportsHighlighting(supportsHighlighting), supportsRegionOfInterest(supportsRegionOfInterest), supportsCustomOverlays(supportsCustomOverlays), supportsPhotoCapture(supportsPhotoCapture), supportsZoomFactor(supportsZoomFactor), supportsAutoZoom(supportsAutoZoom), supportsManualInput(supportsManualInput), requiresCameraPermission(requiresCameraPermission), requiresGooglePlayServices(requiresGooglePlayServices) {}
+    explicit DataScannerCapabilities(bool isSupported, bool isAvailable, std::optional<DataScannerUnavailableReason> unavailableReason, std::vector<DataScannerValueType> availableValueTypes, std::vector<DataScannerBarcodeFormat> availableBarcodeFormats, std::vector<DataScannerBarcodeValueType> availableBarcodeValueTypes, std::vector<DataScannerTextContentType> availableTextContentTypes, std::vector<std::string> availableTextRecognitionLanguages, bool supportsOneShotScanning, bool supportsLiveScanning, bool supportsMultipleValues, bool supportsHighFrameRateTracking, bool supportsPinchToZoom, bool supportsGuidance, bool supportsHighlighting, bool supportsRegionOfInterest, bool supportsCustomOverlays, bool supportsPhotoCapture, bool supportsZoomFactor, bool supportsAutoZoom, bool supportsManualInput, bool canPrepareScanner, bool requiresCameraPermission): isSupported(isSupported), isAvailable(isAvailable), unavailableReason(unavailableReason), availableValueTypes(availableValueTypes), availableBarcodeFormats(availableBarcodeFormats), availableBarcodeValueTypes(availableBarcodeValueTypes), availableTextContentTypes(availableTextContentTypes), availableTextRecognitionLanguages(availableTextRecognitionLanguages), supportsOneShotScanning(supportsOneShotScanning), supportsLiveScanning(supportsLiveScanning), supportsMultipleValues(supportsMultipleValues), supportsHighFrameRateTracking(supportsHighFrameRateTracking), supportsPinchToZoom(supportsPinchToZoom), supportsGuidance(supportsGuidance), supportsHighlighting(supportsHighlighting), supportsRegionOfInterest(supportsRegionOfInterest), supportsCustomOverlays(supportsCustomOverlays), supportsPhotoCapture(supportsPhotoCapture), supportsZoomFactor(supportsZoomFactor), supportsAutoZoom(supportsAutoZoom), supportsManualInput(supportsManualInput), canPrepareScanner(canPrepareScanner), requiresCameraPermission(requiresCameraPermission) {}
 
   public:
     friend bool operator==(const DataScannerCapabilities& lhs, const DataScannerCapabilities& rhs) = default;
@@ -103,20 +97,17 @@ namespace margelo::nitro {
     static inline margelo::nitro::datascanner::DataScannerCapabilities fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::datascanner::DataScannerCapabilities(
-        JSIConverter<margelo::nitro::datascanner::DataScannerPlatform>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "platform"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isSupported"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isAvailable"))),
         JSIConverter<std::optional<margelo::nitro::datascanner::DataScannerUnavailableReason>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "unavailableReason"))),
-        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerDataType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTargets"))),
-        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeFormats"))),
-        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeValueTypes"))),
-        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTextContentTypes"))),
-        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTextRecognitionLanguages"))),
+        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerValueType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableValueTypes"))),
+        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeFormats"))),
+        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeValueTypes"))),
+        JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableTextContentTypes"))),
+        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableTextRecognitionLanguages"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsOneShotScanning"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsLiveScanning"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsTextRecognition"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsBarcodeRecognition"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleItems"))),
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleValues"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsHighFrameRateTracking"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsPinchToZoom"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsGuidance"))),
@@ -127,26 +118,23 @@ namespace margelo::nitro {
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsZoomFactor"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsAutoZoom"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsManualInput"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requiresCameraPermission"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requiresGooglePlayServices")))
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "canPrepareScanner"))),
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requiresCameraPermission")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::datascanner::DataScannerCapabilities& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "platform"), JSIConverter<margelo::nitro::datascanner::DataScannerPlatform>::toJSI(runtime, arg.platform));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "isSupported"), JSIConverter<bool>::toJSI(runtime, arg.isSupported));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "isAvailable"), JSIConverter<bool>::toJSI(runtime, arg.isAvailable));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "unavailableReason"), JSIConverter<std::optional<margelo::nitro::datascanner::DataScannerUnavailableReason>>::toJSI(runtime, arg.unavailableReason));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportedTargets"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerDataType>>::toJSI(runtime, arg.supportedTargets));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeFormats"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::toJSI(runtime, arg.supportedBarcodeFormats));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeValueTypes"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::toJSI(runtime, arg.supportedBarcodeValueTypes));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportedTextContentTypes"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::toJSI(runtime, arg.supportedTextContentTypes));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportedTextRecognitionLanguages"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.supportedTextRecognitionLanguages));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "availableValueTypes"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerValueType>>::toJSI(runtime, arg.availableValueTypes));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeFormats"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::toJSI(runtime, arg.availableBarcodeFormats));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeValueTypes"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::toJSI(runtime, arg.availableBarcodeValueTypes));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "availableTextContentTypes"), JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::toJSI(runtime, arg.availableTextContentTypes));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "availableTextRecognitionLanguages"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.availableTextRecognitionLanguages));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsOneShotScanning"), JSIConverter<bool>::toJSI(runtime, arg.supportsOneShotScanning));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsLiveScanning"), JSIConverter<bool>::toJSI(runtime, arg.supportsLiveScanning));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsTextRecognition"), JSIConverter<bool>::toJSI(runtime, arg.supportsTextRecognition));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsBarcodeRecognition"), JSIConverter<bool>::toJSI(runtime, arg.supportsBarcodeRecognition));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleItems"), JSIConverter<bool>::toJSI(runtime, arg.supportsMultipleItems));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleValues"), JSIConverter<bool>::toJSI(runtime, arg.supportsMultipleValues));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsHighFrameRateTracking"), JSIConverter<bool>::toJSI(runtime, arg.supportsHighFrameRateTracking));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsPinchToZoom"), JSIConverter<bool>::toJSI(runtime, arg.supportsPinchToZoom));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsGuidance"), JSIConverter<bool>::toJSI(runtime, arg.supportsGuidance));
@@ -157,8 +145,8 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsZoomFactor"), JSIConverter<bool>::toJSI(runtime, arg.supportsZoomFactor));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsAutoZoom"), JSIConverter<bool>::toJSI(runtime, arg.supportsAutoZoom));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "supportsManualInput"), JSIConverter<bool>::toJSI(runtime, arg.supportsManualInput));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "canPrepareScanner"), JSIConverter<bool>::toJSI(runtime, arg.canPrepareScanner));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "requiresCameraPermission"), JSIConverter<bool>::toJSI(runtime, arg.requiresCameraPermission));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "requiresGooglePlayServices"), JSIConverter<bool>::toJSI(runtime, arg.requiresGooglePlayServices));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -169,20 +157,17 @@ namespace margelo::nitro {
       if (!nitro::isPlainObject(runtime, obj)) {
         return false;
       }
-      if (!JSIConverter<margelo::nitro::datascanner::DataScannerPlatform>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "platform")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isSupported")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isAvailable")))) return false;
       if (!JSIConverter<std::optional<margelo::nitro::datascanner::DataScannerUnavailableReason>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "unavailableReason")))) return false;
-      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerDataType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTargets")))) return false;
-      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeFormats")))) return false;
-      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedBarcodeValueTypes")))) return false;
-      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTextContentTypes")))) return false;
-      if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportedTextRecognitionLanguages")))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerValueType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableValueTypes")))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeFormat>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeFormats")))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerBarcodeValueType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableBarcodeValueTypes")))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::datascanner::DataScannerTextContentType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableTextContentTypes")))) return false;
+      if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "availableTextRecognitionLanguages")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsOneShotScanning")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsLiveScanning")))) return false;
-      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsTextRecognition")))) return false;
-      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsBarcodeRecognition")))) return false;
-      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleItems")))) return false;
+      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsMultipleValues")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsHighFrameRateTracking")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsPinchToZoom")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsGuidance")))) return false;
@@ -193,8 +178,8 @@ namespace margelo::nitro {
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsZoomFactor")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsAutoZoom")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "supportsManualInput")))) return false;
+      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "canPrepareScanner")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requiresCameraPermission")))) return false;
-      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requiresGooglePlayServices")))) return false;
       return true;
     }
   };

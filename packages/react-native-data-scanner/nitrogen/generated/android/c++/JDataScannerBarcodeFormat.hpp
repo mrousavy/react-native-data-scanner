@@ -51,75 +51,75 @@ namespace margelo::nitro::datascanner {
         case DataScannerBarcodeFormat::CODABAR:
           static const auto fieldCODABAR = clazz->getStaticField<JDataScannerBarcodeFormat>("CODABAR");
           return clazz->getStaticFieldValue(fieldCODABAR);
-        case DataScannerBarcodeFormat::CODE39:
-          static const auto fieldCODE39 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE39");
-          return clazz->getStaticFieldValue(fieldCODE39);
-        case DataScannerBarcodeFormat::CODE39CHECKSUM:
-          static const auto fieldCODE39CHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE39CHECKSUM");
-          return clazz->getStaticFieldValue(fieldCODE39CHECKSUM);
-        case DataScannerBarcodeFormat::CODE39FULLASCII:
-          static const auto fieldCODE39FULLASCII = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE39FULLASCII");
-          return clazz->getStaticFieldValue(fieldCODE39FULLASCII);
-        case DataScannerBarcodeFormat::CODE39FULLASCIICHECKSUM:
-          static const auto fieldCODE39FULLASCIICHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE39FULLASCIICHECKSUM");
-          return clazz->getStaticFieldValue(fieldCODE39FULLASCIICHECKSUM);
-        case DataScannerBarcodeFormat::CODE93:
-          static const auto fieldCODE93 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE93");
-          return clazz->getStaticFieldValue(fieldCODE93);
-        case DataScannerBarcodeFormat::CODE93I:
-          static const auto fieldCODE93I = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE93I");
-          return clazz->getStaticFieldValue(fieldCODE93I);
-        case DataScannerBarcodeFormat::CODE128:
-          static const auto fieldCODE128 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE128");
-          return clazz->getStaticFieldValue(fieldCODE128);
-        case DataScannerBarcodeFormat::DATAMATRIX:
-          static const auto fieldDATAMATRIX = clazz->getStaticField<JDataScannerBarcodeFormat>("DATAMATRIX");
-          return clazz->getStaticFieldValue(fieldDATAMATRIX);
-        case DataScannerBarcodeFormat::EAN8:
-          static const auto fieldEAN8 = clazz->getStaticField<JDataScannerBarcodeFormat>("EAN8");
-          return clazz->getStaticFieldValue(fieldEAN8);
-        case DataScannerBarcodeFormat::EAN13:
-          static const auto fieldEAN13 = clazz->getStaticField<JDataScannerBarcodeFormat>("EAN13");
-          return clazz->getStaticFieldValue(fieldEAN13);
-        case DataScannerBarcodeFormat::GS1DATABAR:
-          static const auto fieldGS1DATABAR = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1DATABAR");
-          return clazz->getStaticFieldValue(fieldGS1DATABAR);
-        case DataScannerBarcodeFormat::GS1DATABAREXPANDED:
-          static const auto fieldGS1DATABAREXPANDED = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1DATABAREXPANDED");
-          return clazz->getStaticFieldValue(fieldGS1DATABAREXPANDED);
-        case DataScannerBarcodeFormat::GS1DATABARLIMITED:
-          static const auto fieldGS1DATABARLIMITED = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1DATABARLIMITED");
-          return clazz->getStaticFieldValue(fieldGS1DATABARLIMITED);
+        case DataScannerBarcodeFormat::CODE_39:
+          static const auto fieldCODE_39 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_39");
+          return clazz->getStaticFieldValue(fieldCODE_39);
+        case DataScannerBarcodeFormat::CODE_39_CHECKSUM:
+          static const auto fieldCODE_39_CHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_39_CHECKSUM");
+          return clazz->getStaticFieldValue(fieldCODE_39_CHECKSUM);
+        case DataScannerBarcodeFormat::CODE_39_FULL_ASCII:
+          static const auto fieldCODE_39_FULL_ASCII = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_39_FULL_ASCII");
+          return clazz->getStaticFieldValue(fieldCODE_39_FULL_ASCII);
+        case DataScannerBarcodeFormat::CODE_39_FULL_ASCII_CHECKSUM:
+          static const auto fieldCODE_39_FULL_ASCII_CHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_39_FULL_ASCII_CHECKSUM");
+          return clazz->getStaticFieldValue(fieldCODE_39_FULL_ASCII_CHECKSUM);
+        case DataScannerBarcodeFormat::CODE_93:
+          static const auto fieldCODE_93 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_93");
+          return clazz->getStaticFieldValue(fieldCODE_93);
+        case DataScannerBarcodeFormat::CODE_93I:
+          static const auto fieldCODE_93I = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_93I");
+          return clazz->getStaticFieldValue(fieldCODE_93I);
+        case DataScannerBarcodeFormat::CODE_128:
+          static const auto fieldCODE_128 = clazz->getStaticField<JDataScannerBarcodeFormat>("CODE_128");
+          return clazz->getStaticFieldValue(fieldCODE_128);
+        case DataScannerBarcodeFormat::DATA_MATRIX:
+          static const auto fieldDATA_MATRIX = clazz->getStaticField<JDataScannerBarcodeFormat>("DATA_MATRIX");
+          return clazz->getStaticFieldValue(fieldDATA_MATRIX);
+        case DataScannerBarcodeFormat::EAN_8:
+          static const auto fieldEAN_8 = clazz->getStaticField<JDataScannerBarcodeFormat>("EAN_8");
+          return clazz->getStaticFieldValue(fieldEAN_8);
+        case DataScannerBarcodeFormat::EAN_13:
+          static const auto fieldEAN_13 = clazz->getStaticField<JDataScannerBarcodeFormat>("EAN_13");
+          return clazz->getStaticFieldValue(fieldEAN_13);
+        case DataScannerBarcodeFormat::GS1_DATA_BAR:
+          static const auto fieldGS1_DATA_BAR = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1_DATA_BAR");
+          return clazz->getStaticFieldValue(fieldGS1_DATA_BAR);
+        case DataScannerBarcodeFormat::GS1_DATA_BAR_EXPANDED:
+          static const auto fieldGS1_DATA_BAR_EXPANDED = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1_DATA_BAR_EXPANDED");
+          return clazz->getStaticFieldValue(fieldGS1_DATA_BAR_EXPANDED);
+        case DataScannerBarcodeFormat::GS1_DATA_BAR_LIMITED:
+          static const auto fieldGS1_DATA_BAR_LIMITED = clazz->getStaticField<JDataScannerBarcodeFormat>("GS1_DATA_BAR_LIMITED");
+          return clazz->getStaticFieldValue(fieldGS1_DATA_BAR_LIMITED);
         case DataScannerBarcodeFormat::ITF:
           static const auto fieldITF = clazz->getStaticField<JDataScannerBarcodeFormat>("ITF");
           return clazz->getStaticFieldValue(fieldITF);
-        case DataScannerBarcodeFormat::ITFCHECKSUM:
-          static const auto fieldITFCHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("ITFCHECKSUM");
-          return clazz->getStaticFieldValue(fieldITFCHECKSUM);
-        case DataScannerBarcodeFormat::ITF14:
-          static const auto fieldITF14 = clazz->getStaticField<JDataScannerBarcodeFormat>("ITF14");
-          return clazz->getStaticFieldValue(fieldITF14);
-        case DataScannerBarcodeFormat::MICROPDF417:
-          static const auto fieldMICROPDF417 = clazz->getStaticField<JDataScannerBarcodeFormat>("MICROPDF417");
-          return clazz->getStaticFieldValue(fieldMICROPDF417);
-        case DataScannerBarcodeFormat::MICROQR:
-          static const auto fieldMICROQR = clazz->getStaticField<JDataScannerBarcodeFormat>("MICROQR");
-          return clazz->getStaticFieldValue(fieldMICROQR);
-        case DataScannerBarcodeFormat::MSIPLESSEY:
-          static const auto fieldMSIPLESSEY = clazz->getStaticField<JDataScannerBarcodeFormat>("MSIPLESSEY");
-          return clazz->getStaticFieldValue(fieldMSIPLESSEY);
-        case DataScannerBarcodeFormat::PDF417:
-          static const auto fieldPDF417 = clazz->getStaticField<JDataScannerBarcodeFormat>("PDF417");
-          return clazz->getStaticFieldValue(fieldPDF417);
+        case DataScannerBarcodeFormat::ITF_CHECKSUM:
+          static const auto fieldITF_CHECKSUM = clazz->getStaticField<JDataScannerBarcodeFormat>("ITF_CHECKSUM");
+          return clazz->getStaticFieldValue(fieldITF_CHECKSUM);
+        case DataScannerBarcodeFormat::ITF_14:
+          static const auto fieldITF_14 = clazz->getStaticField<JDataScannerBarcodeFormat>("ITF_14");
+          return clazz->getStaticFieldValue(fieldITF_14);
+        case DataScannerBarcodeFormat::MICRO_PDF_417:
+          static const auto fieldMICRO_PDF_417 = clazz->getStaticField<JDataScannerBarcodeFormat>("MICRO_PDF_417");
+          return clazz->getStaticFieldValue(fieldMICRO_PDF_417);
+        case DataScannerBarcodeFormat::MICRO_QR:
+          static const auto fieldMICRO_QR = clazz->getStaticField<JDataScannerBarcodeFormat>("MICRO_QR");
+          return clazz->getStaticFieldValue(fieldMICRO_QR);
+        case DataScannerBarcodeFormat::MSI_PLESSEY:
+          static const auto fieldMSI_PLESSEY = clazz->getStaticField<JDataScannerBarcodeFormat>("MSI_PLESSEY");
+          return clazz->getStaticFieldValue(fieldMSI_PLESSEY);
+        case DataScannerBarcodeFormat::PDF_417:
+          static const auto fieldPDF_417 = clazz->getStaticField<JDataScannerBarcodeFormat>("PDF_417");
+          return clazz->getStaticFieldValue(fieldPDF_417);
         case DataScannerBarcodeFormat::QR:
           static const auto fieldQR = clazz->getStaticField<JDataScannerBarcodeFormat>("QR");
           return clazz->getStaticFieldValue(fieldQR);
-        case DataScannerBarcodeFormat::UPCA:
-          static const auto fieldUPCA = clazz->getStaticField<JDataScannerBarcodeFormat>("UPCA");
-          return clazz->getStaticFieldValue(fieldUPCA);
-        case DataScannerBarcodeFormat::UPCE:
-          static const auto fieldUPCE = clazz->getStaticField<JDataScannerBarcodeFormat>("UPCE");
-          return clazz->getStaticFieldValue(fieldUPCE);
+        case DataScannerBarcodeFormat::UPC_A:
+          static const auto fieldUPC_A = clazz->getStaticField<JDataScannerBarcodeFormat>("UPC_A");
+          return clazz->getStaticFieldValue(fieldUPC_A);
+        case DataScannerBarcodeFormat::UPC_E:
+          static const auto fieldUPC_E = clazz->getStaticField<JDataScannerBarcodeFormat>("UPC_E");
+          return clazz->getStaticFieldValue(fieldUPC_E);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

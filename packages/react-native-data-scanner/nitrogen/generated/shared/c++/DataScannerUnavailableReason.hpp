@@ -29,13 +29,13 @@ namespace margelo::nitro::datascanner {
    * An enum which can be represented as a JavaScript union (DataScannerUnavailableReason).
    */
   enum class DataScannerUnavailableReason {
-    UNSUPPORTED      SWIFT_NAME(unsupported) = 0,
-    CAMERARESTRICTED      SWIFT_NAME(camerarestricted) = 1,
-    CAMERAPERMISSIONDENIED      SWIFT_NAME(camerapermissiondenied) = 2,
-    CAMERAUNAVAILABLE      SWIFT_NAME(cameraunavailable) = 3,
-    GOOGLEPLAYSERVICESUNAVAILABLE      SWIFT_NAME(googleplayservicesunavailable) = 4,
-    SCANNERMODULEUNAVAILABLE      SWIFT_NAME(scannermoduleunavailable) = 5,
-    UNKNOWN      SWIFT_NAME(unknown) = 6,
+    UNKNOWN      SWIFT_NAME(unknown) = 0,
+    UNSUPPORTED      SWIFT_NAME(unsupported) = 1,
+    CAMERA_RESTRICTED      SWIFT_NAME(cameraRestricted) = 2,
+    CAMERA_PERMISSION_DENIED      SWIFT_NAME(cameraPermissionDenied) = 3,
+    CAMERA_UNAVAILABLE      SWIFT_NAME(cameraUnavailable) = 4,
+    SCANNER_UNAVAILABLE      SWIFT_NAME(scannerUnavailable) = 5,
+    SCANNER_INSTALLATION_REQUIRED      SWIFT_NAME(scannerInstallationRequired) = 6,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::datascanner
@@ -48,26 +48,26 @@ namespace margelo::nitro {
     static inline margelo::nitro::datascanner::DataScannerUnavailableReason fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("unsupported"): return margelo::nitro::datascanner::DataScannerUnavailableReason::UNSUPPORTED;
-        case hashString("cameraRestricted"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERARESTRICTED;
-        case hashString("cameraPermissionDenied"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERAPERMISSIONDENIED;
-        case hashString("cameraUnavailable"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERAUNAVAILABLE;
-        case hashString("googlePlayServicesUnavailable"): return margelo::nitro::datascanner::DataScannerUnavailableReason::GOOGLEPLAYSERVICESUNAVAILABLE;
-        case hashString("scannerModuleUnavailable"): return margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNERMODULEUNAVAILABLE;
         case hashString("unknown"): return margelo::nitro::datascanner::DataScannerUnavailableReason::UNKNOWN;
+        case hashString("unsupported"): return margelo::nitro::datascanner::DataScannerUnavailableReason::UNSUPPORTED;
+        case hashString("camera-restricted"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_RESTRICTED;
+        case hashString("camera-permission-denied"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_PERMISSION_DENIED;
+        case hashString("camera-unavailable"): return margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_UNAVAILABLE;
+        case hashString("scanner-unavailable"): return margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNER_UNAVAILABLE;
+        case hashString("scanner-installation-required"): return margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNER_INSTALLATION_REQUIRED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerUnavailableReason - invalid value!");
       }
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::datascanner::DataScannerUnavailableReason arg) {
       switch (arg) {
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::UNSUPPORTED: return JSIConverter<std::string>::toJSI(runtime, "unsupported");
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERARESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "cameraRestricted");
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERAPERMISSIONDENIED: return JSIConverter<std::string>::toJSI(runtime, "cameraPermissionDenied");
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERAUNAVAILABLE: return JSIConverter<std::string>::toJSI(runtime, "cameraUnavailable");
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::GOOGLEPLAYSERVICESUNAVAILABLE: return JSIConverter<std::string>::toJSI(runtime, "googlePlayServicesUnavailable");
-        case margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNERMODULEUNAVAILABLE: return JSIConverter<std::string>::toJSI(runtime, "scannerModuleUnavailable");
         case margelo::nitro::datascanner::DataScannerUnavailableReason::UNKNOWN: return JSIConverter<std::string>::toJSI(runtime, "unknown");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::UNSUPPORTED: return JSIConverter<std::string>::toJSI(runtime, "unsupported");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "camera-restricted");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_PERMISSION_DENIED: return JSIConverter<std::string>::toJSI(runtime, "camera-permission-denied");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::CAMERA_UNAVAILABLE: return JSIConverter<std::string>::toJSI(runtime, "camera-unavailable");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNER_UNAVAILABLE: return JSIConverter<std::string>::toJSI(runtime, "scanner-unavailable");
+        case margelo::nitro::datascanner::DataScannerUnavailableReason::SCANNER_INSTALLATION_REQUIRED: return JSIConverter<std::string>::toJSI(runtime, "scanner-installation-required");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerUnavailableReason to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -79,13 +79,13 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("unsupported"):
-        case hashString("cameraRestricted"):
-        case hashString("cameraPermissionDenied"):
-        case hashString("cameraUnavailable"):
-        case hashString("googlePlayServicesUnavailable"):
-        case hashString("scannerModuleUnavailable"):
         case hashString("unknown"):
+        case hashString("unsupported"):
+        case hashString("camera-restricted"):
+        case hashString("camera-permission-denied"):
+        case hashString("camera-unavailable"):
+        case hashString("scanner-unavailable"):
+        case hashString("scanner-installation-required"):
           return true;
         default:
           return false;

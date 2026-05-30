@@ -17,20 +17,20 @@ public extension DataScannerUnavailableReason {
    */
   init?(fromString string: String) {
     switch string {
-      case "unsupported":
-        self = .unsupported
-      case "cameraRestricted":
-        self = .camerarestricted
-      case "cameraPermissionDenied":
-        self = .camerapermissiondenied
-      case "cameraUnavailable":
-        self = .cameraunavailable
-      case "googlePlayServicesUnavailable":
-        self = .googleplayservicesunavailable
-      case "scannerModuleUnavailable":
-        self = .scannermoduleunavailable
       case "unknown":
         self = .unknown
+      case "unsupported":
+        self = .unsupported
+      case "camera-restricted":
+        self = .cameraRestricted
+      case "camera-permission-denied":
+        self = .cameraPermissionDenied
+      case "camera-unavailable":
+        self = .cameraUnavailable
+      case "scanner-unavailable":
+        self = .scannerUnavailable
+      case "scanner-installation-required":
+        self = .scannerInstallationRequired
       default:
         return nil
     }
@@ -41,20 +41,20 @@ public extension DataScannerUnavailableReason {
    */
   var stringValue: String {
     switch self {
-      case .unsupported:
-        return "unsupported"
-      case .camerarestricted:
-        return "cameraRestricted"
-      case .camerapermissiondenied:
-        return "cameraPermissionDenied"
-      case .cameraunavailable:
-        return "cameraUnavailable"
-      case .googleplayservicesunavailable:
-        return "googlePlayServicesUnavailable"
-      case .scannermoduleunavailable:
-        return "scannerModuleUnavailable"
       case .unknown:
         return "unknown"
+      case .unsupported:
+        return "unsupported"
+      case .cameraRestricted:
+        return "camera-restricted"
+      case .cameraPermissionDenied:
+        return "camera-permission-denied"
+      case .cameraUnavailable:
+        return "camera-unavailable"
+      case .scannerUnavailable:
+        return "scanner-unavailable"
+      case .scannerInstallationRequired:
+        return "scanner-installation-required"
     }
   }
 }

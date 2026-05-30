@@ -9,12 +9,10 @@
 
 // Forward declaration of `DataScannerCapabilities` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
-// Forward declaration of `DataScannerPlatform` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerPlatform; }
 // Forward declaration of `DataScannerUnavailableReason` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerUnavailableReason; }
-// Forward declaration of `DataScannerDataType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerValueType; }
 // Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
 // Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
@@ -23,91 +21,33 @@ namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; 
 namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
 // Forward declaration of `DataScannerCameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerCameraPermissionStatus; }
-// Forward declaration of `DataScannerItem` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItem; }
-// Forward declaration of `DataScannerBounds` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerBounds; }
-// Forward declaration of `DataScannerPoint` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerPoint; }
-// Forward declaration of `DataScannerRect` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerRect; }
-// Forward declaration of `DataScannerResultSource` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerResultSource; }
-// Forward declaration of `DataScannerBarcodeParsedValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerBarcodeParsedValue; }
-// Forward declaration of `DataScannerContactInfoValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerContactInfoValue; }
-// Forward declaration of `DataScannerPersonNameValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerPersonNameValue; }
-// Forward declaration of `DataScannerPhoneValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerPhoneValue; }
-// Forward declaration of `DataScannerPhoneNumberType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerPhoneNumberType; }
-// Forward declaration of `DataScannerEmailValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerEmailValue; }
-// Forward declaration of `DataScannerEmailAddressType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerEmailAddressType; }
-// Forward declaration of `DataScannerAddressValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerAddressValue; }
-// Forward declaration of `DataScannerAddressType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerAddressType; }
-// Forward declaration of `DataScannerSmsValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerSmsValue; }
-// Forward declaration of `DataScannerUrlValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerUrlValue; }
-// Forward declaration of `DataScannerWifiValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerWifiValue; }
-// Forward declaration of `DataScannerWifiEncryptionType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerWifiEncryptionType; }
-// Forward declaration of `DataScannerGeoValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerGeoValue; }
-// Forward declaration of `DataScannerCalendarEventValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerCalendarEventValue; }
-// Forward declaration of `DataScannerCalendarDateTimeValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerCalendarDateTimeValue; }
-// Forward declaration of `DataScannerDriverLicenseValue` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerDriverLicenseValue; }
-// Forward declaration of `DataScannerPhoto` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerPhoto; }
-// Forward declaration of `DataScannerPhotoMimeType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerPhotoMimeType; }
+// Forward declaration of `HybridDataScannedValueSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannedValueSpec; }
+// Forward declaration of `HybridDataScannerPhotoSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerPhotoSpec; }
+// Forward declaration of `HybridDataScannerListenerSubscriptionSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerListenerSubscriptionSpec; }
 // Forward declaration of `DataScannerConfiguration` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
-// Forward declaration of `DataScannerTarget` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerTarget; }
-// Forward declaration of `DataScannerIOSConfiguration` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerIOSConfiguration; }
 // Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
-// Forward declaration of `DataScannerAndroidConfiguration` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerAndroidConfiguration; }
-// Forward declaration of `DataScannerItemsChangedEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItemsChangedEvent; }
-// Forward declaration of `DataScannerItemsChangeType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerItemsChangeType; }
-// Forward declaration of `DataScannerItemTappedEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItemTappedEvent; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerRect; }
 // Forward declaration of `DataScannerZoomChangedEvent` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerZoomChangedEvent; }
 // Forward declaration of `DataScannerUnavailableEvent` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerUnavailableEvent; }
-// Forward declaration of `DataScannerErrorEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerErrorEvent; }
-// Forward declaration of `DataScannerErrorCode` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerErrorCode; }
 
 #include "DataScannerCapabilities.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include "JDataScannerCapabilities.hpp"
-#include "DataScannerPlatform.hpp"
-#include "JDataScannerPlatform.hpp"
 #include "DataScannerUnavailableReason.hpp"
 #include <optional>
 #include "JDataScannerUnavailableReason.hpp"
-#include "DataScannerDataType.hpp"
+#include "DataScannerValueType.hpp"
 #include <vector>
-#include "JDataScannerDataType.hpp"
+#include "JDataScannerValueType.hpp"
 #include "DataScannerBarcodeFormat.hpp"
 #include "JDataScannerBarcodeFormat.hpp"
 #include "DataScannerBarcodeValueType.hpp"
@@ -118,87 +58,31 @@ namespace margelo::nitro::datascanner { enum class DataScannerErrorCode; }
 #include "DataScannerCameraPermissionStatus.hpp"
 #include "JDataScannerCameraPermissionStatus.hpp"
 #include <NitroModules/JUnit.hpp>
-#include "DataScannerItem.hpp"
-#include "JDataScannerItem.hpp"
-#include "DataScannerBounds.hpp"
-#include "JDataScannerBounds.hpp"
-#include "DataScannerPoint.hpp"
-#include "JDataScannerPoint.hpp"
-#include "DataScannerRect.hpp"
-#include "JDataScannerRect.hpp"
-#include "DataScannerResultSource.hpp"
-#include "JDataScannerResultSource.hpp"
-#include <NitroModules/ArrayBuffer.hpp>
-#include <NitroModules/JArrayBuffer.hpp>
-#include "DataScannerBarcodeParsedValue.hpp"
-#include "JDataScannerBarcodeParsedValue.hpp"
-#include "DataScannerContactInfoValue.hpp"
-#include "JDataScannerContactInfoValue.hpp"
-#include "DataScannerPersonNameValue.hpp"
-#include "JDataScannerPersonNameValue.hpp"
-#include "DataScannerPhoneValue.hpp"
-#include "JDataScannerPhoneValue.hpp"
-#include "DataScannerPhoneNumberType.hpp"
-#include "JDataScannerPhoneNumberType.hpp"
-#include "DataScannerEmailValue.hpp"
-#include "JDataScannerEmailValue.hpp"
-#include "DataScannerEmailAddressType.hpp"
-#include "JDataScannerEmailAddressType.hpp"
-#include "DataScannerAddressValue.hpp"
-#include "JDataScannerAddressValue.hpp"
-#include "DataScannerAddressType.hpp"
-#include "JDataScannerAddressType.hpp"
-#include "DataScannerSmsValue.hpp"
-#include "JDataScannerSmsValue.hpp"
-#include "DataScannerUrlValue.hpp"
-#include "JDataScannerUrlValue.hpp"
-#include "DataScannerWifiValue.hpp"
-#include "JDataScannerWifiValue.hpp"
-#include "DataScannerWifiEncryptionType.hpp"
-#include "JDataScannerWifiEncryptionType.hpp"
-#include "DataScannerGeoValue.hpp"
-#include "JDataScannerGeoValue.hpp"
-#include "DataScannerCalendarEventValue.hpp"
-#include "JDataScannerCalendarEventValue.hpp"
-#include "DataScannerCalendarDateTimeValue.hpp"
-#include "JDataScannerCalendarDateTimeValue.hpp"
-#include "DataScannerDriverLicenseValue.hpp"
-#include "JDataScannerDriverLicenseValue.hpp"
-#include "DataScannerPhoto.hpp"
-#include "JDataScannerPhoto.hpp"
-#include "DataScannerPhotoMimeType.hpp"
-#include "JDataScannerPhotoMimeType.hpp"
+#include <memory>
+#include "HybridDataScannedValueSpec.hpp"
+#include "JHybridDataScannedValueSpec.hpp"
+#include "HybridDataScannerPhotoSpec.hpp"
+#include "JHybridDataScannerPhotoSpec.hpp"
+#include "HybridDataScannerListenerSubscriptionSpec.hpp"
+#include "JHybridDataScannerListenerSubscriptionSpec.hpp"
 #include "DataScannerConfiguration.hpp"
 #include "JDataScannerConfiguration.hpp"
-#include "DataScannerTarget.hpp"
-#include "JDataScannerTarget.hpp"
-#include "DataScannerIOSConfiguration.hpp"
-#include "JDataScannerIOSConfiguration.hpp"
 #include "DataScannerQualityLevel.hpp"
 #include "JDataScannerQualityLevel.hpp"
-#include "DataScannerAndroidConfiguration.hpp"
-#include "JDataScannerAndroidConfiguration.hpp"
-#include "DataScannerItemsChangedEvent.hpp"
+#include "DataScannerRect.hpp"
+#include "JDataScannerRect.hpp"
 #include <functional>
-#include "JFunc_void_DataScannerItemsChangedEvent.hpp"
+#include "JFunc_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__.hpp"
 #include <NitroModules/JNICallable.hpp>
-#include "JDataScannerItemsChangedEvent.hpp"
-#include "DataScannerItemsChangeType.hpp"
-#include "JDataScannerItemsChangeType.hpp"
-#include "DataScannerItemTappedEvent.hpp"
-#include "JFunc_void_DataScannerItemTappedEvent.hpp"
-#include "JDataScannerItemTappedEvent.hpp"
+#include "JFunc_void_std__shared_ptr_HybridDataScannedValueSpec_.hpp"
 #include "DataScannerZoomChangedEvent.hpp"
 #include "JFunc_void_DataScannerZoomChangedEvent.hpp"
 #include "JDataScannerZoomChangedEvent.hpp"
 #include "DataScannerUnavailableEvent.hpp"
 #include "JFunc_void_DataScannerUnavailableEvent.hpp"
 #include "JDataScannerUnavailableEvent.hpp"
-#include "DataScannerErrorEvent.hpp"
-#include "JFunc_void_DataScannerErrorEvent.hpp"
-#include "JDataScannerErrorEvent.hpp"
-#include "DataScannerErrorCode.hpp"
-#include "JDataScannerErrorCode.hpp"
+#include <exception>
+#include "JFunc_void_std__exception_ptr.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -309,8 +193,8 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<bool>> JHybridDataScannerSpec::isAndroidScannerModuleAvailable() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("isAndroidScannerModuleAvailable");
+  std::shared_ptr<Promise<bool>> JHybridDataScannerSpec::isScannerAvailable() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("isScannerAvailable");
     auto __result = method(_javaPart);
     return [&]() {
       auto __promise = Promise<bool>::create();
@@ -325,8 +209,8 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<void>> JHybridDataScannerSpec::installAndroidScannerModule() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("installAndroidScannerModule");
+  std::shared_ptr<Promise<void>> JHybridDataScannerSpec::prepareScanner() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("prepareScanner");
     auto __result = method(_javaPart);
     return [&]() {
       auto __promise = Promise<void>::create();
@@ -355,14 +239,14 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<DataScannerItem>> JHybridDataScannerSpec::scan(const std::optional<DataScannerConfiguration>& configuration) {
+  std::shared_ptr<Promise<std::shared_ptr<HybridDataScannedValueSpec>>> JHybridDataScannerSpec::scan(const std::optional<DataScannerConfiguration>& configuration) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JDataScannerConfiguration> /* configuration */)>("scan");
     auto __result = method(_javaPart, configuration.has_value() ? JDataScannerConfiguration::fromCpp(configuration.value()) : nullptr);
     return [&]() {
-      auto __promise = Promise<DataScannerItem>::create();
+      auto __promise = Promise<std::shared_ptr<HybridDataScannedValueSpec>>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
-        auto __result = jni::static_ref_cast<JDataScannerItem>(__boxedResult);
-        __promise->resolve(__result->toCpp());
+        auto __result = jni::static_ref_cast<JHybridDataScannedValueSpec::JavaPart>(__boxedResult);
+        __promise->resolve(__result->getJHybridDataScannedValueSpec());
       });
       __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
         jni::JniException __jniError(__throwable);
@@ -401,14 +285,14 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<DataScannerPhoto>> JHybridDataScannerSpec::capturePhoto() {
+  std::shared_ptr<Promise<std::shared_ptr<HybridDataScannerPhotoSpec>>> JHybridDataScannerSpec::capturePhoto() {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("capturePhoto");
     auto __result = method(_javaPart);
     return [&]() {
-      auto __promise = Promise<DataScannerPhoto>::create();
+      auto __promise = Promise<std::shared_ptr<HybridDataScannerPhotoSpec>>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
-        auto __result = jni::static_ref_cast<JDataScannerPhoto>(__boxedResult);
-        __promise->resolve(__result->toCpp());
+        auto __result = jni::static_ref_cast<JHybridDataScannerPhotoSpec::JavaPart>(__boxedResult);
+        __promise->resolve(__result->getJHybridDataScannerPhotoSpec());
       });
       __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
         jni::JniException __jniError(__throwable);
@@ -417,16 +301,16 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  std::vector<DataScannerItem> JHybridDataScannerSpec::getRecognizedItems() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JDataScannerItem>>()>("getRecognizedItems");
+  std::vector<std::shared_ptr<HybridDataScannedValueSpec>> JHybridDataScannerSpec::getScannedValues() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JHybridDataScannedValueSpec::JavaPart>>()>("getScannedValues");
     auto __result = method(_javaPart);
     return [&](auto&& __input) {
       size_t __size = __input->size();
-      std::vector<DataScannerItem> __vector;
+      std::vector<std::shared_ptr<HybridDataScannedValueSpec>> __vector;
       __vector.reserve(__size);
       for (size_t __i = 0; __i < __size; __i++) {
         auto __element = __input->getElement(__i);
-        __vector.push_back(__element->toCpp());
+        __vector.push_back(__element->getJHybridDataScannedValueSpec());
       }
       return __vector;
     }(__result);
@@ -435,34 +319,30 @@ namespace margelo::nitro::datascanner {
     static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<JDataScannerRect> /* regionOfInterest */)>("setRegionOfInterest");
     method(_javaPart, regionOfInterest.has_value() ? JDataScannerRect::fromCpp(regionOfInterest.value()) : nullptr);
   }
-  double JHybridDataScannerSpec::addItemsChangedListener(const std::function<void(const DataScannerItemsChangedEvent& /* event */)>& listener) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<double(jni::alias_ref<JFunc_void_DataScannerItemsChangedEvent::javaobject> /* listener */)>("addItemsChangedListener_cxx");
-    auto __result = method(_javaPart, JFunc_void_DataScannerItemsChangedEvent_cxx::fromCpp(listener));
-    return __result;
+  std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> JHybridDataScannerSpec::addScannedValuesChangedListener(const std::function<void(const std::vector<std::shared_ptr<HybridDataScannedValueSpec>>& /* values */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerListenerSubscriptionSpec::JavaPart>(jni::alias_ref<JFunc_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__::javaobject> /* listener */)>("addScannedValuesChangedListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec___cxx::fromCpp(listener));
+    return __result->getJHybridDataScannerListenerSubscriptionSpec();
   }
-  double JHybridDataScannerSpec::addItemTappedListener(const std::function<void(const DataScannerItemTappedEvent& /* event */)>& listener) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<double(jni::alias_ref<JFunc_void_DataScannerItemTappedEvent::javaobject> /* listener */)>("addItemTappedListener_cxx");
-    auto __result = method(_javaPart, JFunc_void_DataScannerItemTappedEvent_cxx::fromCpp(listener));
-    return __result;
+  std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> JHybridDataScannerSpec::addValueTappedListener(const std::function<void(const std::shared_ptr<HybridDataScannedValueSpec>& /* value */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerListenerSubscriptionSpec::JavaPart>(jni::alias_ref<JFunc_void_std__shared_ptr_HybridDataScannedValueSpec_::javaobject> /* listener */)>("addValueTappedListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_std__shared_ptr_HybridDataScannedValueSpec__cxx::fromCpp(listener));
+    return __result->getJHybridDataScannerListenerSubscriptionSpec();
   }
-  double JHybridDataScannerSpec::addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<double(jni::alias_ref<JFunc_void_DataScannerZoomChangedEvent::javaobject> /* listener */)>("addZoomChangedListener_cxx");
+  std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> JHybridDataScannerSpec::addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerListenerSubscriptionSpec::JavaPart>(jni::alias_ref<JFunc_void_DataScannerZoomChangedEvent::javaobject> /* listener */)>("addZoomChangedListener_cxx");
     auto __result = method(_javaPart, JFunc_void_DataScannerZoomChangedEvent_cxx::fromCpp(listener));
-    return __result;
+    return __result->getJHybridDataScannerListenerSubscriptionSpec();
   }
-  double JHybridDataScannerSpec::addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<double(jni::alias_ref<JFunc_void_DataScannerUnavailableEvent::javaobject> /* listener */)>("addUnavailableListener_cxx");
+  std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> JHybridDataScannerSpec::addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerListenerSubscriptionSpec::JavaPart>(jni::alias_ref<JFunc_void_DataScannerUnavailableEvent::javaobject> /* listener */)>("addUnavailableListener_cxx");
     auto __result = method(_javaPart, JFunc_void_DataScannerUnavailableEvent_cxx::fromCpp(listener));
-    return __result;
+    return __result->getJHybridDataScannerListenerSubscriptionSpec();
   }
-  double JHybridDataScannerSpec::addErrorListener(const std::function<void(const DataScannerErrorEvent& /* event */)>& listener) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<double(jni::alias_ref<JFunc_void_DataScannerErrorEvent::javaobject> /* listener */)>("addErrorListener_cxx");
-    auto __result = method(_javaPart, JFunc_void_DataScannerErrorEvent_cxx::fromCpp(listener));
-    return __result;
-  }
-  void JHybridDataScannerSpec::removeListener(double listenerId) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void(double /* listenerId */)>("removeListener");
-    method(_javaPart, listenerId);
+  std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> JHybridDataScannerSpec::addErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerListenerSubscriptionSpec::JavaPart>(jni::alias_ref<JFunc_void_std__exception_ptr::javaobject> /* listener */)>("addErrorListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_std__exception_ptr_cxx::fromCpp(listener));
+    return __result->getJHybridDataScannerListenerSubscriptionSpec();
   }
 
 } // namespace margelo::nitro::datascanner

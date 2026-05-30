@@ -48,9 +48,12 @@ namespace margelo::nitro::datascanner {
         case DataScannerBarcodeValueType::TEXT:
           static const auto fieldTEXT = clazz->getStaticField<JDataScannerBarcodeValueType>("TEXT");
           return clazz->getStaticFieldValue(fieldTEXT);
-        case DataScannerBarcodeValueType::CONTACTINFO:
-          static const auto fieldCONTACTINFO = clazz->getStaticField<JDataScannerBarcodeValueType>("CONTACTINFO");
-          return clazz->getStaticFieldValue(fieldCONTACTINFO);
+        case DataScannerBarcodeValueType::URL:
+          static const auto fieldURL = clazz->getStaticField<JDataScannerBarcodeValueType>("URL");
+          return clazz->getStaticFieldValue(fieldURL);
+        case DataScannerBarcodeValueType::CONTACT_INFO:
+          static const auto fieldCONTACT_INFO = clazz->getStaticField<JDataScannerBarcodeValueType>("CONTACT_INFO");
+          return clazz->getStaticFieldValue(fieldCONTACT_INFO);
         case DataScannerBarcodeValueType::EMAIL:
           static const auto fieldEMAIL = clazz->getStaticField<JDataScannerBarcodeValueType>("EMAIL");
           return clazz->getStaticFieldValue(fieldEMAIL);
@@ -66,21 +69,18 @@ namespace margelo::nitro::datascanner {
         case DataScannerBarcodeValueType::SMS:
           static const auto fieldSMS = clazz->getStaticField<JDataScannerBarcodeValueType>("SMS");
           return clazz->getStaticFieldValue(fieldSMS);
-        case DataScannerBarcodeValueType::URL:
-          static const auto fieldURL = clazz->getStaticField<JDataScannerBarcodeValueType>("URL");
-          return clazz->getStaticFieldValue(fieldURL);
         case DataScannerBarcodeValueType::WIFI:
           static const auto fieldWIFI = clazz->getStaticField<JDataScannerBarcodeValueType>("WIFI");
           return clazz->getStaticFieldValue(fieldWIFI);
         case DataScannerBarcodeValueType::GEO:
           static const auto fieldGEO = clazz->getStaticField<JDataScannerBarcodeValueType>("GEO");
           return clazz->getStaticFieldValue(fieldGEO);
-        case DataScannerBarcodeValueType::CALENDAREVENT:
-          static const auto fieldCALENDAREVENT = clazz->getStaticField<JDataScannerBarcodeValueType>("CALENDAREVENT");
-          return clazz->getStaticFieldValue(fieldCALENDAREVENT);
-        case DataScannerBarcodeValueType::DRIVERLICENSE:
-          static const auto fieldDRIVERLICENSE = clazz->getStaticField<JDataScannerBarcodeValueType>("DRIVERLICENSE");
-          return clazz->getStaticFieldValue(fieldDRIVERLICENSE);
+        case DataScannerBarcodeValueType::CALENDAR_EVENT:
+          static const auto fieldCALENDAR_EVENT = clazz->getStaticField<JDataScannerBarcodeValueType>("CALENDAR_EVENT");
+          return clazz->getStaticFieldValue(fieldCALENDAR_EVENT);
+        case DataScannerBarcodeValueType::DRIVER_LICENSE:
+          static const auto fieldDRIVER_LICENSE = clazz->getStaticField<JDataScannerBarcodeValueType>("DRIVER_LICENSE");
+          return clazz->getStaticFieldValue(fieldDRIVER_LICENSE);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

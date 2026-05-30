@@ -16,40 +16,31 @@ namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
 // Forward declaration of `DataScannerConfiguration` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
-// Forward declaration of `DataScannerTarget` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerTarget; }
-// Forward declaration of `DataScannerDataType` to properly resolve imports.
-namespace margelo::nitro::datascanner { enum class DataScannerDataType; }
+// Forward declaration of `DataScannerValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerValueType; }
 // Forward declaration of `DataScannerBarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerBarcodeFormat; }
 // Forward declaration of `DataScannerBarcodeValueType` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerBarcodeValueType; }
 // Forward declaration of `DataScannerTextContentType` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerTextContentType; }
-// Forward declaration of `DataScannerIOSConfiguration` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerIOSConfiguration; }
 // Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 // Forward declaration of `DataScannerRect` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerRect; }
-// Forward declaration of `DataScannerAndroidConfiguration` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerAndroidConfiguration; }
 
 #include <memory>
 #include "HybridDataScannerSpec.hpp"
 #include "DataScannerConfiguration.hpp"
 #include <optional>
-#include "DataScannerTarget.hpp"
+#include "DataScannerValueType.hpp"
 #include <vector>
-#include "DataScannerDataType.hpp"
 #include "DataScannerBarcodeFormat.hpp"
 #include "DataScannerBarcodeValueType.hpp"
 #include <string>
 #include "DataScannerTextContentType.hpp"
-#include "DataScannerIOSConfiguration.hpp"
 #include "DataScannerQualityLevel.hpp"
 #include "DataScannerRect.hpp"
-#include "DataScannerAndroidConfiguration.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 

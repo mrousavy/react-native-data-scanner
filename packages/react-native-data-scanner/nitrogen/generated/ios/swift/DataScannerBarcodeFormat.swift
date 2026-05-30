@@ -23,52 +23,52 @@ public extension DataScannerBarcodeFormat {
         self = .aztec
       case "codabar":
         self = .codabar
-      case "code39":
+      case "code-39":
         self = .code39
-      case "code39Checksum":
-        self = .code39checksum
-      case "code39FullASCII":
-        self = .code39fullascii
-      case "code39FullASCIIChecksum":
-        self = .code39fullasciichecksum
-      case "code93":
+      case "code-39-checksum":
+        self = .code39Checksum
+      case "code-39-full-ascii":
+        self = .code39FullAscii
+      case "code-39-full-ascii-checksum":
+        self = .code39FullAsciiChecksum
+      case "code-93":
         self = .code93
-      case "code93i":
+      case "code-93i":
         self = .code93i
-      case "code128":
+      case "code-128":
         self = .code128
-      case "dataMatrix":
-        self = .datamatrix
-      case "ean8":
+      case "data-matrix":
+        self = .dataMatrix
+      case "ean-8":
         self = .ean8
-      case "ean13":
+      case "ean-13":
         self = .ean13
-      case "gs1DataBar":
-        self = .gs1databar
-      case "gs1DataBarExpanded":
-        self = .gs1databarexpanded
-      case "gs1DataBarLimited":
-        self = .gs1databarlimited
+      case "gs1-data-bar":
+        self = .gs1DataBar
+      case "gs1-data-bar-expanded":
+        self = .gs1DataBarExpanded
+      case "gs1-data-bar-limited":
+        self = .gs1DataBarLimited
       case "itf":
         self = .itf
-      case "itfChecksum":
-        self = .itfchecksum
-      case "itf14":
+      case "itf-checksum":
+        self = .itfChecksum
+      case "itf-14":
         self = .itf14
-      case "microPdf417":
-        self = .micropdf417
-      case "microQr":
-        self = .microqr
-      case "msiPlessey":
-        self = .msiplessey
-      case "pdf417":
+      case "micro-pdf-417":
+        self = .microPdf417
+      case "micro-qr":
+        self = .microQr
+      case "msi-plessey":
+        self = .msiPlessey
+      case "pdf-417":
         self = .pdf417
       case "qr":
         self = .qr
-      case "upcA":
-        self = .upca
-      case "upcE":
-        self = .upce
+      case "upc-a":
+        self = .upcA
+      case "upc-e":
+        self = .upcE
       default:
         return nil
     }
@@ -86,51 +86,51 @@ public extension DataScannerBarcodeFormat {
       case .codabar:
         return "codabar"
       case .code39:
-        return "code39"
-      case .code39checksum:
-        return "code39Checksum"
-      case .code39fullascii:
-        return "code39FullASCII"
-      case .code39fullasciichecksum:
-        return "code39FullASCIIChecksum"
+        return "code-39"
+      case .code39Checksum:
+        return "code-39-checksum"
+      case .code39FullAscii:
+        return "code-39-full-ascii"
+      case .code39FullAsciiChecksum:
+        return "code-39-full-ascii-checksum"
       case .code93:
-        return "code93"
+        return "code-93"
       case .code93i:
-        return "code93i"
+        return "code-93i"
       case .code128:
-        return "code128"
-      case .datamatrix:
-        return "dataMatrix"
+        return "code-128"
+      case .dataMatrix:
+        return "data-matrix"
       case .ean8:
-        return "ean8"
+        return "ean-8"
       case .ean13:
-        return "ean13"
-      case .gs1databar:
-        return "gs1DataBar"
-      case .gs1databarexpanded:
-        return "gs1DataBarExpanded"
-      case .gs1databarlimited:
-        return "gs1DataBarLimited"
+        return "ean-13"
+      case .gs1DataBar:
+        return "gs1-data-bar"
+      case .gs1DataBarExpanded:
+        return "gs1-data-bar-expanded"
+      case .gs1DataBarLimited:
+        return "gs1-data-bar-limited"
       case .itf:
         return "itf"
-      case .itfchecksum:
-        return "itfChecksum"
+      case .itfChecksum:
+        return "itf-checksum"
       case .itf14:
-        return "itf14"
-      case .micropdf417:
-        return "microPdf417"
-      case .microqr:
-        return "microQr"
-      case .msiplessey:
-        return "msiPlessey"
+        return "itf-14"
+      case .microPdf417:
+        return "micro-pdf-417"
+      case .microQr:
+        return "micro-qr"
+      case .msiPlessey:
+        return "msi-plessey"
       case .pdf417:
-        return "pdf417"
+        return "pdf-417"
       case .qr:
         return "qr"
-      case .upca:
-        return "upcA"
-      case .upce:
-        return "upcE"
+      case .upcA:
+        return "upc-a"
+      case .upcE:
+        return "upc-e"
     }
   }
 }

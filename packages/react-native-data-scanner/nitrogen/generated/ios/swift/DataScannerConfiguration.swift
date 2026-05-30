@@ -18,11 +18,11 @@ public extension DataScannerConfiguration {
   /**
    * Create a new instance of `DataScannerConfiguration`.
    */
-  init(targets: [DataScannerTarget]?, ios: DataScannerIOSConfiguration?, android: DataScannerAndroidConfiguration?) {
-    self.init({ () -> bridge.std__optional_std__vector_DataScannerTarget__ in
-      if let __unwrappedValue = targets {
-        return bridge.create_std__optional_std__vector_DataScannerTarget__({ () -> bridge.std__vector_DataScannerTarget_ in
-          var __vector = bridge.create_std__vector_DataScannerTarget_(__unwrappedValue.count)
+  init(valueTypes: [DataScannerValueType]?, barcodeFormats: [DataScannerBarcodeFormat]?, barcodeValueTypes: [DataScannerBarcodeValueType]?, textRecognitionLanguages: [String]?, textContentTypes: [DataScannerTextContentType]?, qualityLevel: DataScannerQualityLevel?, recognizesMultipleValues: Bool?, highFrameRateTrackingEnabled: Bool?, pinchToZoomEnabled: Bool?, guidanceEnabled: Bool?, highlightingEnabled: Bool?, regionOfInterest: DataScannerRect?, autoZoomEnabled: Bool?, manualInputEnabled: Bool?, prepareScannerIfNeeded: Bool?) {
+    self.init({ () -> bridge.std__optional_std__vector_DataScannerValueType__ in
+      if let __unwrappedValue = valueTypes {
+        return bridge.create_std__optional_std__vector_DataScannerValueType__({ () -> bridge.std__vector_DataScannerValueType_ in
+          var __vector = bridge.create_std__vector_DataScannerValueType_(__unwrappedValue.count)
           for __item in __unwrappedValue {
             __vector.push_back(__item)
           }
@@ -31,15 +31,111 @@ public extension DataScannerConfiguration {
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__optional_DataScannerIOSConfiguration_ in
-      if let __unwrappedValue = ios {
-        return bridge.create_std__optional_DataScannerIOSConfiguration_(__unwrappedValue)
+    }(), { () -> bridge.std__optional_std__vector_DataScannerBarcodeFormat__ in
+      if let __unwrappedValue = barcodeFormats {
+        return bridge.create_std__optional_std__vector_DataScannerBarcodeFormat__({ () -> bridge.std__vector_DataScannerBarcodeFormat_ in
+          var __vector = bridge.create_std__vector_DataScannerBarcodeFormat_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item)
+          }
+          return __vector
+        }())
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__optional_DataScannerAndroidConfiguration_ in
-      if let __unwrappedValue = android {
-        return bridge.create_std__optional_DataScannerAndroidConfiguration_(__unwrappedValue)
+    }(), { () -> bridge.std__optional_std__vector_DataScannerBarcodeValueType__ in
+      if let __unwrappedValue = barcodeValueTypes {
+        return bridge.create_std__optional_std__vector_DataScannerBarcodeValueType__({ () -> bridge.std__vector_DataScannerBarcodeValueType_ in
+          var __vector = bridge.create_std__vector_DataScannerBarcodeValueType_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item)
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__vector_std__string__ in
+      if let __unwrappedValue = textRecognitionLanguages {
+        return bridge.create_std__optional_std__vector_std__string__({ () -> bridge.std__vector_std__string_ in
+          var __vector = bridge.create_std__vector_std__string_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(std.string(__item))
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__vector_DataScannerTextContentType__ in
+      if let __unwrappedValue = textContentTypes {
+        return bridge.create_std__optional_std__vector_DataScannerTextContentType__({ () -> bridge.std__vector_DataScannerTextContentType_ in
+          var __vector = bridge.create_std__vector_DataScannerTextContentType_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item)
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_DataScannerQualityLevel_ in
+      if let __unwrappedValue = qualityLevel {
+        return bridge.create_std__optional_DataScannerQualityLevel_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = recognizesMultipleValues {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = highFrameRateTrackingEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = pinchToZoomEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = guidanceEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = highlightingEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_DataScannerRect_ in
+      if let __unwrappedValue = regionOfInterest {
+        return bridge.create_std__optional_DataScannerRect_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = autoZoomEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = manualInputEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = prepareScannerIfNeeded {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -47,10 +143,10 @@ public extension DataScannerConfiguration {
   }
 
   @inline(__always)
-  var targets: [DataScannerTarget]? {
-    return { () -> [DataScannerTarget]? in
-      if bridge.has_value_std__optional_std__vector_DataScannerTarget__(self.__targets) {
-        let __unwrapped = bridge.get_std__optional_std__vector_DataScannerTarget__(self.__targets)
+  var valueTypes: [DataScannerValueType]? {
+    return { () -> [DataScannerValueType]? in
+      if bridge.has_value_std__optional_std__vector_DataScannerValueType__(self.__valueTypes) {
+        let __unwrapped = bridge.get_std__optional_std__vector_DataScannerValueType__(self.__valueTypes)
         return __unwrapped.map({ __item in __item })
       } else {
         return nil
@@ -59,12 +155,156 @@ public extension DataScannerConfiguration {
   }
   
   @inline(__always)
-  var ios: DataScannerIOSConfiguration? {
-    return self.__ios.value
+  var barcodeFormats: [DataScannerBarcodeFormat]? {
+    return { () -> [DataScannerBarcodeFormat]? in
+      if bridge.has_value_std__optional_std__vector_DataScannerBarcodeFormat__(self.__barcodeFormats) {
+        let __unwrapped = bridge.get_std__optional_std__vector_DataScannerBarcodeFormat__(self.__barcodeFormats)
+        return __unwrapped.map({ __item in __item })
+      } else {
+        return nil
+      }
+    }()
   }
   
   @inline(__always)
-  var android: DataScannerAndroidConfiguration? {
-    return self.__android.value
+  var barcodeValueTypes: [DataScannerBarcodeValueType]? {
+    return { () -> [DataScannerBarcodeValueType]? in
+      if bridge.has_value_std__optional_std__vector_DataScannerBarcodeValueType__(self.__barcodeValueTypes) {
+        let __unwrapped = bridge.get_std__optional_std__vector_DataScannerBarcodeValueType__(self.__barcodeValueTypes)
+        return __unwrapped.map({ __item in __item })
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var textRecognitionLanguages: [String]? {
+    return { () -> [String]? in
+      if bridge.has_value_std__optional_std__vector_std__string__(self.__textRecognitionLanguages) {
+        let __unwrapped = bridge.get_std__optional_std__vector_std__string__(self.__textRecognitionLanguages)
+        return __unwrapped.map({ __item in String(__item) })
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var textContentTypes: [DataScannerTextContentType]? {
+    return { () -> [DataScannerTextContentType]? in
+      if bridge.has_value_std__optional_std__vector_DataScannerTextContentType__(self.__textContentTypes) {
+        let __unwrapped = bridge.get_std__optional_std__vector_DataScannerTextContentType__(self.__textContentTypes)
+        return __unwrapped.map({ __item in __item })
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var qualityLevel: DataScannerQualityLevel? {
+    return self.__qualityLevel.value
+  }
+  
+  @inline(__always)
+  var recognizesMultipleValues: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__recognizesMultipleValues) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__recognizesMultipleValues)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var highFrameRateTrackingEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__highFrameRateTrackingEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__highFrameRateTrackingEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var pinchToZoomEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__pinchToZoomEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__pinchToZoomEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var guidanceEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__guidanceEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__guidanceEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var highlightingEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__highlightingEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__highlightingEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var regionOfInterest: DataScannerRect? {
+    return self.__regionOfInterest.value
+  }
+  
+  @inline(__always)
+  var autoZoomEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__autoZoomEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__autoZoomEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var manualInputEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__manualInputEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__manualInputEnabled)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var prepareScannerIfNeeded: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__prepareScannerIfNeeded) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__prepareScannerIfNeeded)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
   }
 }

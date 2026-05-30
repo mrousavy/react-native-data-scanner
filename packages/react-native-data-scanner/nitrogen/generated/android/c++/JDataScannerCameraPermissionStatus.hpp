@@ -42,9 +42,9 @@ namespace margelo::nitro::datascanner {
     static jni::alias_ref<JDataScannerCameraPermissionStatus> fromCpp(DataScannerCameraPermissionStatus value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
-        case DataScannerCameraPermissionStatus::NOTDETERMINED:
-          static const auto fieldNOTDETERMINED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("NOTDETERMINED");
-          return clazz->getStaticFieldValue(fieldNOTDETERMINED);
+        case DataScannerCameraPermissionStatus::NOT_DETERMINED:
+          static const auto fieldNOT_DETERMINED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("NOT_DETERMINED");
+          return clazz->getStaticFieldValue(fieldNOT_DETERMINED);
         case DataScannerCameraPermissionStatus::DENIED:
           static const auto fieldDENIED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("DENIED");
           return clazz->getStaticFieldValue(fieldDENIED);
@@ -54,9 +54,9 @@ namespace margelo::nitro::datascanner {
         case DataScannerCameraPermissionStatus::AUTHORIZED:
           static const auto fieldAUTHORIZED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("AUTHORIZED");
           return clazz->getStaticFieldValue(fieldAUTHORIZED);
-        case DataScannerCameraPermissionStatus::NOTREQUIRED:
-          static const auto fieldNOTREQUIRED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("NOTREQUIRED");
-          return clazz->getStaticFieldValue(fieldNOTREQUIRED);
+        case DataScannerCameraPermissionStatus::NOT_REQUIRED:
+          static const auto fieldNOT_REQUIRED = clazz->getStaticField<JDataScannerCameraPermissionStatus>("NOT_REQUIRED");
+          return clazz->getStaticFieldValue(fieldNOT_REQUIRED);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

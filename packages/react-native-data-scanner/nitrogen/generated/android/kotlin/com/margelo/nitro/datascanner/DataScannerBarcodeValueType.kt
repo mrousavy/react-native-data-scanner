@@ -18,17 +18,17 @@ import com.facebook.proguard.annotations.DoNotStrip
 enum class DataScannerBarcodeValueType(@DoNotStrip @Keep val value: Int) {
   UNKNOWN(0),
   TEXT(1),
-  CONTACTINFO(2),
-  EMAIL(3),
-  ISBN(4),
-  PHONE(5),
-  PRODUCT(6),
-  SMS(7),
-  URL(8),
+  URL(2),
+  CONTACT_INFO(3),
+  EMAIL(4),
+  ISBN(5),
+  PHONE(6),
+  PRODUCT(7),
+  SMS(8),
   WIFI(9),
   GEO(10),
-  CALENDAREVENT(11),
-  DRIVERLICENSE(12);
+  CALENDAR_EVENT(11),
+  DRIVER_LICENSE(12);
 
   companion object
 }

@@ -17,7 +17,7 @@ import com.facebook.proguard.annotations.DoNotStrip
 @Keep
 enum class DataScannerResultSource(@DoNotStrip @Keep val value: Int) {
   CAMERA(0),
-  MANUALINPUT(1);
+  MANUAL_INPUT(1);
 
   companion object
 }

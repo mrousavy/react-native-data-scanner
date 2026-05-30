@@ -32,29 +32,29 @@ namespace margelo::nitro::datascanner {
     UNKNOWN      SWIFT_NAME(unknown) = 0,
     AZTEC      SWIFT_NAME(aztec) = 1,
     CODABAR      SWIFT_NAME(codabar) = 2,
-    CODE39      SWIFT_NAME(code39) = 3,
-    CODE39CHECKSUM      SWIFT_NAME(code39checksum) = 4,
-    CODE39FULLASCII      SWIFT_NAME(code39fullascii) = 5,
-    CODE39FULLASCIICHECKSUM      SWIFT_NAME(code39fullasciichecksum) = 6,
-    CODE93      SWIFT_NAME(code93) = 7,
-    CODE93I      SWIFT_NAME(code93i) = 8,
-    CODE128      SWIFT_NAME(code128) = 9,
-    DATAMATRIX      SWIFT_NAME(datamatrix) = 10,
-    EAN8      SWIFT_NAME(ean8) = 11,
-    EAN13      SWIFT_NAME(ean13) = 12,
-    GS1DATABAR      SWIFT_NAME(gs1databar) = 13,
-    GS1DATABAREXPANDED      SWIFT_NAME(gs1databarexpanded) = 14,
-    GS1DATABARLIMITED      SWIFT_NAME(gs1databarlimited) = 15,
+    CODE_39      SWIFT_NAME(code39) = 3,
+    CODE_39_CHECKSUM      SWIFT_NAME(code39Checksum) = 4,
+    CODE_39_FULL_ASCII      SWIFT_NAME(code39FullAscii) = 5,
+    CODE_39_FULL_ASCII_CHECKSUM      SWIFT_NAME(code39FullAsciiChecksum) = 6,
+    CODE_93      SWIFT_NAME(code93) = 7,
+    CODE_93I      SWIFT_NAME(code93i) = 8,
+    CODE_128      SWIFT_NAME(code128) = 9,
+    DATA_MATRIX      SWIFT_NAME(dataMatrix) = 10,
+    EAN_8      SWIFT_NAME(ean8) = 11,
+    EAN_13      SWIFT_NAME(ean13) = 12,
+    GS1_DATA_BAR      SWIFT_NAME(gs1DataBar) = 13,
+    GS1_DATA_BAR_EXPANDED      SWIFT_NAME(gs1DataBarExpanded) = 14,
+    GS1_DATA_BAR_LIMITED      SWIFT_NAME(gs1DataBarLimited) = 15,
     ITF      SWIFT_NAME(itf) = 16,
-    ITFCHECKSUM      SWIFT_NAME(itfchecksum) = 17,
-    ITF14      SWIFT_NAME(itf14) = 18,
-    MICROPDF417      SWIFT_NAME(micropdf417) = 19,
-    MICROQR      SWIFT_NAME(microqr) = 20,
-    MSIPLESSEY      SWIFT_NAME(msiplessey) = 21,
-    PDF417      SWIFT_NAME(pdf417) = 22,
+    ITF_CHECKSUM      SWIFT_NAME(itfChecksum) = 17,
+    ITF_14      SWIFT_NAME(itf14) = 18,
+    MICRO_PDF_417      SWIFT_NAME(microPdf417) = 19,
+    MICRO_QR      SWIFT_NAME(microQr) = 20,
+    MSI_PLESSEY      SWIFT_NAME(msiPlessey) = 21,
+    PDF_417      SWIFT_NAME(pdf417) = 22,
     QR      SWIFT_NAME(qr) = 23,
-    UPCA      SWIFT_NAME(upca) = 24,
-    UPCE      SWIFT_NAME(upce) = 25,
+    UPC_A      SWIFT_NAME(upcA) = 24,
+    UPC_E      SWIFT_NAME(upcE) = 25,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::datascanner
@@ -70,29 +70,29 @@ namespace margelo::nitro {
         case hashString("unknown"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::UNKNOWN;
         case hashString("aztec"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::AZTEC;
         case hashString("codabar"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODABAR;
-        case hashString("code39"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39;
-        case hashString("code39Checksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39CHECKSUM;
-        case hashString("code39FullASCII"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39FULLASCII;
-        case hashString("code39FullASCIIChecksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39FULLASCIICHECKSUM;
-        case hashString("code93"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE93;
-        case hashString("code93i"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE93I;
-        case hashString("code128"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE128;
-        case hashString("dataMatrix"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::DATAMATRIX;
-        case hashString("ean8"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN8;
-        case hashString("ean13"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN13;
-        case hashString("gs1DataBar"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABAR;
-        case hashString("gs1DataBarExpanded"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABAREXPANDED;
-        case hashString("gs1DataBarLimited"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABARLIMITED;
+        case hashString("code-39"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39;
+        case hashString("code-39-checksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_CHECKSUM;
+        case hashString("code-39-full-ascii"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_FULL_ASCII;
+        case hashString("code-39-full-ascii-checksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_FULL_ASCII_CHECKSUM;
+        case hashString("code-93"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_93;
+        case hashString("code-93i"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_93I;
+        case hashString("code-128"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_128;
+        case hashString("data-matrix"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::DATA_MATRIX;
+        case hashString("ean-8"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN_8;
+        case hashString("ean-13"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN_13;
+        case hashString("gs1-data-bar"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR;
+        case hashString("gs1-data-bar-expanded"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR_EXPANDED;
+        case hashString("gs1-data-bar-limited"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR_LIMITED;
         case hashString("itf"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF;
-        case hashString("itfChecksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::ITFCHECKSUM;
-        case hashString("itf14"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF14;
-        case hashString("microPdf417"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MICROPDF417;
-        case hashString("microQr"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MICROQR;
-        case hashString("msiPlessey"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MSIPLESSEY;
-        case hashString("pdf417"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::PDF417;
+        case hashString("itf-checksum"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF_CHECKSUM;
+        case hashString("itf-14"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF_14;
+        case hashString("micro-pdf-417"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MICRO_PDF_417;
+        case hashString("micro-qr"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MICRO_QR;
+        case hashString("msi-plessey"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::MSI_PLESSEY;
+        case hashString("pdf-417"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::PDF_417;
         case hashString("qr"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::QR;
-        case hashString("upcA"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::UPCA;
-        case hashString("upcE"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::UPCE;
+        case hashString("upc-a"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::UPC_A;
+        case hashString("upc-e"): return margelo::nitro::datascanner::DataScannerBarcodeFormat::UPC_E;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerBarcodeFormat - invalid value!");
       }
@@ -102,29 +102,29 @@ namespace margelo::nitro {
         case margelo::nitro::datascanner::DataScannerBarcodeFormat::UNKNOWN: return JSIConverter<std::string>::toJSI(runtime, "unknown");
         case margelo::nitro::datascanner::DataScannerBarcodeFormat::AZTEC: return JSIConverter<std::string>::toJSI(runtime, "aztec");
         case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODABAR: return JSIConverter<std::string>::toJSI(runtime, "codabar");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39: return JSIConverter<std::string>::toJSI(runtime, "code39");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39CHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "code39Checksum");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39FULLASCII: return JSIConverter<std::string>::toJSI(runtime, "code39FullASCII");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE39FULLASCIICHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "code39FullASCIIChecksum");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE93: return JSIConverter<std::string>::toJSI(runtime, "code93");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE93I: return JSIConverter<std::string>::toJSI(runtime, "code93i");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE128: return JSIConverter<std::string>::toJSI(runtime, "code128");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::DATAMATRIX: return JSIConverter<std::string>::toJSI(runtime, "dataMatrix");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN8: return JSIConverter<std::string>::toJSI(runtime, "ean8");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN13: return JSIConverter<std::string>::toJSI(runtime, "ean13");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABAR: return JSIConverter<std::string>::toJSI(runtime, "gs1DataBar");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABAREXPANDED: return JSIConverter<std::string>::toJSI(runtime, "gs1DataBarExpanded");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1DATABARLIMITED: return JSIConverter<std::string>::toJSI(runtime, "gs1DataBarLimited");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39: return JSIConverter<std::string>::toJSI(runtime, "code-39");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_CHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "code-39-checksum");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_FULL_ASCII: return JSIConverter<std::string>::toJSI(runtime, "code-39-full-ascii");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_39_FULL_ASCII_CHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "code-39-full-ascii-checksum");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_93: return JSIConverter<std::string>::toJSI(runtime, "code-93");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_93I: return JSIConverter<std::string>::toJSI(runtime, "code-93i");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::CODE_128: return JSIConverter<std::string>::toJSI(runtime, "code-128");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::DATA_MATRIX: return JSIConverter<std::string>::toJSI(runtime, "data-matrix");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN_8: return JSIConverter<std::string>::toJSI(runtime, "ean-8");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::EAN_13: return JSIConverter<std::string>::toJSI(runtime, "ean-13");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR: return JSIConverter<std::string>::toJSI(runtime, "gs1-data-bar");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR_EXPANDED: return JSIConverter<std::string>::toJSI(runtime, "gs1-data-bar-expanded");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::GS1_DATA_BAR_LIMITED: return JSIConverter<std::string>::toJSI(runtime, "gs1-data-bar-limited");
         case margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF: return JSIConverter<std::string>::toJSI(runtime, "itf");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::ITFCHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "itfChecksum");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF14: return JSIConverter<std::string>::toJSI(runtime, "itf14");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MICROPDF417: return JSIConverter<std::string>::toJSI(runtime, "microPdf417");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MICROQR: return JSIConverter<std::string>::toJSI(runtime, "microQr");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MSIPLESSEY: return JSIConverter<std::string>::toJSI(runtime, "msiPlessey");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::PDF417: return JSIConverter<std::string>::toJSI(runtime, "pdf417");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF_CHECKSUM: return JSIConverter<std::string>::toJSI(runtime, "itf-checksum");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::ITF_14: return JSIConverter<std::string>::toJSI(runtime, "itf-14");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MICRO_PDF_417: return JSIConverter<std::string>::toJSI(runtime, "micro-pdf-417");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MICRO_QR: return JSIConverter<std::string>::toJSI(runtime, "micro-qr");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::MSI_PLESSEY: return JSIConverter<std::string>::toJSI(runtime, "msi-plessey");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::PDF_417: return JSIConverter<std::string>::toJSI(runtime, "pdf-417");
         case margelo::nitro::datascanner::DataScannerBarcodeFormat::QR: return JSIConverter<std::string>::toJSI(runtime, "qr");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::UPCA: return JSIConverter<std::string>::toJSI(runtime, "upcA");
-        case margelo::nitro::datascanner::DataScannerBarcodeFormat::UPCE: return JSIConverter<std::string>::toJSI(runtime, "upcE");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::UPC_A: return JSIConverter<std::string>::toJSI(runtime, "upc-a");
+        case margelo::nitro::datascanner::DataScannerBarcodeFormat::UPC_E: return JSIConverter<std::string>::toJSI(runtime, "upc-e");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerBarcodeFormat to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -139,29 +139,29 @@ namespace margelo::nitro {
         case hashString("unknown"):
         case hashString("aztec"):
         case hashString("codabar"):
-        case hashString("code39"):
-        case hashString("code39Checksum"):
-        case hashString("code39FullASCII"):
-        case hashString("code39FullASCIIChecksum"):
-        case hashString("code93"):
-        case hashString("code93i"):
-        case hashString("code128"):
-        case hashString("dataMatrix"):
-        case hashString("ean8"):
-        case hashString("ean13"):
-        case hashString("gs1DataBar"):
-        case hashString("gs1DataBarExpanded"):
-        case hashString("gs1DataBarLimited"):
+        case hashString("code-39"):
+        case hashString("code-39-checksum"):
+        case hashString("code-39-full-ascii"):
+        case hashString("code-39-full-ascii-checksum"):
+        case hashString("code-93"):
+        case hashString("code-93i"):
+        case hashString("code-128"):
+        case hashString("data-matrix"):
+        case hashString("ean-8"):
+        case hashString("ean-13"):
+        case hashString("gs1-data-bar"):
+        case hashString("gs1-data-bar-expanded"):
+        case hashString("gs1-data-bar-limited"):
         case hashString("itf"):
-        case hashString("itfChecksum"):
-        case hashString("itf14"):
-        case hashString("microPdf417"):
-        case hashString("microQr"):
-        case hashString("msiPlessey"):
-        case hashString("pdf417"):
+        case hashString("itf-checksum"):
+        case hashString("itf-14"):
+        case hashString("micro-pdf-417"):
+        case hashString("micro-qr"):
+        case hashString("msi-plessey"):
+        case hashString("pdf-417"):
         case hashString("qr"):
-        case hashString("upcA"):
-        case hashString("upcE"):
+        case hashString("upc-a"):
+        case hashString("upc-e"):
           return true;
         default:
           return false;

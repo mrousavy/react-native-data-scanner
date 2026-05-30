@@ -13,7 +13,7 @@ export interface DataScannerFactory
    * Creates a native data scanner.
    *
    * The returned scanner is stateful and owns native scanner lifecycle,
-   * listeners, and platform-specific configuration.
+   * listeners, and configuration.
    *
    * @throws This is intentionally not implemented yet.
    */

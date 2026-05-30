@@ -63,11 +63,11 @@ abstract class HybridDataScannerSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun isAndroidScannerModuleAvailable(): Promise<Boolean>
+  abstract fun isScannerAvailable(): Promise<Boolean>
   
   @DoNotStrip
   @Keep
-  abstract fun installAndroidScannerModule(): Promise<Unit>
+  abstract fun prepareScanner(): Promise<Unit>
   
   @DoNotStrip
   @Keep
@@ -75,7 +75,7 @@ abstract class HybridDataScannerSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun scan(configuration: DataScannerConfiguration?): Promise<DataScannerItem>
+  abstract fun scan(configuration: DataScannerConfiguration?): Promise<HybridDataScannedValueSpec>
   
   @DoNotStrip
   @Keep
@@ -87,64 +87,60 @@ abstract class HybridDataScannerSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun capturePhoto(): Promise<DataScannerPhoto>
+  abstract fun capturePhoto(): Promise<HybridDataScannerPhotoSpec>
   
   @DoNotStrip
   @Keep
-  abstract fun getRecognizedItems(): Array<DataScannerItem>
+  abstract fun getScannedValues(): Array<HybridDataScannedValueSpec>
   
   @DoNotStrip
   @Keep
   abstract fun setRegionOfInterest(regionOfInterest: DataScannerRect?): Unit
   
-  abstract fun addItemsChangedListener(listener: (event: DataScannerItemsChangedEvent) -> Unit): Double
+  abstract fun addScannedValuesChangedListener(listener: (values: Array<HybridDataScannedValueSpec>) -> Unit): HybridDataScannerListenerSubscriptionSpec
   
   @DoNotStrip
   @Keep
-  private fun addItemsChangedListener_cxx(listener: Func_void_DataScannerItemsChangedEvent): Double {
-    val __result = addItemsChangedListener(listener)
+  private fun addScannedValuesChangedListener_cxx(listener: Func_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__): HybridDataScannerListenerSubscriptionSpec {
+    val __result = addScannedValuesChangedListener(listener)
     return __result
   }
   
-  abstract fun addItemTappedListener(listener: (event: DataScannerItemTappedEvent) -> Unit): Double
+  abstract fun addValueTappedListener(listener: (value: HybridDataScannedValueSpec) -> Unit): HybridDataScannerListenerSubscriptionSpec
   
   @DoNotStrip
   @Keep
-  private fun addItemTappedListener_cxx(listener: Func_void_DataScannerItemTappedEvent): Double {
-    val __result = addItemTappedListener(listener)
+  private fun addValueTappedListener_cxx(listener: Func_void_std__shared_ptr_HybridDataScannedValueSpec_): HybridDataScannerListenerSubscriptionSpec {
+    val __result = addValueTappedListener(listener)
     return __result
   }
   
-  abstract fun addZoomChangedListener(listener: (event: DataScannerZoomChangedEvent) -> Unit): Double
+  abstract fun addZoomChangedListener(listener: (event: DataScannerZoomChangedEvent) -> Unit): HybridDataScannerListenerSubscriptionSpec
   
   @DoNotStrip
   @Keep
-  private fun addZoomChangedListener_cxx(listener: Func_void_DataScannerZoomChangedEvent): Double {
+  private fun addZoomChangedListener_cxx(listener: Func_void_DataScannerZoomChangedEvent): HybridDataScannerListenerSubscriptionSpec {
     val __result = addZoomChangedListener(listener)
     return __result
   }
   
-  abstract fun addUnavailableListener(listener: (event: DataScannerUnavailableEvent) -> Unit): Double
+  abstract fun addUnavailableListener(listener: (event: DataScannerUnavailableEvent) -> Unit): HybridDataScannerListenerSubscriptionSpec
   
   @DoNotStrip
   @Keep
-  private fun addUnavailableListener_cxx(listener: Func_void_DataScannerUnavailableEvent): Double {
+  private fun addUnavailableListener_cxx(listener: Func_void_DataScannerUnavailableEvent): HybridDataScannerListenerSubscriptionSpec {
     val __result = addUnavailableListener(listener)
     return __result
   }
   
-  abstract fun addErrorListener(listener: (event: DataScannerErrorEvent) -> Unit): Double
+  abstract fun addErrorListener(listener: (error: Throwable) -> Unit): HybridDataScannerListenerSubscriptionSpec
   
   @DoNotStrip
   @Keep
-  private fun addErrorListener_cxx(listener: Func_void_DataScannerErrorEvent): Double {
+  private fun addErrorListener_cxx(listener: Func_void_std__exception_ptr): HybridDataScannerListenerSubscriptionSpec {
     val __result = addErrorListener(listener)
     return __result
   }
-  
-  @DoNotStrip
-  @Keep
-  abstract fun removeListener(listenerId: Double): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

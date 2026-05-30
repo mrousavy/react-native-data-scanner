@@ -20,29 +20,89 @@ import java.util.Objects
 data class DataScannerConfiguration(
   @DoNotStrip
   @Keep
-  val targets: Array<DataScannerTarget>?,
+  val valueTypes: Array<DataScannerValueType>?,
   @DoNotStrip
   @Keep
-  val ios: DataScannerIOSConfiguration?,
+  val barcodeFormats: Array<DataScannerBarcodeFormat>?,
   @DoNotStrip
   @Keep
-  val android: DataScannerAndroidConfiguration?
+  val barcodeValueTypes: Array<DataScannerBarcodeValueType>?,
+  @DoNotStrip
+  @Keep
+  val textRecognitionLanguages: Array<String>?,
+  @DoNotStrip
+  @Keep
+  val textContentTypes: Array<DataScannerTextContentType>?,
+  @DoNotStrip
+  @Keep
+  val qualityLevel: DataScannerQualityLevel?,
+  @DoNotStrip
+  @Keep
+  val recognizesMultipleValues: Boolean?,
+  @DoNotStrip
+  @Keep
+  val highFrameRateTrackingEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val pinchToZoomEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val guidanceEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val highlightingEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val regionOfInterest: DataScannerRect?,
+  @DoNotStrip
+  @Keep
+  val autoZoomEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val manualInputEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
+  val prepareScannerIfNeeded: Boolean?
 ) {
   /* primary constructor */
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (other !is DataScannerConfiguration) return false
-    return Objects.deepEquals(this.targets, other.targets)
-      && Objects.deepEquals(this.ios, other.ios)
-      && Objects.deepEquals(this.android, other.android)
+    return Objects.deepEquals(this.valueTypes, other.valueTypes)
+      && Objects.deepEquals(this.barcodeFormats, other.barcodeFormats)
+      && Objects.deepEquals(this.barcodeValueTypes, other.barcodeValueTypes)
+      && Objects.deepEquals(this.textRecognitionLanguages, other.textRecognitionLanguages)
+      && Objects.deepEquals(this.textContentTypes, other.textContentTypes)
+      && Objects.deepEquals(this.qualityLevel, other.qualityLevel)
+      && Objects.deepEquals(this.recognizesMultipleValues, other.recognizesMultipleValues)
+      && Objects.deepEquals(this.highFrameRateTrackingEnabled, other.highFrameRateTrackingEnabled)
+      && Objects.deepEquals(this.pinchToZoomEnabled, other.pinchToZoomEnabled)
+      && Objects.deepEquals(this.guidanceEnabled, other.guidanceEnabled)
+      && Objects.deepEquals(this.highlightingEnabled, other.highlightingEnabled)
+      && Objects.deepEquals(this.regionOfInterest, other.regionOfInterest)
+      && Objects.deepEquals(this.autoZoomEnabled, other.autoZoomEnabled)
+      && Objects.deepEquals(this.manualInputEnabled, other.manualInputEnabled)
+      && Objects.deepEquals(this.prepareScannerIfNeeded, other.prepareScannerIfNeeded)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
-      targets,
-      ios,
-      android
+      valueTypes,
+      barcodeFormats,
+      barcodeValueTypes,
+      textRecognitionLanguages,
+      textContentTypes,
+      qualityLevel,
+      recognizesMultipleValues,
+      highFrameRateTrackingEnabled,
+      pinchToZoomEnabled,
+      guidanceEnabled,
+      highlightingEnabled,
+      regionOfInterest,
+      autoZoomEnabled,
+      manualInputEnabled,
+      prepareScannerIfNeeded
     ).contentDeepHashCode()
   }
 
@@ -54,8 +114,8 @@ data class DataScannerConfiguration(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(targets: Array<DataScannerTarget>?, ios: DataScannerIOSConfiguration?, android: DataScannerAndroidConfiguration?): DataScannerConfiguration {
-      return DataScannerConfiguration(targets, ios, android)
+    private fun fromCpp(valueTypes: Array<DataScannerValueType>?, barcodeFormats: Array<DataScannerBarcodeFormat>?, barcodeValueTypes: Array<DataScannerBarcodeValueType>?, textRecognitionLanguages: Array<String>?, textContentTypes: Array<DataScannerTextContentType>?, qualityLevel: DataScannerQualityLevel?, recognizesMultipleValues: Boolean?, highFrameRateTrackingEnabled: Boolean?, pinchToZoomEnabled: Boolean?, guidanceEnabled: Boolean?, highlightingEnabled: Boolean?, regionOfInterest: DataScannerRect?, autoZoomEnabled: Boolean?, manualInputEnabled: Boolean?, prepareScannerIfNeeded: Boolean?): DataScannerConfiguration {
+      return DataScannerConfiguration(valueTypes, barcodeFormats, barcodeValueTypes, textRecognitionLanguages, textContentTypes, qualityLevel, recognizesMultipleValues, highFrameRateTrackingEnabled, pinchToZoomEnabled, guidanceEnabled, highlightingEnabled, regionOfInterest, autoZoomEnabled, manualInputEnabled, prepareScannerIfNeeded)
     }
   }
 }

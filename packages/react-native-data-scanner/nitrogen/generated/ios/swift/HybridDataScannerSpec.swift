@@ -20,21 +20,20 @@ public protocol HybridDataScannerSpec_protocol: HybridObject {
   func getCapabilities() throws -> Promise<DataScannerCapabilities>
   func getCameraPermissionStatus() throws -> Promise<DataScannerCameraPermissionStatus>
   func requestCameraPermission() throws -> Promise<DataScannerCameraPermissionStatus>
-  func isAndroidScannerModuleAvailable() throws -> Promise<Bool>
-  func installAndroidScannerModule() throws -> Promise<Void>
+  func isScannerAvailable() throws -> Promise<Bool>
+  func prepareScanner() throws -> Promise<Void>
   func configure(configuration: DataScannerConfiguration) throws -> Promise<Void>
-  func scan(configuration: DataScannerConfiguration?) throws -> Promise<DataScannerItem>
+  func scan(configuration: DataScannerConfiguration?) throws -> Promise<(any HybridDataScannedValueSpec)>
   func startScanning(configuration: DataScannerConfiguration?) throws -> Promise<Void>
   func stopScanning() throws -> Promise<Void>
-  func capturePhoto() throws -> Promise<DataScannerPhoto>
-  func getRecognizedItems() throws -> [DataScannerItem]
+  func capturePhoto() throws -> Promise<(any HybridDataScannerPhotoSpec)>
+  func getScannedValues() throws -> [(any HybridDataScannedValueSpec)]
   func setRegionOfInterest(regionOfInterest: DataScannerRect?) throws -> Void
-  func addItemsChangedListener(listener: @escaping (_ event: DataScannerItemsChangedEvent) -> Void) throws -> Double
-  func addItemTappedListener(listener: @escaping (_ event: DataScannerItemTappedEvent) -> Void) throws -> Double
-  func addZoomChangedListener(listener: @escaping (_ event: DataScannerZoomChangedEvent) -> Void) throws -> Double
-  func addUnavailableListener(listener: @escaping (_ event: DataScannerUnavailableEvent) -> Void) throws -> Double
-  func addErrorListener(listener: @escaping (_ event: DataScannerErrorEvent) -> Void) throws -> Double
-  func removeListener(listenerId: Double) throws -> Void
+  func addScannedValuesChangedListener(listener: @escaping (_ values: [(any HybridDataScannedValueSpec)]) -> Void) throws -> (any HybridDataScannerListenerSubscriptionSpec)
+  func addValueTappedListener(listener: @escaping (_ value: (any HybridDataScannedValueSpec)) -> Void) throws -> (any HybridDataScannerListenerSubscriptionSpec)
+  func addZoomChangedListener(listener: @escaping (_ event: DataScannerZoomChangedEvent) -> Void) throws -> (any HybridDataScannerListenerSubscriptionSpec)
+  func addUnavailableListener(listener: @escaping (_ event: DataScannerUnavailableEvent) -> Void) throws -> (any HybridDataScannerListenerSubscriptionSpec)
+  func addErrorListener(listener: @escaping (_ error: Error) -> Void) throws -> (any HybridDataScannerListenerSubscriptionSpec)
 }
 
 public extension HybridDataScannerSpec_protocol {

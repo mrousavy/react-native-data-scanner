@@ -12,16 +12,14 @@
 
 #include "DataScannerBarcodeFormat.hpp"
 #include "DataScannerBarcodeValueType.hpp"
-#include "DataScannerDataType.hpp"
-#include "DataScannerPlatform.hpp"
 #include "DataScannerTextContentType.hpp"
 #include "DataScannerUnavailableReason.hpp"
+#include "DataScannerValueType.hpp"
 #include "JDataScannerBarcodeFormat.hpp"
 #include "JDataScannerBarcodeValueType.hpp"
-#include "JDataScannerDataType.hpp"
-#include "JDataScannerPlatform.hpp"
 #include "JDataScannerTextContentType.hpp"
 #include "JDataScannerUnavailableReason.hpp"
+#include "JDataScannerValueType.hpp"
 #include <optional>
 #include <string>
 #include <vector>
@@ -45,34 +43,28 @@ namespace margelo::nitro::datascanner {
     [[nodiscard]]
     DataScannerCapabilities toCpp() const {
       static const auto clazz = javaClassStatic();
-      static const auto fieldPlatform = clazz->getField<JDataScannerPlatform>("platform");
-      jni::local_ref<JDataScannerPlatform> platform = this->getFieldValue(fieldPlatform);
       static const auto fieldIsSupported = clazz->getField<jboolean>("isSupported");
       jboolean isSupported = this->getFieldValue(fieldIsSupported);
       static const auto fieldIsAvailable = clazz->getField<jboolean>("isAvailable");
       jboolean isAvailable = this->getFieldValue(fieldIsAvailable);
       static const auto fieldUnavailableReason = clazz->getField<JDataScannerUnavailableReason>("unavailableReason");
       jni::local_ref<JDataScannerUnavailableReason> unavailableReason = this->getFieldValue(fieldUnavailableReason);
-      static const auto fieldSupportedTargets = clazz->getField<jni::JArrayClass<JDataScannerDataType>>("supportedTargets");
-      jni::local_ref<jni::JArrayClass<JDataScannerDataType>> supportedTargets = this->getFieldValue(fieldSupportedTargets);
-      static const auto fieldSupportedBarcodeFormats = clazz->getField<jni::JArrayClass<JDataScannerBarcodeFormat>>("supportedBarcodeFormats");
-      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeFormat>> supportedBarcodeFormats = this->getFieldValue(fieldSupportedBarcodeFormats);
-      static const auto fieldSupportedBarcodeValueTypes = clazz->getField<jni::JArrayClass<JDataScannerBarcodeValueType>>("supportedBarcodeValueTypes");
-      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeValueType>> supportedBarcodeValueTypes = this->getFieldValue(fieldSupportedBarcodeValueTypes);
-      static const auto fieldSupportedTextContentTypes = clazz->getField<jni::JArrayClass<JDataScannerTextContentType>>("supportedTextContentTypes");
-      jni::local_ref<jni::JArrayClass<JDataScannerTextContentType>> supportedTextContentTypes = this->getFieldValue(fieldSupportedTextContentTypes);
-      static const auto fieldSupportedTextRecognitionLanguages = clazz->getField<jni::JArrayClass<jni::JString>>("supportedTextRecognitionLanguages");
-      jni::local_ref<jni::JArrayClass<jni::JString>> supportedTextRecognitionLanguages = this->getFieldValue(fieldSupportedTextRecognitionLanguages);
+      static const auto fieldAvailableValueTypes = clazz->getField<jni::JArrayClass<JDataScannerValueType>>("availableValueTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerValueType>> availableValueTypes = this->getFieldValue(fieldAvailableValueTypes);
+      static const auto fieldAvailableBarcodeFormats = clazz->getField<jni::JArrayClass<JDataScannerBarcodeFormat>>("availableBarcodeFormats");
+      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeFormat>> availableBarcodeFormats = this->getFieldValue(fieldAvailableBarcodeFormats);
+      static const auto fieldAvailableBarcodeValueTypes = clazz->getField<jni::JArrayClass<JDataScannerBarcodeValueType>>("availableBarcodeValueTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeValueType>> availableBarcodeValueTypes = this->getFieldValue(fieldAvailableBarcodeValueTypes);
+      static const auto fieldAvailableTextContentTypes = clazz->getField<jni::JArrayClass<JDataScannerTextContentType>>("availableTextContentTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerTextContentType>> availableTextContentTypes = this->getFieldValue(fieldAvailableTextContentTypes);
+      static const auto fieldAvailableTextRecognitionLanguages = clazz->getField<jni::JArrayClass<jni::JString>>("availableTextRecognitionLanguages");
+      jni::local_ref<jni::JArrayClass<jni::JString>> availableTextRecognitionLanguages = this->getFieldValue(fieldAvailableTextRecognitionLanguages);
       static const auto fieldSupportsOneShotScanning = clazz->getField<jboolean>("supportsOneShotScanning");
       jboolean supportsOneShotScanning = this->getFieldValue(fieldSupportsOneShotScanning);
       static const auto fieldSupportsLiveScanning = clazz->getField<jboolean>("supportsLiveScanning");
       jboolean supportsLiveScanning = this->getFieldValue(fieldSupportsLiveScanning);
-      static const auto fieldSupportsTextRecognition = clazz->getField<jboolean>("supportsTextRecognition");
-      jboolean supportsTextRecognition = this->getFieldValue(fieldSupportsTextRecognition);
-      static const auto fieldSupportsBarcodeRecognition = clazz->getField<jboolean>("supportsBarcodeRecognition");
-      jboolean supportsBarcodeRecognition = this->getFieldValue(fieldSupportsBarcodeRecognition);
-      static const auto fieldSupportsMultipleItems = clazz->getField<jboolean>("supportsMultipleItems");
-      jboolean supportsMultipleItems = this->getFieldValue(fieldSupportsMultipleItems);
+      static const auto fieldSupportsMultipleValues = clazz->getField<jboolean>("supportsMultipleValues");
+      jboolean supportsMultipleValues = this->getFieldValue(fieldSupportsMultipleValues);
       static const auto fieldSupportsHighFrameRateTracking = clazz->getField<jboolean>("supportsHighFrameRateTracking");
       jboolean supportsHighFrameRateTracking = this->getFieldValue(fieldSupportsHighFrameRateTracking);
       static const auto fieldSupportsPinchToZoom = clazz->getField<jboolean>("supportsPinchToZoom");
@@ -93,25 +85,24 @@ namespace margelo::nitro::datascanner {
       jboolean supportsAutoZoom = this->getFieldValue(fieldSupportsAutoZoom);
       static const auto fieldSupportsManualInput = clazz->getField<jboolean>("supportsManualInput");
       jboolean supportsManualInput = this->getFieldValue(fieldSupportsManualInput);
+      static const auto fieldCanPrepareScanner = clazz->getField<jboolean>("canPrepareScanner");
+      jboolean canPrepareScanner = this->getFieldValue(fieldCanPrepareScanner);
       static const auto fieldRequiresCameraPermission = clazz->getField<jboolean>("requiresCameraPermission");
       jboolean requiresCameraPermission = this->getFieldValue(fieldRequiresCameraPermission);
-      static const auto fieldRequiresGooglePlayServices = clazz->getField<jboolean>("requiresGooglePlayServices");
-      jboolean requiresGooglePlayServices = this->getFieldValue(fieldRequiresGooglePlayServices);
       return DataScannerCapabilities(
-        platform->toCpp(),
         static_cast<bool>(isSupported),
         static_cast<bool>(isAvailable),
         unavailableReason != nullptr ? std::make_optional(unavailableReason->toCpp()) : std::nullopt,
         [&](auto&& __input) {
           size_t __size = __input->size();
-          std::vector<DataScannerDataType> __vector;
+          std::vector<DataScannerValueType> __vector;
           __vector.reserve(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             auto __element = __input->getElement(__i);
             __vector.push_back(__element->toCpp());
           }
           return __vector;
-        }(supportedTargets),
+        }(availableValueTypes),
         [&](auto&& __input) {
           size_t __size = __input->size();
           std::vector<DataScannerBarcodeFormat> __vector;
@@ -121,7 +112,7 @@ namespace margelo::nitro::datascanner {
             __vector.push_back(__element->toCpp());
           }
           return __vector;
-        }(supportedBarcodeFormats),
+        }(availableBarcodeFormats),
         [&](auto&& __input) {
           size_t __size = __input->size();
           std::vector<DataScannerBarcodeValueType> __vector;
@@ -131,7 +122,7 @@ namespace margelo::nitro::datascanner {
             __vector.push_back(__element->toCpp());
           }
           return __vector;
-        }(supportedBarcodeValueTypes),
+        }(availableBarcodeValueTypes),
         [&](auto&& __input) {
           size_t __size = __input->size();
           std::vector<DataScannerTextContentType> __vector;
@@ -141,7 +132,7 @@ namespace margelo::nitro::datascanner {
             __vector.push_back(__element->toCpp());
           }
           return __vector;
-        }(supportedTextContentTypes),
+        }(availableTextContentTypes),
         [&](auto&& __input) {
           size_t __size = __input->size();
           std::vector<std::string> __vector;
@@ -151,12 +142,10 @@ namespace margelo::nitro::datascanner {
             __vector.push_back(__element->toStdString());
           }
           return __vector;
-        }(supportedTextRecognitionLanguages),
+        }(availableTextRecognitionLanguages),
         static_cast<bool>(supportsOneShotScanning),
         static_cast<bool>(supportsLiveScanning),
-        static_cast<bool>(supportsTextRecognition),
-        static_cast<bool>(supportsBarcodeRecognition),
-        static_cast<bool>(supportsMultipleItems),
+        static_cast<bool>(supportsMultipleValues),
         static_cast<bool>(supportsHighFrameRateTracking),
         static_cast<bool>(supportsPinchToZoom),
         static_cast<bool>(supportsGuidance),
@@ -167,8 +156,8 @@ namespace margelo::nitro::datascanner {
         static_cast<bool>(supportsZoomFactor),
         static_cast<bool>(supportsAutoZoom),
         static_cast<bool>(supportsManualInput),
-        static_cast<bool>(requiresCameraPermission),
-        static_cast<bool>(requiresGooglePlayServices)
+        static_cast<bool>(canPrepareScanner),
+        static_cast<bool>(requiresCameraPermission)
       );
     }
 
@@ -178,25 +167,24 @@ namespace margelo::nitro::datascanner {
      */
     [[maybe_unused]]
     static jni::local_ref<JDataScannerCapabilities::javaobject> fromCpp(const DataScannerCapabilities& value) {
-      using JSignature = JDataScannerCapabilities(jni::alias_ref<JDataScannerPlatform>, jboolean, jboolean, jni::alias_ref<JDataScannerUnavailableReason>, jni::alias_ref<jni::JArrayClass<JDataScannerDataType>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeFormat>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeValueType>>, jni::alias_ref<jni::JArrayClass<JDataScannerTextContentType>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean);
+      using JSignature = JDataScannerCapabilities(jboolean, jboolean, jni::alias_ref<JDataScannerUnavailableReason>, jni::alias_ref<jni::JArrayClass<JDataScannerValueType>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeFormat>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeValueType>>, jni::alias_ref<jni::JArrayClass<JDataScannerTextContentType>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean, jboolean);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
-        JDataScannerPlatform::fromCpp(value.platform),
         value.isSupported,
         value.isAvailable,
         value.unavailableReason.has_value() ? JDataScannerUnavailableReason::fromCpp(value.unavailableReason.value()) : nullptr,
         [&](auto&& __input) {
           size_t __size = __input.size();
-          jni::local_ref<jni::JArrayClass<JDataScannerDataType>> __array = jni::JArrayClass<JDataScannerDataType>::newArray(__size);
+          jni::local_ref<jni::JArrayClass<JDataScannerValueType>> __array = jni::JArrayClass<JDataScannerValueType>::newArray(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             const auto& __element = __input[__i];
-            auto __elementJni = JDataScannerDataType::fromCpp(__element);
+            auto __elementJni = JDataScannerValueType::fromCpp(__element);
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.supportedTargets),
+        }(value.availableValueTypes),
         [&](auto&& __input) {
           size_t __size = __input.size();
           jni::local_ref<jni::JArrayClass<JDataScannerBarcodeFormat>> __array = jni::JArrayClass<JDataScannerBarcodeFormat>::newArray(__size);
@@ -206,7 +194,7 @@ namespace margelo::nitro::datascanner {
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.supportedBarcodeFormats),
+        }(value.availableBarcodeFormats),
         [&](auto&& __input) {
           size_t __size = __input.size();
           jni::local_ref<jni::JArrayClass<JDataScannerBarcodeValueType>> __array = jni::JArrayClass<JDataScannerBarcodeValueType>::newArray(__size);
@@ -216,7 +204,7 @@ namespace margelo::nitro::datascanner {
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.supportedBarcodeValueTypes),
+        }(value.availableBarcodeValueTypes),
         [&](auto&& __input) {
           size_t __size = __input.size();
           jni::local_ref<jni::JArrayClass<JDataScannerTextContentType>> __array = jni::JArrayClass<JDataScannerTextContentType>::newArray(__size);
@@ -226,7 +214,7 @@ namespace margelo::nitro::datascanner {
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.supportedTextContentTypes),
+        }(value.availableTextContentTypes),
         [&](auto&& __input) {
           size_t __size = __input.size();
           jni::local_ref<jni::JArrayClass<jni::JString>> __array = jni::JArrayClass<jni::JString>::newArray(__size);
@@ -236,12 +224,10 @@ namespace margelo::nitro::datascanner {
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.supportedTextRecognitionLanguages),
+        }(value.availableTextRecognitionLanguages),
         value.supportsOneShotScanning,
         value.supportsLiveScanning,
-        value.supportsTextRecognition,
-        value.supportsBarcodeRecognition,
-        value.supportsMultipleItems,
+        value.supportsMultipleValues,
         value.supportsHighFrameRateTracking,
         value.supportsPinchToZoom,
         value.supportsGuidance,
@@ -252,8 +238,8 @@ namespace margelo::nitro::datascanner {
         value.supportsZoomFactor,
         value.supportsAutoZoom,
         value.supportsManualInput,
-        value.requiresCameraPermission,
-        value.requiresGooglePlayServices
+        value.canPrepareScanner,
+        value.requiresCameraPermission
       );
     }
   };

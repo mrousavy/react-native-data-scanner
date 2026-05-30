@@ -10,24 +10,18 @@
 #include <fbjni/fbjni.h>
 #include "DataScannerConfiguration.hpp"
 
-#include "DataScannerAndroidConfiguration.hpp"
 #include "DataScannerBarcodeFormat.hpp"
 #include "DataScannerBarcodeValueType.hpp"
-#include "DataScannerDataType.hpp"
-#include "DataScannerIOSConfiguration.hpp"
 #include "DataScannerQualityLevel.hpp"
 #include "DataScannerRect.hpp"
-#include "DataScannerTarget.hpp"
 #include "DataScannerTextContentType.hpp"
-#include "JDataScannerAndroidConfiguration.hpp"
+#include "DataScannerValueType.hpp"
 #include "JDataScannerBarcodeFormat.hpp"
 #include "JDataScannerBarcodeValueType.hpp"
-#include "JDataScannerDataType.hpp"
-#include "JDataScannerIOSConfiguration.hpp"
 #include "JDataScannerQualityLevel.hpp"
 #include "JDataScannerRect.hpp"
-#include "JDataScannerTarget.hpp"
 #include "JDataScannerTextContentType.hpp"
+#include "JDataScannerValueType.hpp"
 #include <optional>
 #include <string>
 #include <vector>
@@ -51,25 +45,97 @@ namespace margelo::nitro::datascanner {
     [[nodiscard]]
     DataScannerConfiguration toCpp() const {
       static const auto clazz = javaClassStatic();
-      static const auto fieldTargets = clazz->getField<jni::JArrayClass<JDataScannerTarget>>("targets");
-      jni::local_ref<jni::JArrayClass<JDataScannerTarget>> targets = this->getFieldValue(fieldTargets);
-      static const auto fieldIos = clazz->getField<JDataScannerIOSConfiguration>("ios");
-      jni::local_ref<JDataScannerIOSConfiguration> ios = this->getFieldValue(fieldIos);
-      static const auto fieldAndroid = clazz->getField<JDataScannerAndroidConfiguration>("android");
-      jni::local_ref<JDataScannerAndroidConfiguration> android = this->getFieldValue(fieldAndroid);
+      static const auto fieldValueTypes = clazz->getField<jni::JArrayClass<JDataScannerValueType>>("valueTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerValueType>> valueTypes = this->getFieldValue(fieldValueTypes);
+      static const auto fieldBarcodeFormats = clazz->getField<jni::JArrayClass<JDataScannerBarcodeFormat>>("barcodeFormats");
+      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeFormat>> barcodeFormats = this->getFieldValue(fieldBarcodeFormats);
+      static const auto fieldBarcodeValueTypes = clazz->getField<jni::JArrayClass<JDataScannerBarcodeValueType>>("barcodeValueTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerBarcodeValueType>> barcodeValueTypes = this->getFieldValue(fieldBarcodeValueTypes);
+      static const auto fieldTextRecognitionLanguages = clazz->getField<jni::JArrayClass<jni::JString>>("textRecognitionLanguages");
+      jni::local_ref<jni::JArrayClass<jni::JString>> textRecognitionLanguages = this->getFieldValue(fieldTextRecognitionLanguages);
+      static const auto fieldTextContentTypes = clazz->getField<jni::JArrayClass<JDataScannerTextContentType>>("textContentTypes");
+      jni::local_ref<jni::JArrayClass<JDataScannerTextContentType>> textContentTypes = this->getFieldValue(fieldTextContentTypes);
+      static const auto fieldQualityLevel = clazz->getField<JDataScannerQualityLevel>("qualityLevel");
+      jni::local_ref<JDataScannerQualityLevel> qualityLevel = this->getFieldValue(fieldQualityLevel);
+      static const auto fieldRecognizesMultipleValues = clazz->getField<jni::JBoolean>("recognizesMultipleValues");
+      jni::local_ref<jni::JBoolean> recognizesMultipleValues = this->getFieldValue(fieldRecognizesMultipleValues);
+      static const auto fieldHighFrameRateTrackingEnabled = clazz->getField<jni::JBoolean>("highFrameRateTrackingEnabled");
+      jni::local_ref<jni::JBoolean> highFrameRateTrackingEnabled = this->getFieldValue(fieldHighFrameRateTrackingEnabled);
+      static const auto fieldPinchToZoomEnabled = clazz->getField<jni::JBoolean>("pinchToZoomEnabled");
+      jni::local_ref<jni::JBoolean> pinchToZoomEnabled = this->getFieldValue(fieldPinchToZoomEnabled);
+      static const auto fieldGuidanceEnabled = clazz->getField<jni::JBoolean>("guidanceEnabled");
+      jni::local_ref<jni::JBoolean> guidanceEnabled = this->getFieldValue(fieldGuidanceEnabled);
+      static const auto fieldHighlightingEnabled = clazz->getField<jni::JBoolean>("highlightingEnabled");
+      jni::local_ref<jni::JBoolean> highlightingEnabled = this->getFieldValue(fieldHighlightingEnabled);
+      static const auto fieldRegionOfInterest = clazz->getField<JDataScannerRect>("regionOfInterest");
+      jni::local_ref<JDataScannerRect> regionOfInterest = this->getFieldValue(fieldRegionOfInterest);
+      static const auto fieldAutoZoomEnabled = clazz->getField<jni::JBoolean>("autoZoomEnabled");
+      jni::local_ref<jni::JBoolean> autoZoomEnabled = this->getFieldValue(fieldAutoZoomEnabled);
+      static const auto fieldManualInputEnabled = clazz->getField<jni::JBoolean>("manualInputEnabled");
+      jni::local_ref<jni::JBoolean> manualInputEnabled = this->getFieldValue(fieldManualInputEnabled);
+      static const auto fieldPrepareScannerIfNeeded = clazz->getField<jni::JBoolean>("prepareScannerIfNeeded");
+      jni::local_ref<jni::JBoolean> prepareScannerIfNeeded = this->getFieldValue(fieldPrepareScannerIfNeeded);
       return DataScannerConfiguration(
-        targets != nullptr ? std::make_optional([&](auto&& __input) {
+        valueTypes != nullptr ? std::make_optional([&](auto&& __input) {
           size_t __size = __input->size();
-          std::vector<DataScannerTarget> __vector;
+          std::vector<DataScannerValueType> __vector;
           __vector.reserve(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             auto __element = __input->getElement(__i);
             __vector.push_back(__element->toCpp());
           }
           return __vector;
-        }(targets)) : std::nullopt,
-        ios != nullptr ? std::make_optional(ios->toCpp()) : std::nullopt,
-        android != nullptr ? std::make_optional(android->toCpp()) : std::nullopt
+        }(valueTypes)) : std::nullopt,
+        barcodeFormats != nullptr ? std::make_optional([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<DataScannerBarcodeFormat> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toCpp());
+          }
+          return __vector;
+        }(barcodeFormats)) : std::nullopt,
+        barcodeValueTypes != nullptr ? std::make_optional([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<DataScannerBarcodeValueType> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toCpp());
+          }
+          return __vector;
+        }(barcodeValueTypes)) : std::nullopt,
+        textRecognitionLanguages != nullptr ? std::make_optional([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<std::string> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toStdString());
+          }
+          return __vector;
+        }(textRecognitionLanguages)) : std::nullopt,
+        textContentTypes != nullptr ? std::make_optional([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<DataScannerTextContentType> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toCpp());
+          }
+          return __vector;
+        }(textContentTypes)) : std::nullopt,
+        qualityLevel != nullptr ? std::make_optional(qualityLevel->toCpp()) : std::nullopt,
+        recognizesMultipleValues != nullptr ? std::make_optional(static_cast<bool>(recognizesMultipleValues->value())) : std::nullopt,
+        highFrameRateTrackingEnabled != nullptr ? std::make_optional(static_cast<bool>(highFrameRateTrackingEnabled->value())) : std::nullopt,
+        pinchToZoomEnabled != nullptr ? std::make_optional(static_cast<bool>(pinchToZoomEnabled->value())) : std::nullopt,
+        guidanceEnabled != nullptr ? std::make_optional(static_cast<bool>(guidanceEnabled->value())) : std::nullopt,
+        highlightingEnabled != nullptr ? std::make_optional(static_cast<bool>(highlightingEnabled->value())) : std::nullopt,
+        regionOfInterest != nullptr ? std::make_optional(regionOfInterest->toCpp()) : std::nullopt,
+        autoZoomEnabled != nullptr ? std::make_optional(static_cast<bool>(autoZoomEnabled->value())) : std::nullopt,
+        manualInputEnabled != nullptr ? std::make_optional(static_cast<bool>(manualInputEnabled->value())) : std::nullopt,
+        prepareScannerIfNeeded != nullptr ? std::make_optional(static_cast<bool>(prepareScannerIfNeeded->value())) : std::nullopt
       );
     }
 
@@ -79,23 +145,71 @@ namespace margelo::nitro::datascanner {
      */
     [[maybe_unused]]
     static jni::local_ref<JDataScannerConfiguration::javaobject> fromCpp(const DataScannerConfiguration& value) {
-      using JSignature = JDataScannerConfiguration(jni::alias_ref<jni::JArrayClass<JDataScannerTarget>>, jni::alias_ref<JDataScannerIOSConfiguration>, jni::alias_ref<JDataScannerAndroidConfiguration>);
+      using JSignature = JDataScannerConfiguration(jni::alias_ref<jni::JArrayClass<JDataScannerValueType>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeFormat>>, jni::alias_ref<jni::JArrayClass<JDataScannerBarcodeValueType>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<JDataScannerTextContentType>>, jni::alias_ref<JDataScannerQualityLevel>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JDataScannerRect>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
-        value.targets.has_value() ? [&](auto&& __input) {
+        value.valueTypes.has_value() ? [&](auto&& __input) {
           size_t __size = __input.size();
-          jni::local_ref<jni::JArrayClass<JDataScannerTarget>> __array = jni::JArrayClass<JDataScannerTarget>::newArray(__size);
+          jni::local_ref<jni::JArrayClass<JDataScannerValueType>> __array = jni::JArrayClass<JDataScannerValueType>::newArray(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             const auto& __element = __input[__i];
-            auto __elementJni = JDataScannerTarget::fromCpp(__element);
+            auto __elementJni = JDataScannerValueType::fromCpp(__element);
             __array->setElement(__i, *__elementJni);
           }
           return __array;
-        }(value.targets.value()) : nullptr,
-        value.ios.has_value() ? JDataScannerIOSConfiguration::fromCpp(value.ios.value()) : nullptr,
-        value.android.has_value() ? JDataScannerAndroidConfiguration::fromCpp(value.android.value()) : nullptr
+        }(value.valueTypes.value()) : nullptr,
+        value.barcodeFormats.has_value() ? [&](auto&& __input) {
+          size_t __size = __input.size();
+          jni::local_ref<jni::JArrayClass<JDataScannerBarcodeFormat>> __array = jni::JArrayClass<JDataScannerBarcodeFormat>::newArray(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            const auto& __element = __input[__i];
+            auto __elementJni = JDataScannerBarcodeFormat::fromCpp(__element);
+            __array->setElement(__i, *__elementJni);
+          }
+          return __array;
+        }(value.barcodeFormats.value()) : nullptr,
+        value.barcodeValueTypes.has_value() ? [&](auto&& __input) {
+          size_t __size = __input.size();
+          jni::local_ref<jni::JArrayClass<JDataScannerBarcodeValueType>> __array = jni::JArrayClass<JDataScannerBarcodeValueType>::newArray(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            const auto& __element = __input[__i];
+            auto __elementJni = JDataScannerBarcodeValueType::fromCpp(__element);
+            __array->setElement(__i, *__elementJni);
+          }
+          return __array;
+        }(value.barcodeValueTypes.value()) : nullptr,
+        value.textRecognitionLanguages.has_value() ? [&](auto&& __input) {
+          size_t __size = __input.size();
+          jni::local_ref<jni::JArrayClass<jni::JString>> __array = jni::JArrayClass<jni::JString>::newArray(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            const auto& __element = __input[__i];
+            auto __elementJni = jni::make_jstring(__element);
+            __array->setElement(__i, *__elementJni);
+          }
+          return __array;
+        }(value.textRecognitionLanguages.value()) : nullptr,
+        value.textContentTypes.has_value() ? [&](auto&& __input) {
+          size_t __size = __input.size();
+          jni::local_ref<jni::JArrayClass<JDataScannerTextContentType>> __array = jni::JArrayClass<JDataScannerTextContentType>::newArray(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            const auto& __element = __input[__i];
+            auto __elementJni = JDataScannerTextContentType::fromCpp(__element);
+            __array->setElement(__i, *__elementJni);
+          }
+          return __array;
+        }(value.textContentTypes.value()) : nullptr,
+        value.qualityLevel.has_value() ? JDataScannerQualityLevel::fromCpp(value.qualityLevel.value()) : nullptr,
+        value.recognizesMultipleValues.has_value() ? jni::JBoolean::valueOf(value.recognizesMultipleValues.value()) : nullptr,
+        value.highFrameRateTrackingEnabled.has_value() ? jni::JBoolean::valueOf(value.highFrameRateTrackingEnabled.value()) : nullptr,
+        value.pinchToZoomEnabled.has_value() ? jni::JBoolean::valueOf(value.pinchToZoomEnabled.value()) : nullptr,
+        value.guidanceEnabled.has_value() ? jni::JBoolean::valueOf(value.guidanceEnabled.value()) : nullptr,
+        value.highlightingEnabled.has_value() ? jni::JBoolean::valueOf(value.highlightingEnabled.value()) : nullptr,
+        value.regionOfInterest.has_value() ? JDataScannerRect::fromCpp(value.regionOfInterest.value()) : nullptr,
+        value.autoZoomEnabled.has_value() ? jni::JBoolean::valueOf(value.autoZoomEnabled.value()) : nullptr,
+        value.manualInputEnabled.has_value() ? jni::JBoolean::valueOf(value.manualInputEnabled.value()) : nullptr,
+        value.prepareScannerIfNeeded.has_value() ? jni::JBoolean::valueOf(value.prepareScannerIfNeeded.value()) : nullptr
       );
     }
   };

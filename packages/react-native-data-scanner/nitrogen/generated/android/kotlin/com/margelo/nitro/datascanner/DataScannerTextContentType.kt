@@ -17,12 +17,12 @@ import com.facebook.proguard.annotations.DoNotStrip
 @Keep
 enum class DataScannerTextContentType(@DoNotStrip @Keep val value: Int) {
   URL(0),
-  DATETIMEDURATION(1),
-  EMAILADDRESS(2),
-  FLIGHTNUMBER(3),
-  FULLSTREETADDRESS(4),
-  SHIPMENTTRACKINGNUMBER(5),
-  TELEPHONENUMBER(6),
+  DATE_TIME_DURATION(1),
+  EMAIL_ADDRESS(2),
+  FLIGHT_NUMBER(3),
+  FULL_STREET_ADDRESS(4),
+  SHIPMENT_TRACKING_NUMBER(5),
+  TELEPHONE_NUMBER(6),
   CURRENCY(7);
 
   companion object

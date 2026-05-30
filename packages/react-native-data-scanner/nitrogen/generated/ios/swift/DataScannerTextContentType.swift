@@ -19,18 +19,18 @@ public extension DataScannerTextContentType {
     switch string {
       case "url":
         self = .url
-      case "dateTimeDuration":
-        self = .datetimeduration
-      case "emailAddress":
-        self = .emailaddress
-      case "flightNumber":
-        self = .flightnumber
-      case "fullStreetAddress":
-        self = .fullstreetaddress
-      case "shipmentTrackingNumber":
-        self = .shipmenttrackingnumber
-      case "telephoneNumber":
-        self = .telephonenumber
+      case "date-time-duration":
+        self = .dateTimeDuration
+      case "email-address":
+        self = .emailAddress
+      case "flight-number":
+        self = .flightNumber
+      case "full-street-address":
+        self = .fullStreetAddress
+      case "shipment-tracking-number":
+        self = .shipmentTrackingNumber
+      case "telephone-number":
+        self = .telephoneNumber
       case "currency":
         self = .currency
       default:
@@ -45,18 +45,18 @@ public extension DataScannerTextContentType {
     switch self {
       case .url:
         return "url"
-      case .datetimeduration:
-        return "dateTimeDuration"
-      case .emailaddress:
-        return "emailAddress"
-      case .flightnumber:
-        return "flightNumber"
-      case .fullstreetaddress:
-        return "fullStreetAddress"
-      case .shipmenttrackingnumber:
-        return "shipmentTrackingNumber"
-      case .telephonenumber:
-        return "telephoneNumber"
+      case .dateTimeDuration:
+        return "date-time-duration"
+      case .emailAddress:
+        return "email-address"
+      case .flightNumber:
+        return "flight-number"
+      case .fullStreetAddress:
+        return "full-street-address"
+      case .shipmentTrackingNumber:
+        return "shipment-tracking-number"
+      case .telephoneNumber:
+        return "telephone-number"
       case .currency:
         return "currency"
     }

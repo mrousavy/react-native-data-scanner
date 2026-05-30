@@ -45,9 +45,9 @@ namespace margelo::nitro::datascanner {
         case DataScannerResultSource::CAMERA:
           static const auto fieldCAMERA = clazz->getStaticField<JDataScannerResultSource>("CAMERA");
           return clazz->getStaticFieldValue(fieldCAMERA);
-        case DataScannerResultSource::MANUALINPUT:
-          static const auto fieldMANUALINPUT = clazz->getStaticField<JDataScannerResultSource>("MANUALINPUT");
-          return clazz->getStaticFieldValue(fieldMANUALINPUT);
+        case DataScannerResultSource::MANUAL_INPUT:
+          static const auto fieldMANUAL_INPUT = clazz->getStaticField<JDataScannerResultSource>("MANUAL_INPUT");
+          return clazz->getStaticFieldValue(fieldMANUAL_INPUT);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

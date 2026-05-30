@@ -33,9 +33,49 @@ target_sources(
   # Autolinking Setup
   ../nitrogen/generated/android/NitroDataScannerOnLoad.cpp
   # Shared Nitrogen C++ sources
+  ../nitrogen/generated/shared/c++/HybridDataScannerPersonNameValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannerAddressValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannerCalendarDateTimeValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedTextValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedBarcodeValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedBarcodeTextValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedEmailValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedPhoneValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedSmsValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedUrlValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedWifiValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedGeoValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedCalendarEventValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedContactInfoValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedDriverLicenseValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedIsbnValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannedProductValueSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannerPhotoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDataScannerListenerSubscriptionSpec.cpp
   ../nitrogen/generated/shared/c++/HybridDataScannerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridDataScannerFactorySpec.cpp
   # Android-specific Nitrogen C++ sources
+  ../nitrogen/generated/android/c++/JHybridDataScannerPersonNameValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannerAddressValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannerCalendarDateTimeValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedTextValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedBarcodeValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedBarcodeTextValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedEmailValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedPhoneValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedSmsValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedUrlValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedWifiValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedGeoValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedCalendarEventValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedContactInfoValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedDriverLicenseValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedIsbnValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannedProductValueSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannerPhotoSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridDataScannerListenerSubscriptionSpec.cpp
   ../nitrogen/generated/android/c++/JHybridDataScannerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridDataScannerFactorySpec.cpp
 )

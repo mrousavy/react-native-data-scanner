@@ -18,51 +18,46 @@ public extension DataScannerCapabilities {
   /**
    * Create a new instance of `DataScannerCapabilities`.
    */
-  init(platform: DataScannerPlatform, isSupported: Bool, isAvailable: Bool, unavailableReason: DataScannerUnavailableReason?, supportedTargets: [DataScannerDataType], supportedBarcodeFormats: [DataScannerBarcodeFormat], supportedBarcodeValueTypes: [DataScannerBarcodeValueType], supportedTextContentTypes: [DataScannerTextContentType], supportedTextRecognitionLanguages: [String], supportsOneShotScanning: Bool, supportsLiveScanning: Bool, supportsTextRecognition: Bool, supportsBarcodeRecognition: Bool, supportsMultipleItems: Bool, supportsHighFrameRateTracking: Bool, supportsPinchToZoom: Bool, supportsGuidance: Bool, supportsHighlighting: Bool, supportsRegionOfInterest: Bool, supportsCustomOverlays: Bool, supportsPhotoCapture: Bool, supportsZoomFactor: Bool, supportsAutoZoom: Bool, supportsManualInput: Bool, requiresCameraPermission: Bool, requiresGooglePlayServices: Bool) {
-    self.init(platform, isSupported, isAvailable, { () -> bridge.std__optional_DataScannerUnavailableReason_ in
+  init(isSupported: Bool, isAvailable: Bool, unavailableReason: DataScannerUnavailableReason?, availableValueTypes: [DataScannerValueType], availableBarcodeFormats: [DataScannerBarcodeFormat], availableBarcodeValueTypes: [DataScannerBarcodeValueType], availableTextContentTypes: [DataScannerTextContentType], availableTextRecognitionLanguages: [String], supportsOneShotScanning: Bool, supportsLiveScanning: Bool, supportsMultipleValues: Bool, supportsHighFrameRateTracking: Bool, supportsPinchToZoom: Bool, supportsGuidance: Bool, supportsHighlighting: Bool, supportsRegionOfInterest: Bool, supportsCustomOverlays: Bool, supportsPhotoCapture: Bool, supportsZoomFactor: Bool, supportsAutoZoom: Bool, supportsManualInput: Bool, canPrepareScanner: Bool, requiresCameraPermission: Bool) {
+    self.init(isSupported, isAvailable, { () -> bridge.std__optional_DataScannerUnavailableReason_ in
       if let __unwrappedValue = unavailableReason {
         return bridge.create_std__optional_DataScannerUnavailableReason_(__unwrappedValue)
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__vector_DataScannerDataType_ in
-      var __vector = bridge.create_std__vector_DataScannerDataType_(supportedTargets.count)
-      for __item in supportedTargets {
+    }(), { () -> bridge.std__vector_DataScannerValueType_ in
+      var __vector = bridge.create_std__vector_DataScannerValueType_(availableValueTypes.count)
+      for __item in availableValueTypes {
         __vector.push_back(__item)
       }
       return __vector
     }(), { () -> bridge.std__vector_DataScannerBarcodeFormat_ in
-      var __vector = bridge.create_std__vector_DataScannerBarcodeFormat_(supportedBarcodeFormats.count)
-      for __item in supportedBarcodeFormats {
+      var __vector = bridge.create_std__vector_DataScannerBarcodeFormat_(availableBarcodeFormats.count)
+      for __item in availableBarcodeFormats {
         __vector.push_back(__item)
       }
       return __vector
     }(), { () -> bridge.std__vector_DataScannerBarcodeValueType_ in
-      var __vector = bridge.create_std__vector_DataScannerBarcodeValueType_(supportedBarcodeValueTypes.count)
-      for __item in supportedBarcodeValueTypes {
+      var __vector = bridge.create_std__vector_DataScannerBarcodeValueType_(availableBarcodeValueTypes.count)
+      for __item in availableBarcodeValueTypes {
         __vector.push_back(__item)
       }
       return __vector
     }(), { () -> bridge.std__vector_DataScannerTextContentType_ in
-      var __vector = bridge.create_std__vector_DataScannerTextContentType_(supportedTextContentTypes.count)
-      for __item in supportedTextContentTypes {
+      var __vector = bridge.create_std__vector_DataScannerTextContentType_(availableTextContentTypes.count)
+      for __item in availableTextContentTypes {
         __vector.push_back(__item)
       }
       return __vector
     }(), { () -> bridge.std__vector_std__string_ in
-      var __vector = bridge.create_std__vector_std__string_(supportedTextRecognitionLanguages.count)
-      for __item in supportedTextRecognitionLanguages {
+      var __vector = bridge.create_std__vector_std__string_(availableTextRecognitionLanguages.count)
+      for __item in availableTextRecognitionLanguages {
         __vector.push_back(std.string(__item))
       }
       return __vector
-    }(), supportsOneShotScanning, supportsLiveScanning, supportsTextRecognition, supportsBarcodeRecognition, supportsMultipleItems, supportsHighFrameRateTracking, supportsPinchToZoom, supportsGuidance, supportsHighlighting, supportsRegionOfInterest, supportsCustomOverlays, supportsPhotoCapture, supportsZoomFactor, supportsAutoZoom, supportsManualInput, requiresCameraPermission, requiresGooglePlayServices)
+    }(), supportsOneShotScanning, supportsLiveScanning, supportsMultipleValues, supportsHighFrameRateTracking, supportsPinchToZoom, supportsGuidance, supportsHighlighting, supportsRegionOfInterest, supportsCustomOverlays, supportsPhotoCapture, supportsZoomFactor, supportsAutoZoom, supportsManualInput, canPrepareScanner, requiresCameraPermission)
   }
 
-  @inline(__always)
-  var platform: DataScannerPlatform {
-    return self.__platform
-  }
-  
   @inline(__always)
   var isSupported: Bool {
     return self.__isSupported
@@ -79,28 +74,28 @@ public extension DataScannerCapabilities {
   }
   
   @inline(__always)
-  var supportedTargets: [DataScannerDataType] {
-    return self.__supportedTargets.map({ __item in __item })
+  var availableValueTypes: [DataScannerValueType] {
+    return self.__availableValueTypes.map({ __item in __item })
   }
   
   @inline(__always)
-  var supportedBarcodeFormats: [DataScannerBarcodeFormat] {
-    return self.__supportedBarcodeFormats.map({ __item in __item })
+  var availableBarcodeFormats: [DataScannerBarcodeFormat] {
+    return self.__availableBarcodeFormats.map({ __item in __item })
   }
   
   @inline(__always)
-  var supportedBarcodeValueTypes: [DataScannerBarcodeValueType] {
-    return self.__supportedBarcodeValueTypes.map({ __item in __item })
+  var availableBarcodeValueTypes: [DataScannerBarcodeValueType] {
+    return self.__availableBarcodeValueTypes.map({ __item in __item })
   }
   
   @inline(__always)
-  var supportedTextContentTypes: [DataScannerTextContentType] {
-    return self.__supportedTextContentTypes.map({ __item in __item })
+  var availableTextContentTypes: [DataScannerTextContentType] {
+    return self.__availableTextContentTypes.map({ __item in __item })
   }
   
   @inline(__always)
-  var supportedTextRecognitionLanguages: [String] {
-    return self.__supportedTextRecognitionLanguages.map({ __item in String(__item) })
+  var availableTextRecognitionLanguages: [String] {
+    return self.__availableTextRecognitionLanguages.map({ __item in String(__item) })
   }
   
   @inline(__always)
@@ -114,18 +109,8 @@ public extension DataScannerCapabilities {
   }
   
   @inline(__always)
-  var supportsTextRecognition: Bool {
-    return self.__supportsTextRecognition
-  }
-  
-  @inline(__always)
-  var supportsBarcodeRecognition: Bool {
-    return self.__supportsBarcodeRecognition
-  }
-  
-  @inline(__always)
-  var supportsMultipleItems: Bool {
-    return self.__supportsMultipleItems
+  var supportsMultipleValues: Bool {
+    return self.__supportsMultipleValues
   }
   
   @inline(__always)
@@ -179,12 +164,12 @@ public extension DataScannerCapabilities {
   }
   
   @inline(__always)
-  var requiresCameraPermission: Bool {
-    return self.__requiresCameraPermission
+  var canPrepareScanner: Bool {
+    return self.__canPrepareScanner
   }
   
   @inline(__always)
-  var requiresGooglePlayServices: Bool {
-    return self.__requiresGooglePlayServices
+  var requiresCameraPermission: Bool {
+    return self.__requiresCameraPermission
   }
 }

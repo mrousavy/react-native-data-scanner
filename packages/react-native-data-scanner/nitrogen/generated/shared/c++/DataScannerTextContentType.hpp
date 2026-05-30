@@ -30,12 +30,12 @@ namespace margelo::nitro::datascanner {
    */
   enum class DataScannerTextContentType {
     URL      SWIFT_NAME(url) = 0,
-    DATETIMEDURATION      SWIFT_NAME(datetimeduration) = 1,
-    EMAILADDRESS      SWIFT_NAME(emailaddress) = 2,
-    FLIGHTNUMBER      SWIFT_NAME(flightnumber) = 3,
-    FULLSTREETADDRESS      SWIFT_NAME(fullstreetaddress) = 4,
-    SHIPMENTTRACKINGNUMBER      SWIFT_NAME(shipmenttrackingnumber) = 5,
-    TELEPHONENUMBER      SWIFT_NAME(telephonenumber) = 6,
+    DATE_TIME_DURATION      SWIFT_NAME(dateTimeDuration) = 1,
+    EMAIL_ADDRESS      SWIFT_NAME(emailAddress) = 2,
+    FLIGHT_NUMBER      SWIFT_NAME(flightNumber) = 3,
+    FULL_STREET_ADDRESS      SWIFT_NAME(fullStreetAddress) = 4,
+    SHIPMENT_TRACKING_NUMBER      SWIFT_NAME(shipmentTrackingNumber) = 5,
+    TELEPHONE_NUMBER      SWIFT_NAME(telephoneNumber) = 6,
     CURRENCY      SWIFT_NAME(currency) = 7,
   } CLOSED_ENUM;
 
@@ -50,12 +50,12 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("url"): return margelo::nitro::datascanner::DataScannerTextContentType::URL;
-        case hashString("dateTimeDuration"): return margelo::nitro::datascanner::DataScannerTextContentType::DATETIMEDURATION;
-        case hashString("emailAddress"): return margelo::nitro::datascanner::DataScannerTextContentType::EMAILADDRESS;
-        case hashString("flightNumber"): return margelo::nitro::datascanner::DataScannerTextContentType::FLIGHTNUMBER;
-        case hashString("fullStreetAddress"): return margelo::nitro::datascanner::DataScannerTextContentType::FULLSTREETADDRESS;
-        case hashString("shipmentTrackingNumber"): return margelo::nitro::datascanner::DataScannerTextContentType::SHIPMENTTRACKINGNUMBER;
-        case hashString("telephoneNumber"): return margelo::nitro::datascanner::DataScannerTextContentType::TELEPHONENUMBER;
+        case hashString("date-time-duration"): return margelo::nitro::datascanner::DataScannerTextContentType::DATE_TIME_DURATION;
+        case hashString("email-address"): return margelo::nitro::datascanner::DataScannerTextContentType::EMAIL_ADDRESS;
+        case hashString("flight-number"): return margelo::nitro::datascanner::DataScannerTextContentType::FLIGHT_NUMBER;
+        case hashString("full-street-address"): return margelo::nitro::datascanner::DataScannerTextContentType::FULL_STREET_ADDRESS;
+        case hashString("shipment-tracking-number"): return margelo::nitro::datascanner::DataScannerTextContentType::SHIPMENT_TRACKING_NUMBER;
+        case hashString("telephone-number"): return margelo::nitro::datascanner::DataScannerTextContentType::TELEPHONE_NUMBER;
         case hashString("currency"): return margelo::nitro::datascanner::DataScannerTextContentType::CURRENCY;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerTextContentType - invalid value!");
@@ -64,12 +64,12 @@ namespace margelo::nitro {
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::datascanner::DataScannerTextContentType arg) {
       switch (arg) {
         case margelo::nitro::datascanner::DataScannerTextContentType::URL: return JSIConverter<std::string>::toJSI(runtime, "url");
-        case margelo::nitro::datascanner::DataScannerTextContentType::DATETIMEDURATION: return JSIConverter<std::string>::toJSI(runtime, "dateTimeDuration");
-        case margelo::nitro::datascanner::DataScannerTextContentType::EMAILADDRESS: return JSIConverter<std::string>::toJSI(runtime, "emailAddress");
-        case margelo::nitro::datascanner::DataScannerTextContentType::FLIGHTNUMBER: return JSIConverter<std::string>::toJSI(runtime, "flightNumber");
-        case margelo::nitro::datascanner::DataScannerTextContentType::FULLSTREETADDRESS: return JSIConverter<std::string>::toJSI(runtime, "fullStreetAddress");
-        case margelo::nitro::datascanner::DataScannerTextContentType::SHIPMENTTRACKINGNUMBER: return JSIConverter<std::string>::toJSI(runtime, "shipmentTrackingNumber");
-        case margelo::nitro::datascanner::DataScannerTextContentType::TELEPHONENUMBER: return JSIConverter<std::string>::toJSI(runtime, "telephoneNumber");
+        case margelo::nitro::datascanner::DataScannerTextContentType::DATE_TIME_DURATION: return JSIConverter<std::string>::toJSI(runtime, "date-time-duration");
+        case margelo::nitro::datascanner::DataScannerTextContentType::EMAIL_ADDRESS: return JSIConverter<std::string>::toJSI(runtime, "email-address");
+        case margelo::nitro::datascanner::DataScannerTextContentType::FLIGHT_NUMBER: return JSIConverter<std::string>::toJSI(runtime, "flight-number");
+        case margelo::nitro::datascanner::DataScannerTextContentType::FULL_STREET_ADDRESS: return JSIConverter<std::string>::toJSI(runtime, "full-street-address");
+        case margelo::nitro::datascanner::DataScannerTextContentType::SHIPMENT_TRACKING_NUMBER: return JSIConverter<std::string>::toJSI(runtime, "shipment-tracking-number");
+        case margelo::nitro::datascanner::DataScannerTextContentType::TELEPHONE_NUMBER: return JSIConverter<std::string>::toJSI(runtime, "telephone-number");
         case margelo::nitro::datascanner::DataScannerTextContentType::CURRENCY: return JSIConverter<std::string>::toJSI(runtime, "currency");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerTextContentType to JS - invalid value: "
@@ -83,12 +83,12 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("url"):
-        case hashString("dateTimeDuration"):
-        case hashString("emailAddress"):
-        case hashString("flightNumber"):
-        case hashString("fullStreetAddress"):
-        case hashString("shipmentTrackingNumber"):
-        case hashString("telephoneNumber"):
+        case hashString("date-time-duration"):
+        case hashString("email-address"):
+        case hashString("flight-number"):
+        case hashString("full-street-address"):
+        case hashString("shipment-tracking-number"):
+        case hashString("telephone-number"):
         case hashString("currency"):
           return true;
         default:

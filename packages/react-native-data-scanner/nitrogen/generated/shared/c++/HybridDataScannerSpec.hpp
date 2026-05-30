@@ -19,38 +19,34 @@ namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
 namespace margelo::nitro::datascanner { enum class DataScannerCameraPermissionStatus; }
 // Forward declaration of `DataScannerConfiguration` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerConfiguration; }
-// Forward declaration of `DataScannerItem` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItem; }
-// Forward declaration of `DataScannerPhoto` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerPhoto; }
+// Forward declaration of `HybridDataScannedValueSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannedValueSpec; }
+// Forward declaration of `HybridDataScannerPhotoSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerPhotoSpec; }
 // Forward declaration of `DataScannerRect` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerRect; }
-// Forward declaration of `DataScannerItemsChangedEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItemsChangedEvent; }
-// Forward declaration of `DataScannerItemTappedEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerItemTappedEvent; }
+// Forward declaration of `HybridDataScannerListenerSubscriptionSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerListenerSubscriptionSpec; }
 // Forward declaration of `DataScannerZoomChangedEvent` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerZoomChangedEvent; }
 // Forward declaration of `DataScannerUnavailableEvent` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct DataScannerUnavailableEvent; }
-// Forward declaration of `DataScannerErrorEvent` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct DataScannerErrorEvent; }
 
 #include "DataScannerCapabilities.hpp"
 #include <NitroModules/Promise.hpp>
 #include "DataScannerCameraPermissionStatus.hpp"
 #include "DataScannerConfiguration.hpp"
-#include "DataScannerItem.hpp"
+#include <memory>
+#include "HybridDataScannedValueSpec.hpp"
 #include <optional>
-#include "DataScannerPhoto.hpp"
+#include "HybridDataScannerPhotoSpec.hpp"
 #include <vector>
 #include "DataScannerRect.hpp"
-#include "DataScannerItemsChangedEvent.hpp"
+#include "HybridDataScannerListenerSubscriptionSpec.hpp"
 #include <functional>
-#include "DataScannerItemTappedEvent.hpp"
 #include "DataScannerZoomChangedEvent.hpp"
 #include "DataScannerUnavailableEvent.hpp"
-#include "DataScannerErrorEvent.hpp"
+#include <exception>
 
 namespace margelo::nitro::datascanner {
 
@@ -91,21 +87,20 @@ namespace margelo::nitro::datascanner {
       virtual std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() = 0;
       virtual std::shared_ptr<Promise<DataScannerCameraPermissionStatus>> getCameraPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<DataScannerCameraPermissionStatus>> requestCameraPermission() = 0;
-      virtual std::shared_ptr<Promise<bool>> isAndroidScannerModuleAvailable() = 0;
-      virtual std::shared_ptr<Promise<void>> installAndroidScannerModule() = 0;
+      virtual std::shared_ptr<Promise<bool>> isScannerAvailable() = 0;
+      virtual std::shared_ptr<Promise<void>> prepareScanner() = 0;
       virtual std::shared_ptr<Promise<void>> configure(const DataScannerConfiguration& configuration) = 0;
-      virtual std::shared_ptr<Promise<DataScannerItem>> scan(const std::optional<DataScannerConfiguration>& configuration) = 0;
+      virtual std::shared_ptr<Promise<std::shared_ptr<HybridDataScannedValueSpec>>> scan(const std::optional<DataScannerConfiguration>& configuration) = 0;
       virtual std::shared_ptr<Promise<void>> startScanning(const std::optional<DataScannerConfiguration>& configuration) = 0;
       virtual std::shared_ptr<Promise<void>> stopScanning() = 0;
-      virtual std::shared_ptr<Promise<DataScannerPhoto>> capturePhoto() = 0;
-      virtual std::vector<DataScannerItem> getRecognizedItems() = 0;
+      virtual std::shared_ptr<Promise<std::shared_ptr<HybridDataScannerPhotoSpec>>> capturePhoto() = 0;
+      virtual std::vector<std::shared_ptr<HybridDataScannedValueSpec>> getScannedValues() = 0;
       virtual void setRegionOfInterest(const std::optional<DataScannerRect>& regionOfInterest) = 0;
-      virtual double addItemsChangedListener(const std::function<void(const DataScannerItemsChangedEvent& /* event */)>& listener) = 0;
-      virtual double addItemTappedListener(const std::function<void(const DataScannerItemTappedEvent& /* event */)>& listener) = 0;
-      virtual double addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) = 0;
-      virtual double addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) = 0;
-      virtual double addErrorListener(const std::function<void(const DataScannerErrorEvent& /* event */)>& listener) = 0;
-      virtual void removeListener(double listenerId) = 0;
+      virtual std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addScannedValuesChangedListener(const std::function<void(const std::vector<std::shared_ptr<HybridDataScannedValueSpec>>& /* values */)>& listener) = 0;
+      virtual std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addValueTappedListener(const std::function<void(const std::shared_ptr<HybridDataScannedValueSpec>& /* value */)>& listener) = 0;
+      virtual std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) = 0;
+      virtual std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) = 0;
+      virtual std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& listener) = 0;
 
     protected:
       // Hybrid Setup

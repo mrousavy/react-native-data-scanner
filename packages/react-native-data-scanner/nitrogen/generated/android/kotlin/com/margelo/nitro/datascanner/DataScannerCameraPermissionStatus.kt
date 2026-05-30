@@ -16,11 +16,11 @@ import com.facebook.proguard.annotations.DoNotStrip
 @DoNotStrip
 @Keep
 enum class DataScannerCameraPermissionStatus(@DoNotStrip @Keep val value: Int) {
-  NOTDETERMINED(0),
+  NOT_DETERMINED(0),
   DENIED(1),
   RESTRICTED(2),
   AUTHORIZED(3),
-  NOTREQUIRED(4);
+  NOT_REQUIRED(4);
 
   companion object
 }

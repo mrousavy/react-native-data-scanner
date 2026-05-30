@@ -1,80 +1,63 @@
 import type { HybridObject } from 'react-native-nitro-modules'
 
 /**
- * Native scanner backend that produced a scanner value or capability.
+ * Kinds of values the scanner can emit.
  *
- * The Android value deliberately avoids the literal "android" because Android
- * NDK builds define an ANDROID macro that conflicts with generated C++ enum
- * cases.
+ * Availability is runtime-driven. Call getCapabilities() and branch on the
+ * returned arrays instead of making assumptions from the current OS.
  */
-export type DataScannerPlatform = 'ios' | 'androidMlKit'
+export type DataScannerValueType = 'barcode' | 'text'
 
 /**
- * Data families that the scanner can recognize.
- *
- * iOS supports both text and barcode scanning through VisionKit's
- * DataScannerViewController. Android's Google code scanner supports barcode
- * scanning only.
- */
-export type DataScannerDataType = 'barcode' | 'text'
-
-/**
- * Barcode symbologies exposed by Apple Vision/VisionKit and Google ML Kit's
- * code scanner, normalized for JavaScript.
- *
- * Some values are platform-specific. Use getCapabilities() before requesting
- * strict format filters if your app needs to adapt at runtime.
+ * Barcode formats normalized for JavaScript.
  */
 export type DataScannerBarcodeFormat =
   | 'unknown'
   | 'aztec'
   | 'codabar'
-  | 'code39'
-  | 'code39Checksum'
-  | 'code39FullASCII'
-  | 'code39FullASCIIChecksum'
-  | 'code93'
-  | 'code93i'
-  | 'code128'
-  | 'dataMatrix'
-  | 'ean8'
-  | 'ean13'
-  | 'gs1DataBar'
-  | 'gs1DataBarExpanded'
-  | 'gs1DataBarLimited'
+  | 'code-39'
+  | 'code-39-checksum'
+  | 'code-39-full-ascii'
+  | 'code-39-full-ascii-checksum'
+  | 'code-93'
+  | 'code-93i'
+  | 'code-128'
+  | 'data-matrix'
+  | 'ean-8'
+  | 'ean-13'
+  | 'gs1-data-bar'
+  | 'gs1-data-bar-expanded'
+  | 'gs1-data-bar-limited'
   | 'itf'
-  | 'itfChecksum'
-  | 'itf14'
-  | 'microPdf417'
-  | 'microQr'
-  | 'msiPlessey'
-  | 'pdf417'
+  | 'itf-checksum'
+  | 'itf-14'
+  | 'micro-pdf-417'
+  | 'micro-qr'
+  | 'msi-plessey'
+  | 'pdf-417'
   | 'qr'
-  | 'upcA'
-  | 'upcE'
+  | 'upc-a'
+  | 'upc-e'
 
 /**
- * Text content filters supported by VisionKit's DataScannerViewController.
+ * Text content filters normalized for JavaScript.
  */
 export type DataScannerTextContentType =
   | 'url'
-  | 'dateTimeDuration'
-  | 'emailAddress'
-  | 'flightNumber'
-  | 'fullStreetAddress'
-  | 'shipmentTrackingNumber'
-  | 'telephoneNumber'
+  | 'date-time-duration'
+  | 'email-address'
+  | 'flight-number'
+  | 'full-street-address'
+  | 'shipment-tracking-number'
+  | 'telephone-number'
   | 'currency'
 
 /**
- * Parsed barcode value types returned by Google ML Kit Barcode.
- *
- * iOS generally exposes the barcode payload and symbology through
- * VNBarcodeObservation instead of this parsed payload model.
+ * Parsed barcode value categories normalized for JavaScript.
  */
 export type DataScannerBarcodeValueType =
   | 'unknown'
-  | 'contactInfo'
+  | 'contact-info'
   | 'email'
   | 'isbn'
   | 'phone'
@@ -84,11 +67,11 @@ export type DataScannerBarcodeValueType =
   | 'url'
   | 'wifi'
   | 'geo'
-  | 'calendarEvent'
-  | 'driverLicense'
+  | 'calendar-event'
+  | 'driver-license'
 
 /**
- * Quality level used by VisionKit when recognizing text and barcodes.
+ * Scanner speed/accuracy tradeoff.
  */
 export type DataScannerQualityLevel = 'fast' | 'balanced' | 'accurate'
 
@@ -96,45 +79,27 @@ export type DataScannerQualityLevel = 'fast' | 'balanced' | 'accurate'
  * Camera authorization status for the host app.
  */
 export type DataScannerCameraPermissionStatus =
-  | 'notDetermined'
+  | 'not-determined'
   | 'denied'
   | 'restricted'
   | 'authorized'
-  | 'notRequired'
+  | 'not-required'
 
 /**
- * Source that produced a recognized item.
+ * Source that produced a scanned value.
  */
-export type DataScannerResultSource = 'camera' | 'manualInput'
+export type DataScannerResultSource = 'camera' | 'manual-input'
 
 /**
- * Live item collection mutation type from VisionKit delegate callbacks.
- */
-export type DataScannerItemsChangeType = 'added' | 'updated' | 'removed'
-
-/**
- * Scanner availability reasons normalized across platforms.
+ * Scanner availability reasons normalized for JavaScript.
  */
 export type DataScannerUnavailableReason =
   | 'unsupported'
-  | 'cameraRestricted'
-  | 'cameraPermissionDenied'
-  | 'cameraUnavailable'
-  | 'googlePlayServicesUnavailable'
-  | 'scannerModuleUnavailable'
-  | 'unknown'
-
-/**
- * Error codes thrown by scanner methods or emitted through listeners.
- */
-export type DataScannerErrorCode =
-  | 'unsupported'
-  | 'unavailable'
-  | 'permissionDenied'
-  | 'cancelled'
-  | 'invalidConfiguration'
-  | 'alreadyScanning'
-  | 'notScanning'
+  | 'camera-restricted'
+  | 'camera-permission-denied'
+  | 'camera-unavailable'
+  | 'scanner-unavailable'
+  | 'scanner-installation-required'
   | 'unknown'
 
 export type DataScannerEmailAddressType = 'unknown' | 'home' | 'work'
@@ -178,7 +143,7 @@ export interface DataScannerRect {
 }
 
 /**
- * Four-corner bounds for recognized text or barcode items.
+ * Four-corner bounds for a scanned value.
  */
 export interface DataScannerBounds {
   topLeft: DataScannerPoint
@@ -189,107 +154,45 @@ export interface DataScannerBounds {
 }
 
 /**
- * Text and barcode data requested from the scanner.
+ * Scanner configuration.
  *
- * For type "barcode", use barcodeFormats and barcodeValueTypes to narrow
- * recognition. For type "text", use textRecognitionLanguages and
- * textContentTypes. Unsupported fields are ignored by native implementations
- * after validation.
+ * Fields that are unavailable on the current device are ignored or rejected
+ * according to the method being called. Use getCapabilities() to
+ * decide which controls to show and which options to pass.
  */
-export interface DataScannerTarget {
-  type: DataScannerDataType
+export interface DataScannerConfiguration {
+  valueTypes?: DataScannerValueType[]
   barcodeFormats?: DataScannerBarcodeFormat[]
   barcodeValueTypes?: DataScannerBarcodeValueType[]
   textRecognitionLanguages?: string[]
   textContentTypes?: DataScannerTextContentType[]
-}
-
-/**
- * iOS-only VisionKit scanner configuration.
- */
-export interface DataScannerIOSConfiguration {
-  /**
-   * Recognition speed/accuracy tradeoff. Defaults to "balanced".
-   */
   qualityLevel?: DataScannerQualityLevel
-  /**
-   * If true, VisionKit tracks all recognized items. If false, it tracks the
-   * item nearest the point of interest. Defaults to false.
-   */
-  recognizesMultipleItems?: boolean
-  /**
-   * If true, VisionKit updates item geometry more frequently for custom
-   * overlays. Defaults to false.
-   */
+  recognizesMultipleValues?: boolean
   highFrameRateTrackingEnabled?: boolean
-  /**
-   * Enables the system pinch gesture for camera zoom. Defaults to true.
-   */
   pinchToZoomEnabled?: boolean
-  /**
-   * Enables VisionKit's system guidance text while scanning. Defaults to true.
-   */
   guidanceEnabled?: boolean
-  /**
-   * Enables VisionKit's system item highlighting. Defaults to true.
-   */
   highlightingEnabled?: boolean
-  /**
-   * Limits recognition to this scanner-view rectangle.
-   */
   regionOfInterest?: DataScannerRect
-}
-
-/**
- * Android-only Google code scanner configuration.
- */
-export interface DataScannerAndroidConfiguration {
-  /**
-   * Enables ML Kit code scanner auto-zoom. Defaults to false.
-   */
   autoZoomEnabled?: boolean
-  /**
-   * Enables Google code scanner manual input UI. Defaults to false.
-   */
   manualInputEnabled?: boolean
-  /**
-   * Requests explicit installation of the optional scanner module before
-   * scanning if it is not available yet.
-   */
-  installScannerModuleIfNeeded?: boolean
+  prepareScannerIfNeeded?: boolean
 }
 
 /**
- * Cross-platform scanner configuration.
- */
-export interface DataScannerConfiguration {
-  /**
-   * Data types to recognize. Defaults to barcode scanning on Android and both
-   * barcode and text scanning on iOS.
-   */
-  targets?: DataScannerTarget[]
-  ios?: DataScannerIOSConfiguration
-  android?: DataScannerAndroidConfiguration
-}
-
-/**
- * Runtime scanner capabilities for the current device and platform.
+ * Runtime scanner capabilities for the current device.
  */
 export interface DataScannerCapabilities {
-  platform: DataScannerPlatform
   isSupported: boolean
   isAvailable: boolean
   unavailableReason?: DataScannerUnavailableReason
-  supportedTargets: DataScannerDataType[]
-  supportedBarcodeFormats: DataScannerBarcodeFormat[]
-  supportedBarcodeValueTypes: DataScannerBarcodeValueType[]
-  supportedTextContentTypes: DataScannerTextContentType[]
-  supportedTextRecognitionLanguages: string[]
+  availableValueTypes: DataScannerValueType[]
+  availableBarcodeFormats: DataScannerBarcodeFormat[]
+  availableBarcodeValueTypes: DataScannerBarcodeValueType[]
+  availableTextContentTypes: DataScannerTextContentType[]
+  availableTextRecognitionLanguages: string[]
   supportsOneShotScanning: boolean
   supportsLiveScanning: boolean
-  supportsTextRecognition: boolean
-  supportsBarcodeRecognition: boolean
-  supportsMultipleItems: boolean
+  supportsMultipleValues: boolean
   supportsHighFrameRateTracking: boolean
   supportsPinchToZoom: boolean
   supportsGuidance: boolean
@@ -300,162 +203,232 @@ export interface DataScannerCapabilities {
   supportsZoomFactor: boolean
   supportsAutoZoom: boolean
   supportsManualInput: boolean
+  canPrepareScanner: boolean
   requiresCameraPermission: boolean
-  requiresGooglePlayServices: boolean
-}
-
-export interface DataScannerEmailValue {
-  address?: string
-  subject?: string
-  body?: string
-  type?: DataScannerEmailAddressType
-}
-
-export interface DataScannerPhoneValue {
-  number?: string
-  type?: DataScannerPhoneNumberType
-}
-
-export interface DataScannerSmsValue {
-  phoneNumber?: string
-  message?: string
-}
-
-export interface DataScannerUrlValue {
-  title?: string
-  url?: string
-}
-
-export interface DataScannerWifiValue {
-  ssid?: string
-  password?: string
-  encryptionType?: DataScannerWifiEncryptionType
-}
-
-export interface DataScannerGeoValue {
-  latitude: number
-  longitude: number
-}
-
-export interface DataScannerCalendarDateTimeValue {
-  year?: number
-  month?: number
-  day?: number
-  hours?: number
-  minutes?: number
-  seconds?: number
-  isUtc?: boolean
-  rawValue?: string
-}
-
-export interface DataScannerCalendarEventValue {
-  summary?: string
-  description?: string
-  location?: string
-  organizer?: string
-  status?: string
-  start?: DataScannerCalendarDateTimeValue
-  end?: DataScannerCalendarDateTimeValue
-}
-
-export interface DataScannerPersonNameValue {
-  formattedName?: string
-  pronunciation?: string
-  prefix?: string
-  first?: string
-  middle?: string
-  last?: string
-  suffix?: string
-}
-
-export interface DataScannerAddressValue {
-  type?: DataScannerAddressType
-  addressLines?: string[]
-}
-
-export interface DataScannerContactInfoValue {
-  name?: DataScannerPersonNameValue
-  organization?: string
-  title?: string
-  phones?: DataScannerPhoneValue[]
-  emails?: DataScannerEmailValue[]
-  urls?: string[]
-  addresses?: DataScannerAddressValue[]
-}
-
-export interface DataScannerDriverLicenseValue {
-  documentType?: string
-  firstName?: string
-  middleName?: string
-  lastName?: string
-  gender?: string
-  addressStreet?: string
-  addressCity?: string
-  addressState?: string
-  addressZip?: string
-  licenseNumber?: string
-  issueDate?: string
-  expiryDate?: string
-  birthDate?: string
-  issuingCountry?: string
 }
 
 /**
- * Parsed barcode data returned by Google ML Kit when a barcode encodes one of
- * its known content types.
+ * Lightweight person-name payload exposed lazily from a scanned value.
  */
-export interface DataScannerBarcodeParsedValue {
-  valueType: DataScannerBarcodeValueType
-  contactInfo?: DataScannerContactInfoValue
-  email?: DataScannerEmailValue
-  phone?: DataScannerPhoneValue
-  sms?: DataScannerSmsValue
-  url?: DataScannerUrlValue
-  wifi?: DataScannerWifiValue
-  geo?: DataScannerGeoValue
-  calendarEvent?: DataScannerCalendarEventValue
-  driverLicense?: DataScannerDriverLicenseValue
-  isbn?: string
-  product?: string
-  text?: string
+export interface DataScannerPersonNameValue
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  readonly formattedName?: string
+  readonly pronunciation?: string
+  readonly prefix?: string
+  readonly first?: string
+  readonly middle?: string
+  readonly last?: string
+  readonly suffix?: string
 }
 
 /**
- * Recognized item from either platform.
- *
- * Barcode-specific fields are set when type is "barcode". Text-specific fields
- * are set when type is "text".
+ * Lightweight address payload exposed lazily from a scanned value.
  */
-export interface DataScannerItem {
-  type: DataScannerDataType
-  id?: string
-  bounds?: DataScannerBounds
-  source?: DataScannerResultSource
-  barcodeFormat?: DataScannerBarcodeFormat
-  barcodeValueType?: DataScannerBarcodeValueType
-  payloadStringValue?: string
-  rawValue?: string
-  displayValue?: string
-  rawBytes?: ArrayBuffer
-  parsedValue?: DataScannerBarcodeParsedValue
-  transcript?: string
-  textContentType?: DataScannerTextContentType
+export interface DataScannerAddressValue
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  readonly type?: DataScannerAddressType
+  readonly addressLines: string[]
 }
 
 /**
- * Item collection change event from VisionKit live scanning.
+ * Lightweight calendar date/time payload exposed lazily from a scanned value.
  */
-export interface DataScannerItemsChangedEvent {
-  changeType: DataScannerItemsChangeType
-  items: DataScannerItem[]
-  allItems: DataScannerItem[]
+export interface DataScannerCalendarDateTimeValue
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  readonly year?: number
+  readonly month?: number
+  readonly day?: number
+  readonly hours?: number
+  readonly minutes?: number
+  readonly seconds?: number
+  readonly isUtc?: boolean
+  readonly rawValue?: string
 }
 
 /**
- * User interaction event for a recognized item.
+ * Base lazy value returned by the scanner.
  */
-export interface DataScannerItemTappedEvent {
-  item: DataScannerItem
+export interface DataScannedValue
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  readonly id?: string
+  readonly type: DataScannerValueType
+  readonly rawValue?: string
+  readonly displayValue?: string
+  readonly source?: DataScannerResultSource
+  readonly bounds?: DataScannerBounds
+}
+
+/**
+ * Scanned text value.
+ */
+export interface DataScannedTextValue extends DataScannedValue {
+  readonly transcript: string
+  readonly contentType?: DataScannerTextContentType
+}
+
+/**
+ * Base scanned barcode value.
+ */
+export interface DataScannedBarcodeValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains plain text.
+ */
+export interface DataScannedBarcodeTextValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly text?: string
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains an email payload.
+ */
+export interface DataScannedEmailValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly address?: string
+  readonly subject?: string
+  readonly body?: string
+  readonly emailType?: DataScannerEmailAddressType
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains a phone payload.
+ */
+export interface DataScannedPhoneValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly number?: string
+  readonly phoneType?: DataScannerPhoneNumberType
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains an SMS payload.
+ */
+export interface DataScannedSmsValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly phoneNumber?: string
+  readonly message?: string
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains a URL payload.
+ */
+export interface DataScannedUrlValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly title?: string
+  readonly url?: string
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains a Wi-Fi network payload.
+ */
+export interface DataScannedWifiValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly ssid?: string
+  readonly password?: string
+  readonly encryptionType?: DataScannerWifiEncryptionType
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains geographic coordinates.
+ */
+export interface DataScannedGeoValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly latitude: number
+  readonly longitude: number
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains a calendar event.
+ */
+export interface DataScannedCalendarEventValue
+  extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly summary?: string
+  readonly description?: string
+  readonly location?: string
+  readonly organizer?: string
+  readonly status?: string
+  readonly start?: DataScannerCalendarDateTimeValue
+  readonly end?: DataScannerCalendarDateTimeValue
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains contact information.
+ */
+export interface DataScannedContactInfoValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly personName?: DataScannerPersonNameValue
+  readonly organization?: string
+  readonly title?: string
+  readonly phones: DataScannedPhoneValue[]
+  readonly emails: DataScannedEmailValue[]
+  readonly urls: string[]
+  readonly addresses: DataScannerAddressValue[]
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains driver-license information.
+ */
+export interface DataScannedDriverLicenseValue
+  extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly documentType?: string
+  readonly firstName?: string
+  readonly middleName?: string
+  readonly lastName?: string
+  readonly gender?: string
+  readonly addressStreet?: string
+  readonly addressCity?: string
+  readonly addressState?: string
+  readonly addressZip?: string
+  readonly licenseNumber?: string
+  readonly issueDate?: string
+  readonly expiryDate?: string
+  readonly birthDate?: string
+  readonly issuingCountry?: string
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains an ISBN.
+ */
+export interface DataScannedIsbnValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly isbn?: string
+  toRawBytes(): ArrayBuffer | undefined
+}
+
+/**
+ * Barcode value that contains a product identifier.
+ */
+export interface DataScannedProductValue extends DataScannedValue {
+  readonly format: DataScannerBarcodeFormat
+  readonly valueType: DataScannerBarcodeValueType
+  readonly product?: string
+  toRawBytes(): ArrayBuffer | undefined
 }
 
 /**
@@ -476,26 +449,30 @@ export interface DataScannerUnavailableEvent {
 }
 
 /**
- * Scanner error event.
+ * Photo capture result. Binary data is converted only when requested.
  */
-export interface DataScannerErrorEvent {
-  code: DataScannerErrorCode
-  message: string
+export interface DataScannerPhoto
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  readonly width: number
+  readonly height: number
+  readonly mimeType: DataScannerPhotoMimeType
+  toArrayBuffer(): Promise<ArrayBuffer>
+  toBase64(): Promise<string>
+  saveToTemporaryFile(): Promise<string>
 }
 
 /**
- * Native photo capture result.
+ * Listener subscription returned by scanner listener APIs.
+ *
+ * Calling remove() detaches exactly the listener represented by this object.
  */
-export interface DataScannerPhoto {
-  data: ArrayBuffer
-  width: number
-  height: number
-  mimeType: DataScannerPhotoMimeType
+export interface DataScannerListenerSubscription
+  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+  remove(): void
 }
 
 /**
- * Stateful scanner instance that unifies VisionKit DataScannerViewController on
- * iOS and Google ML Kit code scanner on Android.
+ * Stateful scanner instance.
  */
 export interface DataScanner
   extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
@@ -520,8 +497,7 @@ export interface DataScanner
   readonly maxZoomFactor: number
 
   /**
-   * Current camera zoom factor. On platforms without live zoom support this
-   * stays at 1.
+   * Current camera zoom factor.
    */
   zoomFactor: number
 
@@ -532,52 +508,37 @@ export interface DataScanner
 
   /**
    * Returns the current camera permission status.
-   *
-   * Android's Google code scanner does not require app camera permission and
-   * returns "notRequired".
    */
   getCameraPermissionStatus(): Promise<DataScannerCameraPermissionStatus>
 
   /**
-   * Requests camera access where required by the platform.
-   *
-   * Android's Google code scanner resolves with "notRequired".
+   * Requests camera access where required by the scanner.
    */
   requestCameraPermission(): Promise<DataScannerCameraPermissionStatus>
 
   /**
-   * Checks whether the optional Google code scanner module is available.
-   *
-   * iOS always resolves true.
+   * Checks whether the scanner is ready to present or start scanning.
    */
-  isAndroidScannerModuleAvailable(): Promise<boolean>
+  isScannerAvailable(): Promise<boolean>
 
   /**
-   * Requests installation of the optional Google code scanner module.
-   *
-   * iOS resolves without doing work.
+   * Performs any native setup needed before scanning.
    */
-  installAndroidScannerModule(): Promise<void>
+  prepareScanner(): Promise<void>
 
   /**
-   * Applies scanner configuration. Native implementations may recreate the
-   * underlying platform scanner if init-only settings change.
+   * Applies scanner configuration. The implementation may recreate the
+   * underlying scanner if init-only settings change.
    */
   configure(configuration: DataScannerConfiguration): Promise<void>
 
   /**
-   * Opens a one-shot scanner and resolves with the selected or scanned item.
-   *
-   * Android maps this to Google code scanner startScan(). iOS may present a
-   * DataScannerViewController and resolve after an item is tapped or selected.
+   * Opens a one-shot scanner and resolves with the scanned value.
    */
-  scan(configuration?: DataScannerConfiguration): Promise<DataScannerItem>
+  scan(configuration?: DataScannerConfiguration): Promise<DataScannedValue>
 
   /**
    * Starts live camera scanning.
-   *
-   * Supported on iOS. Android throws "unsupported" because Google code scanner
-   * owns its one-shot UI and does not expose continuous callbacks.
    */
   startScanning(configuration?: DataScannerConfiguration): Promise<void>
 
@@ -588,18 +549,13 @@ export interface DataScanner
 
   /**
    * Captures a high-resolution photo of the scanner camera feed.
-   *
-   * Supported on iOS. Android throws "unsupported".
    */
   capturePhoto(): Promise<DataScannerPhoto>
 
   /**
-   * Returns the latest recognized live-scanner items known to native code.
-   *
-   * Supported on iOS. Android returns an empty array unless a native
-   * implementation keeps the most recent one-shot result.
+   * Returns the latest scanned values known to the scanner.
    */
-  getRecognizedItems(): DataScannerItem[]
+  getScannedValues(): DataScannedValue[]
 
   /**
    * Updates the live scan region of interest in scanner view coordinates.
@@ -609,45 +565,38 @@ export interface DataScanner
   setRegionOfInterest(regionOfInterest?: DataScannerRect): void
 
   /**
-   * Adds a listener for live item collection changes.
-   *
-   * VisionKit sends added, updated, and removed callbacks separately; this API
-   * reports those through event.changeType.
+   * Adds a listener that receives the current scanned values whenever they
+   * change. Diffing, state tracking, and batching are intentionally left to JS.
    */
-  addItemsChangedListener(
-    listener: (event: DataScannerItemsChangedEvent) => void
-  ): number
+  addScannedValuesChangedListener(
+    listener: (values: DataScannedValue[]) => void
+  ): DataScannerListenerSubscription
 
   /**
-   * Adds a listener for user taps on recognized items.
+   * Adds a listener for user taps on scanned values.
    */
-  addItemTappedListener(
-    listener: (event: DataScannerItemTappedEvent) => void
-  ): number
+  addValueTappedListener(
+    listener: (value: DataScannedValue) => void
+  ): DataScannerListenerSubscription
 
   /**
    * Adds a listener for zoom factor changes.
    */
   addZoomChangedListener(
     listener: (event: DataScannerZoomChangedEvent) => void
-  ): number
+  ): DataScannerListenerSubscription
 
   /**
    * Adds a listener for scanner availability changes.
    */
   addUnavailableListener(
     listener: (event: DataScannerUnavailableEvent) => void
-  ): number
+  ): DataScannerListenerSubscription
 
   /**
    * Adds a listener for scanner errors.
    */
   addErrorListener(
-    listener: (event: DataScannerErrorEvent) => void
-  ): number
-
-  /**
-   * Removes a listener previously registered through an add...Listener method.
-   */
-  removeListener(listenerId: number): void
+    listener: (error: Error) => void
+  ): DataScannerListenerSubscription
 }

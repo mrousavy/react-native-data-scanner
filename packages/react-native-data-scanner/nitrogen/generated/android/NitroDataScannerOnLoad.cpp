@@ -15,12 +15,32 @@
 #include <fbjni/fbjni.h>
 #include <NitroModules/HybridObjectRegistry.hpp>
 
+#include "JHybridDataScannerPersonNameValueSpec.hpp"
+#include "JHybridDataScannerAddressValueSpec.hpp"
+#include "JHybridDataScannerCalendarDateTimeValueSpec.hpp"
+#include "JHybridDataScannedValueSpec.hpp"
+#include "JHybridDataScannedTextValueSpec.hpp"
+#include "JHybridDataScannedBarcodeValueSpec.hpp"
+#include "JHybridDataScannedBarcodeTextValueSpec.hpp"
+#include "JHybridDataScannedEmailValueSpec.hpp"
+#include "JHybridDataScannedPhoneValueSpec.hpp"
+#include "JHybridDataScannedSmsValueSpec.hpp"
+#include "JHybridDataScannedUrlValueSpec.hpp"
+#include "JHybridDataScannedWifiValueSpec.hpp"
+#include "JHybridDataScannedGeoValueSpec.hpp"
+#include "JHybridDataScannedCalendarEventValueSpec.hpp"
+#include "JHybridDataScannedContactInfoValueSpec.hpp"
+#include "JHybridDataScannedDriverLicenseValueSpec.hpp"
+#include "JHybridDataScannedIsbnValueSpec.hpp"
+#include "JHybridDataScannedProductValueSpec.hpp"
+#include "JHybridDataScannerPhotoSpec.hpp"
+#include "JHybridDataScannerListenerSubscriptionSpec.hpp"
 #include "JHybridDataScannerSpec.hpp"
-#include "JFunc_void_DataScannerItemsChangedEvent.hpp"
-#include "JFunc_void_DataScannerItemTappedEvent.hpp"
+#include "JFunc_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__.hpp"
+#include "JFunc_void_std__shared_ptr_HybridDataScannedValueSpec_.hpp"
 #include "JFunc_void_DataScannerZoomChangedEvent.hpp"
 #include "JFunc_void_DataScannerUnavailableEvent.hpp"
-#include "JFunc_void_DataScannerErrorEvent.hpp"
+#include "JFunc_void_std__exception_ptr.hpp"
 #include "JHybridDataScannerFactorySpec.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
@@ -46,12 +66,32 @@ void registerAllNatives() {
   using namespace margelo::nitro::datascanner;
 
   // Register native JNI methods
+  margelo::nitro::datascanner::JHybridDataScannerPersonNameValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannerAddressValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannerCalendarDateTimeValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedTextValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedBarcodeValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedBarcodeTextValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedEmailValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedPhoneValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedSmsValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedUrlValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedWifiValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedGeoValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedCalendarEventValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedContactInfoValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedDriverLicenseValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedIsbnValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannedProductValueSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannerPhotoSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JHybridDataScannerListenerSubscriptionSpec::CxxPart::registerNatives();
   margelo::nitro::datascanner::JHybridDataScannerSpec::CxxPart::registerNatives();
-  margelo::nitro::datascanner::JFunc_void_DataScannerItemsChangedEvent_cxx::registerNatives();
-  margelo::nitro::datascanner::JFunc_void_DataScannerItemTappedEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec___cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_std__shared_ptr_HybridDataScannedValueSpec__cxx::registerNatives();
   margelo::nitro::datascanner::JFunc_void_DataScannerZoomChangedEvent_cxx::registerNatives();
   margelo::nitro::datascanner::JFunc_void_DataScannerUnavailableEvent_cxx::registerNatives();
-  margelo::nitro::datascanner::JFunc_void_DataScannerErrorEvent_cxx::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_std__exception_ptr_cxx::registerNatives();
   margelo::nitro::datascanner::JHybridDataScannerFactorySpec::CxxPart::registerNatives();
 
   // Register Nitro Hybrid Objects

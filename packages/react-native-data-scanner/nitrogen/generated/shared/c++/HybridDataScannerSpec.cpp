@@ -23,21 +23,20 @@ namespace margelo::nitro::datascanner {
       prototype.registerHybridMethod("getCapabilities", &HybridDataScannerSpec::getCapabilities);
       prototype.registerHybridMethod("getCameraPermissionStatus", &HybridDataScannerSpec::getCameraPermissionStatus);
       prototype.registerHybridMethod("requestCameraPermission", &HybridDataScannerSpec::requestCameraPermission);
-      prototype.registerHybridMethod("isAndroidScannerModuleAvailable", &HybridDataScannerSpec::isAndroidScannerModuleAvailable);
-      prototype.registerHybridMethod("installAndroidScannerModule", &HybridDataScannerSpec::installAndroidScannerModule);
+      prototype.registerHybridMethod("isScannerAvailable", &HybridDataScannerSpec::isScannerAvailable);
+      prototype.registerHybridMethod("prepareScanner", &HybridDataScannerSpec::prepareScanner);
       prototype.registerHybridMethod("configure", &HybridDataScannerSpec::configure);
       prototype.registerHybridMethod("scan", &HybridDataScannerSpec::scan);
       prototype.registerHybridMethod("startScanning", &HybridDataScannerSpec::startScanning);
       prototype.registerHybridMethod("stopScanning", &HybridDataScannerSpec::stopScanning);
       prototype.registerHybridMethod("capturePhoto", &HybridDataScannerSpec::capturePhoto);
-      prototype.registerHybridMethod("getRecognizedItems", &HybridDataScannerSpec::getRecognizedItems);
+      prototype.registerHybridMethod("getScannedValues", &HybridDataScannerSpec::getScannedValues);
       prototype.registerHybridMethod("setRegionOfInterest", &HybridDataScannerSpec::setRegionOfInterest);
-      prototype.registerHybridMethod("addItemsChangedListener", &HybridDataScannerSpec::addItemsChangedListener);
-      prototype.registerHybridMethod("addItemTappedListener", &HybridDataScannerSpec::addItemTappedListener);
+      prototype.registerHybridMethod("addScannedValuesChangedListener", &HybridDataScannerSpec::addScannedValuesChangedListener);
+      prototype.registerHybridMethod("addValueTappedListener", &HybridDataScannerSpec::addValueTappedListener);
       prototype.registerHybridMethod("addZoomChangedListener", &HybridDataScannerSpec::addZoomChangedListener);
       prototype.registerHybridMethod("addUnavailableListener", &HybridDataScannerSpec::addUnavailableListener);
       prototype.registerHybridMethod("addErrorListener", &HybridDataScannerSpec::addErrorListener);
-      prototype.registerHybridMethod("removeListener", &HybridDataScannerSpec::removeListener);
     });
   }
 

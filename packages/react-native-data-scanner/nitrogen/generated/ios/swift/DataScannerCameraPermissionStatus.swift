@@ -17,16 +17,16 @@ public extension DataScannerCameraPermissionStatus {
    */
   init?(fromString string: String) {
     switch string {
-      case "notDetermined":
-        self = .notdetermined
+      case "not-determined":
+        self = .notDetermined
       case "denied":
         self = .denied
       case "restricted":
         self = .restricted
       case "authorized":
         self = .authorized
-      case "notRequired":
-        self = .notrequired
+      case "not-required":
+        self = .notRequired
       default:
         return nil
     }
@@ -37,16 +37,16 @@ public extension DataScannerCameraPermissionStatus {
    */
   var stringValue: String {
     switch self {
-      case .notdetermined:
-        return "notDetermined"
+      case .notDetermined:
+        return "not-determined"
       case .denied:
         return "denied"
       case .restricted:
         return "restricted"
       case .authorized:
         return "authorized"
-      case .notrequired:
-        return "notRequired"
+      case .notRequired:
+        return "not-required"
     }
   }
 }

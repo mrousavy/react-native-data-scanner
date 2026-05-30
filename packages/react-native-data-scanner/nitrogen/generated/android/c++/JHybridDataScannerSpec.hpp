@@ -62,21 +62,20 @@ namespace margelo::nitro::datascanner {
     std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() override;
     std::shared_ptr<Promise<DataScannerCameraPermissionStatus>> getCameraPermissionStatus() override;
     std::shared_ptr<Promise<DataScannerCameraPermissionStatus>> requestCameraPermission() override;
-    std::shared_ptr<Promise<bool>> isAndroidScannerModuleAvailable() override;
-    std::shared_ptr<Promise<void>> installAndroidScannerModule() override;
+    std::shared_ptr<Promise<bool>> isScannerAvailable() override;
+    std::shared_ptr<Promise<void>> prepareScanner() override;
     std::shared_ptr<Promise<void>> configure(const DataScannerConfiguration& configuration) override;
-    std::shared_ptr<Promise<DataScannerItem>> scan(const std::optional<DataScannerConfiguration>& configuration) override;
+    std::shared_ptr<Promise<std::shared_ptr<HybridDataScannedValueSpec>>> scan(const std::optional<DataScannerConfiguration>& configuration) override;
     std::shared_ptr<Promise<void>> startScanning(const std::optional<DataScannerConfiguration>& configuration) override;
     std::shared_ptr<Promise<void>> stopScanning() override;
-    std::shared_ptr<Promise<DataScannerPhoto>> capturePhoto() override;
-    std::vector<DataScannerItem> getRecognizedItems() override;
+    std::shared_ptr<Promise<std::shared_ptr<HybridDataScannerPhotoSpec>>> capturePhoto() override;
+    std::vector<std::shared_ptr<HybridDataScannedValueSpec>> getScannedValues() override;
     void setRegionOfInterest(const std::optional<DataScannerRect>& regionOfInterest) override;
-    double addItemsChangedListener(const std::function<void(const DataScannerItemsChangedEvent& /* event */)>& listener) override;
-    double addItemTappedListener(const std::function<void(const DataScannerItemTappedEvent& /* event */)>& listener) override;
-    double addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) override;
-    double addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) override;
-    double addErrorListener(const std::function<void(const DataScannerErrorEvent& /* event */)>& listener) override;
-    void removeListener(double listenerId) override;
+    std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addScannedValuesChangedListener(const std::function<void(const std::vector<std::shared_ptr<HybridDataScannedValueSpec>>& /* values */)>& listener) override;
+    std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addValueTappedListener(const std::function<void(const std::shared_ptr<HybridDataScannedValueSpec>& /* value */)>& listener) override;
+    std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addZoomChangedListener(const std::function<void(const DataScannerZoomChangedEvent& /* event */)>& listener) override;
+    std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addUnavailableListener(const std::function<void(const DataScannerUnavailableEvent& /* event */)>& listener) override;
+    std::shared_ptr<HybridDataScannerListenerSubscriptionSpec> addErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& listener) override;
 
   private:
     jni::global_ref<JHybridDataScannerSpec::JavaPart> _javaPart;

@@ -31,17 +31,17 @@ namespace margelo::nitro::datascanner {
   enum class DataScannerBarcodeValueType {
     UNKNOWN      SWIFT_NAME(unknown) = 0,
     TEXT      SWIFT_NAME(text) = 1,
-    CONTACTINFO      SWIFT_NAME(contactinfo) = 2,
-    EMAIL      SWIFT_NAME(email) = 3,
-    ISBN      SWIFT_NAME(isbn) = 4,
-    PHONE      SWIFT_NAME(phone) = 5,
-    PRODUCT      SWIFT_NAME(product) = 6,
-    SMS      SWIFT_NAME(sms) = 7,
-    URL      SWIFT_NAME(url) = 8,
+    URL      SWIFT_NAME(url) = 2,
+    CONTACT_INFO      SWIFT_NAME(contactInfo) = 3,
+    EMAIL      SWIFT_NAME(email) = 4,
+    ISBN      SWIFT_NAME(isbn) = 5,
+    PHONE      SWIFT_NAME(phone) = 6,
+    PRODUCT      SWIFT_NAME(product) = 7,
+    SMS      SWIFT_NAME(sms) = 8,
     WIFI      SWIFT_NAME(wifi) = 9,
     GEO      SWIFT_NAME(geo) = 10,
-    CALENDAREVENT      SWIFT_NAME(calendarevent) = 11,
-    DRIVERLICENSE      SWIFT_NAME(driverlicense) = 12,
+    CALENDAR_EVENT      SWIFT_NAME(calendarEvent) = 11,
+    DRIVER_LICENSE      SWIFT_NAME(driverLicense) = 12,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::datascanner
@@ -56,17 +56,17 @@ namespace margelo::nitro {
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("unknown"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::UNKNOWN;
         case hashString("text"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::TEXT;
-        case hashString("contactInfo"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::CONTACTINFO;
+        case hashString("url"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::URL;
+        case hashString("contact-info"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::CONTACT_INFO;
         case hashString("email"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::EMAIL;
         case hashString("isbn"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::ISBN;
         case hashString("phone"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::PHONE;
         case hashString("product"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::PRODUCT;
         case hashString("sms"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::SMS;
-        case hashString("url"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::URL;
         case hashString("wifi"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::WIFI;
         case hashString("geo"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::GEO;
-        case hashString("calendarEvent"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::CALENDAREVENT;
-        case hashString("driverLicense"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::DRIVERLICENSE;
+        case hashString("calendar-event"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::CALENDAR_EVENT;
+        case hashString("driver-license"): return margelo::nitro::datascanner::DataScannerBarcodeValueType::DRIVER_LICENSE;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerBarcodeValueType - invalid value!");
       }
@@ -75,17 +75,17 @@ namespace margelo::nitro {
       switch (arg) {
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::UNKNOWN: return JSIConverter<std::string>::toJSI(runtime, "unknown");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::TEXT: return JSIConverter<std::string>::toJSI(runtime, "text");
-        case margelo::nitro::datascanner::DataScannerBarcodeValueType::CONTACTINFO: return JSIConverter<std::string>::toJSI(runtime, "contactInfo");
+        case margelo::nitro::datascanner::DataScannerBarcodeValueType::URL: return JSIConverter<std::string>::toJSI(runtime, "url");
+        case margelo::nitro::datascanner::DataScannerBarcodeValueType::CONTACT_INFO: return JSIConverter<std::string>::toJSI(runtime, "contact-info");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::EMAIL: return JSIConverter<std::string>::toJSI(runtime, "email");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::ISBN: return JSIConverter<std::string>::toJSI(runtime, "isbn");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::PHONE: return JSIConverter<std::string>::toJSI(runtime, "phone");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::PRODUCT: return JSIConverter<std::string>::toJSI(runtime, "product");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::SMS: return JSIConverter<std::string>::toJSI(runtime, "sms");
-        case margelo::nitro::datascanner::DataScannerBarcodeValueType::URL: return JSIConverter<std::string>::toJSI(runtime, "url");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::WIFI: return JSIConverter<std::string>::toJSI(runtime, "wifi");
         case margelo::nitro::datascanner::DataScannerBarcodeValueType::GEO: return JSIConverter<std::string>::toJSI(runtime, "geo");
-        case margelo::nitro::datascanner::DataScannerBarcodeValueType::CALENDAREVENT: return JSIConverter<std::string>::toJSI(runtime, "calendarEvent");
-        case margelo::nitro::datascanner::DataScannerBarcodeValueType::DRIVERLICENSE: return JSIConverter<std::string>::toJSI(runtime, "driverLicense");
+        case margelo::nitro::datascanner::DataScannerBarcodeValueType::CALENDAR_EVENT: return JSIConverter<std::string>::toJSI(runtime, "calendar-event");
+        case margelo::nitro::datascanner::DataScannerBarcodeValueType::DRIVER_LICENSE: return JSIConverter<std::string>::toJSI(runtime, "driver-license");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerBarcodeValueType to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -99,17 +99,17 @@ namespace margelo::nitro {
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("unknown"):
         case hashString("text"):
-        case hashString("contactInfo"):
+        case hashString("url"):
+        case hashString("contact-info"):
         case hashString("email"):
         case hashString("isbn"):
         case hashString("phone"):
         case hashString("product"):
         case hashString("sms"):
-        case hashString("url"):
         case hashString("wifi"):
         case hashString("geo"):
-        case hashString("calendarEvent"):
-        case hashString("driverLicense"):
+        case hashString("calendar-event"):
+        case hashString("driver-license"):
           return true;
         default:
           return false;

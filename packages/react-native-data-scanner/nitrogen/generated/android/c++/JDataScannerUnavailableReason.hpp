@@ -42,27 +42,27 @@ namespace margelo::nitro::datascanner {
     static jni::alias_ref<JDataScannerUnavailableReason> fromCpp(DataScannerUnavailableReason value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
-        case DataScannerUnavailableReason::UNSUPPORTED:
-          static const auto fieldUNSUPPORTED = clazz->getStaticField<JDataScannerUnavailableReason>("UNSUPPORTED");
-          return clazz->getStaticFieldValue(fieldUNSUPPORTED);
-        case DataScannerUnavailableReason::CAMERARESTRICTED:
-          static const auto fieldCAMERARESTRICTED = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERARESTRICTED");
-          return clazz->getStaticFieldValue(fieldCAMERARESTRICTED);
-        case DataScannerUnavailableReason::CAMERAPERMISSIONDENIED:
-          static const auto fieldCAMERAPERMISSIONDENIED = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERAPERMISSIONDENIED");
-          return clazz->getStaticFieldValue(fieldCAMERAPERMISSIONDENIED);
-        case DataScannerUnavailableReason::CAMERAUNAVAILABLE:
-          static const auto fieldCAMERAUNAVAILABLE = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERAUNAVAILABLE");
-          return clazz->getStaticFieldValue(fieldCAMERAUNAVAILABLE);
-        case DataScannerUnavailableReason::GOOGLEPLAYSERVICESUNAVAILABLE:
-          static const auto fieldGOOGLEPLAYSERVICESUNAVAILABLE = clazz->getStaticField<JDataScannerUnavailableReason>("GOOGLEPLAYSERVICESUNAVAILABLE");
-          return clazz->getStaticFieldValue(fieldGOOGLEPLAYSERVICESUNAVAILABLE);
-        case DataScannerUnavailableReason::SCANNERMODULEUNAVAILABLE:
-          static const auto fieldSCANNERMODULEUNAVAILABLE = clazz->getStaticField<JDataScannerUnavailableReason>("SCANNERMODULEUNAVAILABLE");
-          return clazz->getStaticFieldValue(fieldSCANNERMODULEUNAVAILABLE);
         case DataScannerUnavailableReason::UNKNOWN:
           static const auto fieldUNKNOWN = clazz->getStaticField<JDataScannerUnavailableReason>("UNKNOWN");
           return clazz->getStaticFieldValue(fieldUNKNOWN);
+        case DataScannerUnavailableReason::UNSUPPORTED:
+          static const auto fieldUNSUPPORTED = clazz->getStaticField<JDataScannerUnavailableReason>("UNSUPPORTED");
+          return clazz->getStaticFieldValue(fieldUNSUPPORTED);
+        case DataScannerUnavailableReason::CAMERA_RESTRICTED:
+          static const auto fieldCAMERA_RESTRICTED = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERA_RESTRICTED");
+          return clazz->getStaticFieldValue(fieldCAMERA_RESTRICTED);
+        case DataScannerUnavailableReason::CAMERA_PERMISSION_DENIED:
+          static const auto fieldCAMERA_PERMISSION_DENIED = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERA_PERMISSION_DENIED");
+          return clazz->getStaticFieldValue(fieldCAMERA_PERMISSION_DENIED);
+        case DataScannerUnavailableReason::CAMERA_UNAVAILABLE:
+          static const auto fieldCAMERA_UNAVAILABLE = clazz->getStaticField<JDataScannerUnavailableReason>("CAMERA_UNAVAILABLE");
+          return clazz->getStaticFieldValue(fieldCAMERA_UNAVAILABLE);
+        case DataScannerUnavailableReason::SCANNER_UNAVAILABLE:
+          static const auto fieldSCANNER_UNAVAILABLE = clazz->getStaticField<JDataScannerUnavailableReason>("SCANNER_UNAVAILABLE");
+          return clazz->getStaticFieldValue(fieldSCANNER_UNAVAILABLE);
+        case DataScannerUnavailableReason::SCANNER_INSTALLATION_REQUIRED:
+          static const auto fieldSCANNER_INSTALLATION_REQUIRED = clazz->getStaticField<JDataScannerUnavailableReason>("SCANNER_INSTALLATION_REQUIRED");
+          return clazz->getStaticFieldValue(fieldSCANNER_INSTALLATION_REQUIRED);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

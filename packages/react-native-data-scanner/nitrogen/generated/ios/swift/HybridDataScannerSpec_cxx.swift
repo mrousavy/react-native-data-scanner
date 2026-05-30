@@ -219,9 +219,9 @@ open class HybridDataScannerSpec_cxx {
   }
   
   @inline(__always)
-  public final func isAndroidScannerModuleAvailable() -> bridge.Result_std__shared_ptr_Promise_bool___ {
+  public final func isScannerAvailable() -> bridge.Result_std__shared_ptr_Promise_bool___ {
     do {
-      let __result = try self.__implementation.isAndroidScannerModuleAvailable()
+      let __result = try self.__implementation.isScannerAvailable()
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_bool__ in
         let __promise = bridge.create_std__shared_ptr_Promise_bool__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_bool__(__promise)
@@ -238,9 +238,9 @@ open class HybridDataScannerSpec_cxx {
   }
   
   @inline(__always)
-  public final func installAndroidScannerModule() -> bridge.Result_std__shared_ptr_Promise_void___ {
+  public final func prepareScanner() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
-      let __result = try self.__implementation.installAndroidScannerModule()
+      let __result = try self.__implementation.prepareScanner()
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
         let __promise = bridge.create_std__shared_ptr_Promise_void__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
@@ -276,21 +276,24 @@ open class HybridDataScannerSpec_cxx {
   }
   
   @inline(__always)
-  public final func scan(configuration: bridge.std__optional_DataScannerConfiguration_) -> bridge.Result_std__shared_ptr_Promise_DataScannerItem___ {
+  public final func scan(configuration: bridge.std__optional_DataScannerConfiguration_) -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec____ {
     do {
       let __result = try self.__implementation.scan(configuration: configuration.value)
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_DataScannerItem__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_DataScannerItem__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_DataScannerItem__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec___(__promise)
         __result
-          .then({ __result in __promiseHolder.resolve(__result) })
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__shared_ptr_HybridDataScannedValueSpec_ in
+              let __cxxWrapped = __result.getCxxWrapper()
+              return __cxxWrapped.getCxxPart()
+            }()) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_DataScannerItem___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec____(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_DataScannerItem___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannedValueSpec____(__exceptionPtr)
     }
   }
   
@@ -333,39 +336,45 @@ open class HybridDataScannerSpec_cxx {
   }
   
   @inline(__always)
-  public final func capturePhoto() -> bridge.Result_std__shared_ptr_Promise_DataScannerPhoto___ {
+  public final func capturePhoto() -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec____ {
     do {
       let __result = try self.__implementation.capturePhoto()
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_DataScannerPhoto__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_DataScannerPhoto__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_DataScannerPhoto__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec___(__promise)
         __result
-          .then({ __result in __promiseHolder.resolve(__result) })
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__shared_ptr_HybridDataScannerPhotoSpec_ in
+              let __cxxWrapped = __result.getCxxWrapper()
+              return __cxxWrapped.getCxxPart()
+            }()) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_DataScannerPhoto___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec____(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_DataScannerPhoto___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridDataScannerPhotoSpec____(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func getRecognizedItems() -> bridge.Result_std__vector_DataScannerItem__ {
+  public final func getScannedValues() -> bridge.Result_std__vector_std__shared_ptr_HybridDataScannedValueSpec___ {
     do {
-      let __result = try self.__implementation.getRecognizedItems()
-      let __resultCpp = { () -> bridge.std__vector_DataScannerItem_ in
-        var __vector = bridge.create_std__vector_DataScannerItem_(__result.count)
+      let __result = try self.__implementation.getScannedValues()
+      let __resultCpp = { () -> bridge.std__vector_std__shared_ptr_HybridDataScannedValueSpec__ in
+        var __vector = bridge.create_std__vector_std__shared_ptr_HybridDataScannedValueSpec__(__result.count)
         for __item in __result {
-          __vector.push_back(__item)
+          __vector.push_back({ () -> bridge.std__shared_ptr_HybridDataScannedValueSpec_ in
+            let __cxxWrapped = __item.getCxxWrapper()
+            return __cxxWrapped.getCxxPart()
+          }())
         }
         return __vector
       }()
-      return bridge.create_Result_std__vector_DataScannerItem__(__resultCpp)
+      return bridge.create_Result_std__vector_std__shared_ptr_HybridDataScannedValueSpec___(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__vector_DataScannerItem__(__exceptionPtr)
+      return bridge.create_Result_std__vector_std__shared_ptr_HybridDataScannedValueSpec___(__exceptionPtr)
     }
   }
   
@@ -381,41 +390,59 @@ open class HybridDataScannerSpec_cxx {
   }
   
   @inline(__always)
-  public final func addItemsChangedListener(listener: bridge.Func_void_DataScannerItemsChangedEvent) -> bridge.Result_double_ {
+  public final func addScannedValuesChangedListener(listener: bridge.Func_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__) -> bridge.Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__ {
     do {
-      let __result = try self.__implementation.addItemsChangedListener(listener: { () -> (DataScannerItemsChangedEvent) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_DataScannerItemsChangedEvent(listener)
-        return { (__event: DataScannerItemsChangedEvent) -> Void in
-          __wrappedFunction.call(__event)
+      let __result = try self.__implementation.addScannedValuesChangedListener(listener: { () -> ([(any HybridDataScannedValueSpec)]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_std__vector_std__shared_ptr_HybridDataScannedValueSpec__(listener)
+        return { (__values: [(any HybridDataScannedValueSpec)]) -> Void in
+          __wrappedFunction.call({ () -> bridge.std__vector_std__shared_ptr_HybridDataScannedValueSpec__ in
+            var __vector = bridge.create_std__vector_std__shared_ptr_HybridDataScannedValueSpec__(__values.count)
+            for __item in __values {
+              __vector.push_back({ () -> bridge.std__shared_ptr_HybridDataScannedValueSpec_ in
+                let __cxxWrapped = __item.getCxxWrapper()
+                return __cxxWrapped.getCxxPart()
+              }())
+            }
+            return __vector
+          }())
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_double_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerListenerSubscriptionSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_double_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func addItemTappedListener(listener: bridge.Func_void_DataScannerItemTappedEvent) -> bridge.Result_double_ {
+  public final func addValueTappedListener(listener: bridge.Func_void_std__shared_ptr_HybridDataScannedValueSpec_) -> bridge.Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__ {
     do {
-      let __result = try self.__implementation.addItemTappedListener(listener: { () -> (DataScannerItemTappedEvent) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_DataScannerItemTappedEvent(listener)
-        return { (__event: DataScannerItemTappedEvent) -> Void in
-          __wrappedFunction.call(__event)
+      let __result = try self.__implementation.addValueTappedListener(listener: { () -> ((any HybridDataScannedValueSpec)) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_std__shared_ptr_HybridDataScannedValueSpec_(listener)
+        return { (__value: (any HybridDataScannedValueSpec)) -> Void in
+          __wrappedFunction.call({ () -> bridge.std__shared_ptr_HybridDataScannedValueSpec_ in
+            let __cxxWrapped = __value.getCxxWrapper()
+            return __cxxWrapped.getCxxPart()
+          }())
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_double_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerListenerSubscriptionSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_double_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func addZoomChangedListener(listener: bridge.Func_void_DataScannerZoomChangedEvent) -> bridge.Result_double_ {
+  public final func addZoomChangedListener(listener: bridge.Func_void_DataScannerZoomChangedEvent) -> bridge.Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__ {
     do {
       let __result = try self.__implementation.addZoomChangedListener(listener: { () -> (DataScannerZoomChangedEvent) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_DataScannerZoomChangedEvent(listener)
@@ -423,16 +450,19 @@ open class HybridDataScannerSpec_cxx {
           __wrappedFunction.call(__event)
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_double_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerListenerSubscriptionSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_double_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func addUnavailableListener(listener: bridge.Func_void_DataScannerUnavailableEvent) -> bridge.Result_double_ {
+  public final func addUnavailableListener(listener: bridge.Func_void_DataScannerUnavailableEvent) -> bridge.Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__ {
     do {
       let __result = try self.__implementation.addUnavailableListener(listener: { () -> (DataScannerUnavailableEvent) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_DataScannerUnavailableEvent(listener)
@@ -440,39 +470,34 @@ open class HybridDataScannerSpec_cxx {
           __wrappedFunction.call(__event)
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_double_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerListenerSubscriptionSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_double_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func addErrorListener(listener: bridge.Func_void_DataScannerErrorEvent) -> bridge.Result_double_ {
+  public final func addErrorListener(listener: bridge.Func_void_std__exception_ptr) -> bridge.Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__ {
     do {
-      let __result = try self.__implementation.addErrorListener(listener: { () -> (DataScannerErrorEvent) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_DataScannerErrorEvent(listener)
-        return { (__event: DataScannerErrorEvent) -> Void in
-          __wrappedFunction.call(__event)
+      let __result = try self.__implementation.addErrorListener(listener: { () -> (Error) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_std__exception_ptr(listener)
+        return { (__error: Error) -> Void in
+          __wrappedFunction.call(__error.toCpp())
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_double_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__shared_ptr_HybridDataScannerListenerSubscriptionSpec_ in
+        let __cxxWrapped = __result.getCxxWrapper()
+        return __cxxWrapped.getCxxPart()
+      }()
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_double_(__exceptionPtr)
-    }
-  }
-  
-  @inline(__always)
-  public final func removeListener(listenerId: Double) -> bridge.Result_void_ {
-    do {
-      try self.__implementation.removeListener(listenerId: listenerId)
-      return bridge.create_Result_void_()
-    } catch (let __error) {
-      let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_void_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_HybridDataScannerListenerSubscriptionSpec__(__exceptionPtr)
     }
   }
 }

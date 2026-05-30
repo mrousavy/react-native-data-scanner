@@ -29,11 +29,11 @@ namespace margelo::nitro::datascanner {
    * An enum which can be represented as a JavaScript union (DataScannerCameraPermissionStatus).
    */
   enum class DataScannerCameraPermissionStatus {
-    NOTDETERMINED      SWIFT_NAME(notdetermined) = 0,
+    NOT_DETERMINED      SWIFT_NAME(notDetermined) = 0,
     DENIED      SWIFT_NAME(denied) = 1,
     RESTRICTED      SWIFT_NAME(restricted) = 2,
     AUTHORIZED      SWIFT_NAME(authorized) = 3,
-    NOTREQUIRED      SWIFT_NAME(notrequired) = 4,
+    NOT_REQUIRED      SWIFT_NAME(notRequired) = 4,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::datascanner
@@ -46,22 +46,22 @@ namespace margelo::nitro {
     static inline margelo::nitro::datascanner::DataScannerCameraPermissionStatus fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("notDetermined"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOTDETERMINED;
+        case hashString("not-determined"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOT_DETERMINED;
         case hashString("denied"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::DENIED;
         case hashString("restricted"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::RESTRICTED;
         case hashString("authorized"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::AUTHORIZED;
-        case hashString("notRequired"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOTREQUIRED;
+        case hashString("not-required"): return margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOT_REQUIRED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum DataScannerCameraPermissionStatus - invalid value!");
       }
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::datascanner::DataScannerCameraPermissionStatus arg) {
       switch (arg) {
-        case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOTDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "notDetermined");
+        case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOT_DETERMINED: return JSIConverter<std::string>::toJSI(runtime, "not-determined");
         case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "restricted");
         case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::AUTHORIZED: return JSIConverter<std::string>::toJSI(runtime, "authorized");
-        case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOTREQUIRED: return JSIConverter<std::string>::toJSI(runtime, "notRequired");
+        case margelo::nitro::datascanner::DataScannerCameraPermissionStatus::NOT_REQUIRED: return JSIConverter<std::string>::toJSI(runtime, "not-required");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert DataScannerCameraPermissionStatus to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -73,11 +73,11 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("notDetermined"):
+        case hashString("not-determined"):
         case hashString("denied"):
         case hashString("restricted"):
         case hashString("authorized"):
-        case hashString("notRequired"):
+        case hashString("not-required"):
           return true;
         default:
           return false;

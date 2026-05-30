@@ -19,8 +19,8 @@ public extension DataScannerResultSource {
     switch string {
       case "camera":
         self = .camera
-      case "manualInput":
-        self = .manualinput
+      case "manual-input":
+        self = .manualInput
       default:
         return nil
     }
@@ -33,8 +33,8 @@ public extension DataScannerResultSource {
     switch self {
       case .camera:
         return "camera"
-      case .manualinput:
-        return "manualInput"
+      case .manualInput:
+        return "manual-input"
     }
   }
 }
