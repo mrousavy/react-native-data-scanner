@@ -7,9 +7,65 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `DataScannerUnavailableReason` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerUnavailableReason; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `TextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TextContentType; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerOptions; }
+// Forward declaration of `RecognizedDataType` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct RecognizedDataType; }
+// Forward declaration of `RecognizedDataTypeKind` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class RecognizedDataTypeKind; }
+// Forward declaration of `RecognitionQuality` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class RecognitionQuality; }
+// Forward declaration of `ItemRecognitionMode` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ItemRecognitionMode; }
+// Forward declaration of `DataScannerFeaturePreferences` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerFeaturePreferences; }
+// Forward declaration of `DataScannerFeaturePreference` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerFeaturePreference; }
+// Forward declaration of `Rect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Rect; }
 
-
-
+#include "DataScannerCapabilities.hpp"
+#include <NitroModules/Promise.hpp>
+#include <NitroModules/JPromise.hpp>
+#include "JDataScannerCapabilities.hpp"
+#include "DataScannerUnavailableReason.hpp"
+#include <optional>
+#include "JDataScannerUnavailableReason.hpp"
+#include "BarcodeFormat.hpp"
+#include <vector>
+#include "JBarcodeFormat.hpp"
+#include "TextContentType.hpp"
+#include "JTextContentType.hpp"
+#include <string>
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "JHybridDataScannerSpec.hpp"
+#include "DataScannerOptions.hpp"
+#include "JDataScannerOptions.hpp"
+#include "RecognizedDataType.hpp"
+#include "JRecognizedDataType.hpp"
+#include "RecognizedDataTypeKind.hpp"
+#include "JRecognizedDataTypeKind.hpp"
+#include "RecognitionQuality.hpp"
+#include "JRecognitionQuality.hpp"
+#include "ItemRecognitionMode.hpp"
+#include "JItemRecognitionMode.hpp"
+#include "DataScannerFeaturePreferences.hpp"
+#include "JDataScannerFeaturePreferences.hpp"
+#include "DataScannerFeaturePreference.hpp"
+#include "JDataScannerFeaturePreference.hpp"
+#include "Rect.hpp"
+#include "JRect.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -41,12 +97,29 @@ namespace margelo::nitro::datascanner {
   }
 
   // Properties
-  
+
 
   // Methods
-  void JHybridDataScannerFactorySpec::createDataScanner() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("createDataScanner");
-    method(_javaPart);
+  std::shared_ptr<Promise<DataScannerCapabilities>> JHybridDataScannerFactorySpec::getCapabilities() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("getCapabilities");
+    auto __result = method(_javaPart);
+    return [&]() {
+      auto __promise = Promise<DataScannerCapabilities>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JDataScannerCapabilities>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<HybridDataScannerSpec> JHybridDataScannerFactorySpec::createDataScanner(const std::optional<DataScannerOptions>& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHybridDataScannerSpec::JavaPart>(jni::alias_ref<JDataScannerOptions> /* options */)>("createDataScanner");
+    auto __result = method(_javaPart, options.has_value() ? JDataScannerOptions::fromCpp(options.value()) : nullptr);
+    return __result->getJHybridDataScannerSpec();
   }
 
 } // namespace margelo::nitro::datascanner

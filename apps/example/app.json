@@ -8,7 +8,10 @@
     "userInterfaceStyle": "light",
     "ios": {
       "bundleIdentifier": "com.margelo.datascanner.example",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow DataScannerExample to scan text and barcodes with the camera."
+      }
     },
     "android": {
       "package": "com.margelo.datascanner.example",

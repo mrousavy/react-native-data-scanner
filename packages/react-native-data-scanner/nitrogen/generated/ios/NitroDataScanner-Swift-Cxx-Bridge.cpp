@@ -9,10 +9,91 @@
 
 // Include C++ implementation defined types
 #include "HybridDataScannerFactorySpecSwift.hpp"
+#include "HybridDataScannerSpecSwift.hpp"
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
 namespace margelo::nitro::datascanner::bridge::swift {
+
+  // pragma MARK: std::function<void(const std::optional<ScannedItem>& /* result */)>
+  Func_void_std__optional_ScannedItem_ create_Func_void_std__optional_ScannedItem_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_std__optional_ScannedItem_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<ScannedItem>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
+      swiftClosure.call(error);
+    };
+  }
+
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
+  }
+
+  // pragma MARK: std::function<void(const CapturedPhoto& /* result */)>
+  Func_void_CapturedPhoto create_Func_void_CapturedPhoto(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_CapturedPhoto::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const CapturedPhoto& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const ScannedItemsChangedEvent& /* event */)>
+  Func_void_ScannedItemsChangedEvent create_Func_void_ScannedItemsChangedEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_ScannedItemsChangedEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ScannedItemsChangedEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+
+  // pragma MARK: std::function<void(const ScannedItem& /* item */)>
+  Func_void_ScannedItem create_Func_void_ScannedItem(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_ScannedItem::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ScannedItem& item) mutable -> void {
+      swiftClosure.call(item);
+    };
+  }
+
+  // pragma MARK: std::function<void(const ZoomChangedEvent& /* event */)>
+  Func_void_ZoomChangedEvent create_Func_void_ZoomChangedEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_ZoomChangedEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ZoomChangedEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridDataScannerSpec>
+  std::shared_ptr<HybridDataScannerSpec> create_std__shared_ptr_HybridDataScannerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    NitroDataScanner::HybridDataScannerSpec_cxx swiftPart = NitroDataScanner::HybridDataScannerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::datascanner::HybridDataScannerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridDataScannerSpec_(std__shared_ptr_HybridDataScannerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::datascanner::HybridDataScannerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::datascanner::HybridDataScannerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridDataScannerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    NitroDataScanner::HybridDataScannerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const DataScannerCapabilities& /* result */)>
+  Func_void_DataScannerCapabilities create_Func_void_DataScannerCapabilities(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_DataScannerCapabilities::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const DataScannerCapabilities& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
 
   // pragma MARK: std::shared_ptr<HybridDataScannerFactorySpec>
   std::shared_ptr<HybridDataScannerFactorySpec> create_std__shared_ptr_HybridDataScannerFactorySpec_(void* NON_NULL swiftUnsafePointer) noexcept {

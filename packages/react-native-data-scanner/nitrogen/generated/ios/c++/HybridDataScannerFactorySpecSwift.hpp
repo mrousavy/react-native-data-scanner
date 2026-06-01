@@ -12,9 +12,51 @@
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `DataScannerUnavailableReason` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerUnavailableReason; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `TextContentType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TextContentType; }
+// Forward declaration of `HybridDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridDataScannerSpec; }
+// Forward declaration of `DataScannerOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerOptions; }
+// Forward declaration of `RecognizedDataType` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct RecognizedDataType; }
+// Forward declaration of `RecognizedDataTypeKind` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class RecognizedDataTypeKind; }
+// Forward declaration of `RecognitionQuality` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class RecognitionQuality; }
+// Forward declaration of `ItemRecognitionMode` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ItemRecognitionMode; }
+// Forward declaration of `DataScannerFeaturePreferences` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerFeaturePreferences; }
+// Forward declaration of `DataScannerFeaturePreference` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerFeaturePreference; }
+// Forward declaration of `Rect` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Rect; }
 
-
-
+#include "DataScannerCapabilities.hpp"
+#include <NitroModules/Promise.hpp>
+#include "DataScannerUnavailableReason.hpp"
+#include <optional>
+#include "BarcodeFormat.hpp"
+#include <vector>
+#include "TextContentType.hpp"
+#include <string>
+#include <memory>
+#include "HybridDataScannerSpec.hpp"
+#include "DataScannerOptions.hpp"
+#include "RecognizedDataType.hpp"
+#include "RecognizedDataTypeKind.hpp"
+#include "RecognitionQuality.hpp"
+#include "ItemRecognitionMode.hpp"
+#include "DataScannerFeaturePreferences.hpp"
+#include "DataScannerFeaturePreference.hpp"
+#include "Rect.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -62,15 +104,25 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
-    inline void createDataScanner() override {
-      auto __result = _swiftPart.createDataScanner();
+    inline std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() override {
+      auto __result = _swiftPart.getCapabilities();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<HybridDataScannerSpec> createDataScanner(const std::optional<DataScannerOptions>& options) override {
+      auto __result = _swiftPart.createDataScanner(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:

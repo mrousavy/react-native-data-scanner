@@ -1,7 +1,11 @@
 import NitroModules
 
 final class HybridDataScannerFactory: HybridDataScannerFactorySpec {
-  func createDataScanner() throws -> Void {
-    throw RuntimeError("TODO: Not yet implemented")
+  func getCapabilities() throws -> Promise<DataScannerCapabilities> {
+    return Promise.resolved(withResult: HybridDataScanner.createCapabilities())
+  }
+
+  func createDataScanner(options: DataScannerOptions?) throws -> any HybridDataScannerSpec {
+    return try HybridDataScanner(options: options)
   }
 }
