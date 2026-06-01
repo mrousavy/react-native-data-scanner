@@ -6,7 +6,12 @@ import com.facebook.proguard.annotations.DoNotStrip
 @Keep
 @DoNotStrip
 class HybridDataScannerFactory : HybridDataScannerFactorySpec() {
-  override fun createDataScanner(): Unit {
-    throw Error("TODO: Not yet implemented")
+  override val capabilities: DataScannerCapabilities
+    get() = DataScannerDefaults.capabilities
+
+  override fun createDataScanner(configuration: DataScannerConfiguration?): HybridDataScannerSpec {
+    val resolvedConfiguration = configuration ?: DataScannerDefaults.defaultConfiguration
+    DataScannerDefaults.validate(resolvedConfiguration)
+    return HybridDataScanner(resolvedConfiguration, capabilities)
   }
 }
