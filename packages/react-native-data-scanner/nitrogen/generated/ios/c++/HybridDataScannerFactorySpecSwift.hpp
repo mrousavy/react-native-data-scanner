@@ -12,9 +12,29 @@
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
+// Forward declaration of `DataScannerCapabilities` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `ScannedCode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedCode; }
+// Forward declaration of `BarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
+// Forward declaration of `ScanCodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanCodeOptions; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 
-
-
+#include "DataScannerCapabilities.hpp"
+#include <NitroModules/Promise.hpp>
+#include "BarcodeFormat.hpp"
+#include <vector>
+#include "ScannedCode.hpp"
+#include <string>
+#include <optional>
+#include "BarcodeValueType.hpp"
+#include "ScanCodeOptions.hpp"
+#include "DataScannerQualityLevel.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -66,11 +86,21 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Methods
-    inline void createDataScanner() override {
-      auto __result = _swiftPart.createDataScanner();
+    inline std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() override {
+      auto __result = _swiftPart.getCapabilities();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<ScannedCode>> scanCode(const std::optional<ScanCodeOptions>& options) override {
+      auto __result = _swiftPart.scanCode(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:

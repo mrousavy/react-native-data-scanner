@@ -14,7 +14,8 @@ namespace margelo::nitro::datascanner {
     HybridObject::loadHybridMethods();
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
-      prototype.registerHybridMethod("createDataScanner", &HybridDataScannerFactorySpec::createDataScanner);
+      prototype.registerHybridMethod("getCapabilities", &HybridDataScannerFactorySpec::getCapabilities);
+      prototype.registerHybridMethod("scanCode", &HybridDataScannerFactorySpec::scanCode);
     });
   }
 
