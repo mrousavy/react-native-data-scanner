@@ -1,14 +1,21 @@
-import Foundation
+import Dispatch
 import NitroModules
 import UIKit
 import VisionKit
 
 @available(iOS 16.0, *)
 final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
+  private final class ListenerToken {}
+
+  private struct Listener<Callback> {
+    let token: ListenerToken
+    let callback: Callback
+  }
+
   private let options: ResolvedLiveDataScannerOptions
   private var scannerViewController: DataScannerViewController?
-  private var codeScannedListeners: [UUID: (ScannedCode) -> Void] = [:]
-  private var errorListeners: [UUID: (Error) -> Void] = [:]
+  private var codeScannedListeners: [ObjectIdentifier: Listener<(ScannedCode) -> Void>] = [:]
+  private var errorListeners: [ObjectIdentifier: Listener<(Error) -> Void>] = [:]
 
   init(options: ResolvedLiveDataScannerOptions) {
     self.options = options
@@ -17,7 +24,7 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
   func start() throws -> Promise<Void> {
     let promise = Promise<Void>()
 
-    Task { @MainActor in
+    DispatchQueue.main.async {
       do {
         guard self.scannerViewController == nil else {
           throw RuntimeError("Live data scanner is already running.")
@@ -27,18 +34,16 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
         try CameraPermission.ensureCameraUsageDescription()
 
         CameraPermission.requestIfNeeded { result in
-          Task { @MainActor in
-            switch result {
-            case .success:
-              do {
-                try self.presentScanner()
-                promise.resolve()
-              } catch {
-                promise.reject(withError: error)
-              }
-            case .failure(let error):
+          switch result {
+          case .success:
+            do {
+              try self.presentScanner()
+              promise.resolve()
+            } catch {
               promise.reject(withError: error)
             }
+          case .failure(let error):
+            promise.reject(withError: error)
           }
         }
       } catch {
@@ -50,35 +55,30 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
   }
 
   func stop() throws -> Promise<Void> {
-    let promise = Promise<Void>()
-
-    Task { @MainActor in
+    return Promise.parallel(.main) {
       self.stopScanning()
-      promise.resolve()
     }
-
-    return promise
   }
 
   func addOnCodeScannedListener(
     callback: @escaping (_ code: ScannedCode) -> Void
   ) throws -> ListenerSubscription {
-    let id = UUID()
-    codeScannedListeners[id] = callback
+    let token = ListenerToken()
+    codeScannedListeners[ObjectIdentifier(token)] = Listener(token: token, callback: callback)
 
-    return ListenerSubscription { [weak self] in
-      self?.removeCodeScannedListener(id)
+    return ListenerSubscription { [weak self, token] in
+      self?.removeCodeScannedListener(token)
     }
   }
 
   func addOnErrorListener(
     callback: @escaping (_ error: Error) -> Void
   ) throws -> ListenerSubscription {
-    let id = UUID()
-    errorListeners[id] = callback
+    let token = ListenerToken()
+    errorListeners[ObjectIdentifier(token)] = Listener(token: token, callback: callback)
 
-    return ListenerSubscription { [weak self] in
-      self?.removeErrorListener(id)
+    return ListenerSubscription { [weak self, token] in
+      self?.removeErrorListener(token)
     }
   }
 
@@ -133,10 +133,9 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
   }
 
   @objc
+  @MainActor
   private func stopFromButton() {
-    Task { @MainActor in
-      self.stopScanning()
-    }
+    stopScanning()
   }
 
   @MainActor
@@ -160,27 +159,27 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
   }
 
   private func emitCode(_ code: ScannedCode) {
-    let listeners = Array(codeScannedListeners.values)
+    let callbacks = codeScannedListeners.values.map(\.callback)
 
-    listeners.forEach { listener in
-      listener(code)
+    callbacks.forEach { callback in
+      callback(code)
     }
   }
 
   private func emitError(_ error: Error) {
-    let listeners = Array(errorListeners.values)
+    let callbacks = errorListeners.values.map(\.callback)
 
-    listeners.forEach { listener in
-      listener(error)
+    callbacks.forEach { callback in
+      callback(error)
     }
   }
 
-  private func removeCodeScannedListener(_ id: UUID) {
-    codeScannedListeners.removeValue(forKey: id)
+  private func removeCodeScannedListener(_ token: ListenerToken) {
+    codeScannedListeners.removeValue(forKey: ObjectIdentifier(token))
   }
 
-  private func removeErrorListener(_ id: UUID) {
-    errorListeners.removeValue(forKey: id)
+  private func removeErrorListener(_ token: ListenerToken) {
+    errorListeners.removeValue(forKey: ObjectIdentifier(token))
   }
 }
 

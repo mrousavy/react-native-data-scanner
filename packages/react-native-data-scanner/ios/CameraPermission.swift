@@ -1,4 +1,5 @@
 import AVFoundation
+import Dispatch
 import Foundation
 import NitroModules
 
@@ -13,21 +14,34 @@ enum CameraPermission {
   static func requestIfNeeded(_ completion: @escaping (Result<Void, Error>) -> Void) {
     switch AVCaptureDevice.authorizationStatus(for: .video) {
     case .authorized:
-      completion(.success(()))
+      complete(.success(()), completion)
     case .notDetermined:
       AVCaptureDevice.requestAccess(for: .video) { granted in
         if granted {
-          completion(.success(()))
+          complete(.success(()), completion)
         } else {
-          completion(.failure(RuntimeError("Camera permission was denied.")))
+          complete(.failure(RuntimeError("Camera permission was denied.")), completion)
         }
       }
     case .denied:
-      completion(.failure(RuntimeError("Camera permission was denied.")))
+      complete(.failure(RuntimeError("Camera permission was denied.")), completion)
     case .restricted:
-      completion(.failure(RuntimeError("Camera access is restricted on this device.")))
+      complete(.failure(RuntimeError("Camera access is restricted on this device.")), completion)
     @unknown default:
-      completion(.failure(RuntimeError("Camera permission status is unknown.")))
+      complete(.failure(RuntimeError("Camera permission status is unknown.")), completion)
+    }
+  }
+
+  private static func complete(
+    _ result: Result<Void, Error>,
+    _ completion: @escaping (Result<Void, Error>) -> Void
+  ) {
+    if Thread.isMainThread {
+      completion(result)
+    } else {
+      DispatchQueue.main.async {
+        completion(result)
+      }
     }
   }
 }
