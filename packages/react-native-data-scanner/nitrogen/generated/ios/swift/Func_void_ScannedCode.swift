@@ -8,21 +8,21 @@
 import NitroModules
 
 /**
- * Wraps a Swift `(_ value: ScannedCode) -> Void` as a class.
+ * Wraps a Swift `(_ code: ScannedCode) -> Void` as a class.
  * This class can be used from C++, e.g. to wrap the Swift closure as a `std::function`.
  */
 public final class Func_void_ScannedCode {
   public typealias bridge = margelo.nitro.datascanner.bridge.swift
 
-  private let closure: (_ value: ScannedCode) -> Void
+  private let closure: (_ code: ScannedCode) -> Void
 
-  public init(_ closure: @escaping (_ value: ScannedCode) -> Void) {
+  public init(_ closure: @escaping (_ code: ScannedCode) -> Void) {
     self.closure = closure
   }
 
   @inline(__always)
-  public func call(value: ScannedCode) -> Void {
-    self.closure(value)
+  public func call(code: ScannedCode) -> Void {
+    self.closure(code)
   }
 
   /**

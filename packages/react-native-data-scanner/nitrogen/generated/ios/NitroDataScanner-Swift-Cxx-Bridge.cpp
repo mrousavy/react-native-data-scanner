@@ -9,6 +9,7 @@
 
 // Include C++ implementation defined types
 #include "HybridDataScannerFactorySpecSwift.hpp"
+#include "HybridLiveDataScannerSpecSwift.hpp"
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
@@ -21,7 +22,7 @@ namespace margelo::nitro::datascanner::bridge::swift {
       swiftClosure.call(result);
     };
   }
-  
+
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
   Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = NitroDataScanner::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
@@ -29,7 +30,7 @@ namespace margelo::nitro::datascanner::bridge::swift {
       swiftClosure.call(error);
     };
   }
-  
+
   // pragma MARK: std::function<void(const ScannedCode& /* result */)>
   Func_void_ScannedCode create_Func_void_ScannedCode(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = NitroDataScanner::Func_void_ScannedCode::fromUnsafe(swiftClosureWrapper);
@@ -37,7 +38,31 @@ namespace margelo::nitro::datascanner::bridge::swift {
       swiftClosure.call(result);
     };
   }
-  
+
+  // pragma MARK: std::shared_ptr<HybridLiveDataScannerSpec>
+  std::shared_ptr<HybridLiveDataScannerSpec> create_std__shared_ptr_HybridLiveDataScannerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    NitroDataScanner::HybridLiveDataScannerSpec_cxx swiftPart = NitroDataScanner::HybridLiveDataScannerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::datascanner::HybridLiveDataScannerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridLiveDataScannerSpec_(std__shared_ptr_HybridLiveDataScannerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::datascanner::HybridLiveDataScannerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::datascanner::HybridLiveDataScannerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridLiveDataScannerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    NitroDataScanner::HybridLiveDataScannerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::shared_ptr<HybridLiveDataScannerSpec>& /* result */)>
+  Func_void_std__shared_ptr_HybridLiveDataScannerSpec_ create_Func_void_std__shared_ptr_HybridLiveDataScannerSpec_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_std__shared_ptr_HybridLiveDataScannerSpec_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::shared_ptr<HybridLiveDataScannerSpec>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridDataScannerFactorySpec>
   std::shared_ptr<HybridDataScannerFactorySpec> create_std__shared_ptr_HybridDataScannerFactorySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     NitroDataScanner::HybridDataScannerFactorySpec_cxx swiftPart = NitroDataScanner::HybridDataScannerFactorySpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -52,6 +77,14 @@ namespace margelo::nitro::datascanner::bridge::swift {
     #endif
     NitroDataScanner::HybridDataScannerFactorySpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
   }
 
 } // namespace margelo::nitro::datascanner::bridge::swift

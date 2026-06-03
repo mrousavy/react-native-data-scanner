@@ -1,10 +1,11 @@
 import type { BarcodeFormat } from './BarcodeFormat'
 import type { BarcodeValueType } from './BarcodeValueType'
+import type { DataScannerApi } from './DataScannerApi'
 
 /**
- * Represents a code scanned by {@linkcode DataScannerFactory.scanCode}.
+ * Represents a code scanned by {@linkcode DataScannerApi.scanCode}.
  *
- * @see {@linkcode DataScannerFactory.scanCode}
+ * @see {@linkcode DataScannerApi.scanCode}
  */
 export interface ScannedCode {
   /**

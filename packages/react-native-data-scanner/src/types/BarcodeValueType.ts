@@ -1,3 +1,5 @@
+import type { ScannedCode } from './ScannedCode'
+
 /**
  * Represents the semantic content type of a scanned barcode.
  *

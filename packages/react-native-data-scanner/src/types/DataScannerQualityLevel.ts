@@ -1,3 +1,5 @@
+import type { ScanCodeOptions } from './ScanCodeOptions'
+
 /**
  * Represents a preference for the scanner's speed and recognition quality.
  *

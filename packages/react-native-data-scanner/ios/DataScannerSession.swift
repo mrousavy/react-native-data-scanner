@@ -11,12 +11,12 @@ final class DataScannerSession: NSObject, DataScannerViewControllerDelegate {
   private var didFinish = false
 
   init(
-    options: ScanCodeOptions?,
+    options: ResolvedScanCodeOptions,
     promise: Promise<ScannedCode>,
     onFinish: @escaping () -> Void
   ) throws {
-    let symbologies = try BarcodeFormat.visionKitSymbologies(from: options?.barcodeFormats)
-    let qualityLevel = options?.qualityLevel?.visionKitQualityLevel ?? .balanced
+    let symbologies = try TargetBarcodeFormat.visionKitSymbologies(from: options.barcodeFormats)
+    let qualityLevel = options.qualityLevel.visionKitQualityLevel
 
     scannerViewController = DataScannerViewController(
       recognizedDataTypes: [.barcode(symbologies: symbologies)],

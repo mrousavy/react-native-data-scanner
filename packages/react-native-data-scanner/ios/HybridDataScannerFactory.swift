@@ -13,7 +13,7 @@ final class HybridDataScannerFactory: HybridDataScannerFactorySpec {
     return promise
   }
 
-  func scanCode(options: ScanCodeOptions?) throws -> Promise<ScannedCode> {
+  func scanCode(options: ResolvedScanCodeOptions) throws -> Promise<ScannedCode> {
     let promise = Promise<ScannedCode>()
 
     Task { @MainActor in
@@ -43,6 +43,29 @@ final class HybridDataScannerFactory: HybridDataScannerFactorySpec {
             }
           }
         }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+
+    return promise
+  }
+
+  func createLiveScanner(
+    options: ResolvedLiveDataScannerOptions
+  ) throws -> Promise<any HybridLiveDataScannerSpec> {
+    let promise = Promise<any HybridLiveDataScannerSpec>()
+
+    Task { @MainActor in
+      guard #available(iOS 16.0, *) else {
+        promise.reject(withError: RuntimeError("Live data scanning requires iOS 16 or newer."))
+        return
+      }
+
+      do {
+        try DataScannerCapabilityProvider.validateCanScan()
+        try CameraPermission.ensureCameraUsageDescription()
+        promise.resolve(withResult: HybridLiveDataScanner(options: options))
       } catch {
         promise.reject(withError: error)
       }

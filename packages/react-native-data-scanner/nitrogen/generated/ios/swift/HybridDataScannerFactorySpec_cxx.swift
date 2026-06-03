@@ -84,7 +84,7 @@ open class HybridDataScannerFactorySpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridDataScannerFactorySpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -142,11 +142,11 @@ open class HybridDataScannerFactorySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_DataScannerCapabilities___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
-  public final func scanCode(options: bridge.std__optional_ScanCodeOptions_) -> bridge.Result_std__shared_ptr_Promise_ScannedCode___ {
+  public final func scanCode(options: ResolvedScanCodeOptions) -> bridge.Result_std__shared_ptr_Promise_ScannedCode___ {
     do {
-      let __result = try self.__implementation.scanCode(options: options.value)
+      let __result = try self.__implementation.scanCode(options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_ScannedCode__ in
         let __promise = bridge.create_std__shared_ptr_Promise_ScannedCode__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_ScannedCode__(__promise)
@@ -159,6 +159,28 @@ open class HybridDataScannerFactorySpec_cxx {
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
       return bridge.create_Result_std__shared_ptr_Promise_ScannedCode___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func createLiveScanner(options: ResolvedLiveDataScannerOptions) -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec____ {
+    do {
+      let __result = try self.__implementation.createLiveScanner(options: options)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__shared_ptr_HybridLiveDataScannerSpec_ in
+              let __cxxWrapped = __result.getCxxWrapper()
+              return __cxxWrapped.getCxxPart()
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridLiveDataScannerSpec____(__exceptionPtr)
     }
   }
 }

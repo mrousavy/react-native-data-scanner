@@ -17,14 +17,20 @@
 namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
-// Forward declaration of `ScanCodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ScanCodeOptions; }
+// Forward declaration of `ResolvedScanCodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanCodeOptions; }
+// Forward declaration of `HybridLiveDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridLiveDataScannerSpec; }
+// Forward declaration of `ResolvedLiveDataScannerOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedLiveDataScannerOptions; }
 
 #include "DataScannerCapabilities.hpp"
 #include <NitroModules/Promise.hpp>
 #include "ScannedCode.hpp"
-#include "ScanCodeOptions.hpp"
-#include <optional>
+#include "ResolvedScanCodeOptions.hpp"
+#include <memory>
+#include "HybridLiveDataScannerSpec.hpp"
+#include "ResolvedLiveDataScannerOptions.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -53,12 +59,13 @@ namespace margelo::nitro::datascanner {
 
     public:
       // Properties
-      
+
 
     public:
       // Methods
       virtual std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() = 0;
-      virtual std::shared_ptr<Promise<ScannedCode>> scanCode(const std::optional<ScanCodeOptions>& options) = 0;
+      virtual std::shared_ptr<Promise<ScannedCode>> scanCode(const ResolvedScanCodeOptions& options) = 0;
+      virtual std::shared_ptr<Promise<std::shared_ptr<HybridLiveDataScannerSpec>>> createLiveScanner(const ResolvedLiveDataScannerOptions& options) = 0;
 
     protected:
       // Hybrid Setup

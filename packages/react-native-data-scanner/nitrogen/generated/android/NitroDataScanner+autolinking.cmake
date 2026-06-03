@@ -34,8 +34,10 @@ target_sources(
   ../nitrogen/generated/android/NitroDataScannerOnLoad.cpp
   # Shared Nitrogen C++ sources
   ../nitrogen/generated/shared/c++/HybridDataScannerFactorySpec.cpp
+  ../nitrogen/generated/shared/c++/HybridLiveDataScannerSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridDataScannerFactorySpec.cpp
+  ../nitrogen/generated/android/c++/JHybridLiveDataScannerSpec.cpp
 )
 
 # From node_modules/react-native/ReactAndroid/cmake-utils/folly-flags.cmake

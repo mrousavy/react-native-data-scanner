@@ -50,12 +50,13 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
     std::shared_ptr<Promise<DataScannerCapabilities>> getCapabilities() override;
-    std::shared_ptr<Promise<ScannedCode>> scanCode(const std::optional<ScanCodeOptions>& options) override;
+    std::shared_ptr<Promise<ScannedCode>> scanCode(const ResolvedScanCodeOptions& options) override;
+    std::shared_ptr<Promise<std::shared_ptr<HybridLiveDataScannerSpec>>> createLiveScanner(const ResolvedLiveDataScannerOptions& options) override;
 
   private:
     jni::global_ref<JHybridDataScannerFactorySpec::JavaPart> _javaPart;

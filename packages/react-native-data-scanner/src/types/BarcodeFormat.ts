@@ -1,3 +1,8 @@
+import type { DataScannerApi } from './DataScannerApi'
+import type { DataScannerCapabilities } from './DataScannerCapabilities'
+import type { ScanCodeOptions } from './ScanCodeOptions'
+import type { ScannedCode } from './ScannedCode'
+
 /**
  * Represents a barcode format that can be requested through
  * {@linkcode ScanCodeOptions.barcodeFormats} or returned by
@@ -6,7 +11,7 @@
  * Use {@linkcode DataScannerCapabilities.supportedBarcodeFormats} before passing
  * a required format on a platform whose support may vary.
  *
- * @see {@linkcode DataScannerFactory.scanCode}
+ * @see {@linkcode DataScannerApi.scanCode}
  */
 export type BarcodeFormat =
   | 'unknown'

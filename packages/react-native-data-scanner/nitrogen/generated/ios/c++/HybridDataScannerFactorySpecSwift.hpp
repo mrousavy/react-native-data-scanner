@@ -20,10 +20,16 @@ namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 namespace margelo::nitro::datascanner { struct ScannedCode; }
 // Forward declaration of `BarcodeValueType` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
-// Forward declaration of `ScanCodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ScanCodeOptions; }
+// Forward declaration of `ResolvedScanCodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanCodeOptions; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 // Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
+// Forward declaration of `HybridLiveDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridLiveDataScannerSpec; }
+// Forward declaration of `ResolvedLiveDataScannerOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedLiveDataScannerOptions; }
 
 #include "DataScannerCapabilities.hpp"
 #include <NitroModules/Promise.hpp>
@@ -33,8 +39,12 @@ namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 #include <string>
 #include <optional>
 #include "BarcodeValueType.hpp"
-#include "ScanCodeOptions.hpp"
+#include "ResolvedScanCodeOptions.hpp"
+#include "TargetBarcodeFormat.hpp"
 #include "DataScannerQualityLevel.hpp"
+#include <memory>
+#include "HybridLiveDataScannerSpec.hpp"
+#include "ResolvedLiveDataScannerOptions.hpp"
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -82,7 +92,7 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
@@ -94,8 +104,16 @@ namespace margelo::nitro::datascanner {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<ScannedCode>> scanCode(const std::optional<ScanCodeOptions>& options) override {
-      auto __result = _swiftPart.scanCode(options);
+    inline std::shared_ptr<Promise<ScannedCode>> scanCode(const ResolvedScanCodeOptions& options) override {
+      auto __result = _swiftPart.scanCode(std::forward<decltype(options)>(options));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::shared_ptr<HybridLiveDataScannerSpec>>> createLiveScanner(const ResolvedLiveDataScannerOptions& options) override {
+      auto __result = _swiftPart.createLiveScanner(std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

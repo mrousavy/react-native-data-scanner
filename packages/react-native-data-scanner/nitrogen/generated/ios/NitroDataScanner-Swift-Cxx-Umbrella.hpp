@@ -18,10 +18,16 @@ namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
 namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
-// Forward declaration of `ScanCodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ScanCodeOptions; }
+// Forward declaration of `HybridLiveDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::datascanner { class HybridLiveDataScannerSpec; }
+// Forward declaration of `ResolvedLiveDataScannerOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedLiveDataScannerOptions; }
+// Forward declaration of `ResolvedScanCodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanCodeOptions; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
 // Include C++ defined types
 #include "BarcodeFormat.hpp"
@@ -29,11 +35,15 @@ namespace margelo::nitro::datascanner { struct ScannedCode; }
 #include "DataScannerCapabilities.hpp"
 #include "DataScannerQualityLevel.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
-#include "ScanCodeOptions.hpp"
+#include "HybridLiveDataScannerSpec.hpp"
+#include "ResolvedLiveDataScannerOptions.hpp"
+#include "ResolvedScanCodeOptions.hpp"
 #include "ScannedCode.hpp"
+#include "TargetBarcodeFormat.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
+#include <functional>
 #include <memory>
 #include <optional>
 #include <string>
@@ -51,6 +61,8 @@ namespace margelo::nitro::datascanner { struct ScannedCode; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
+// Forward declaration of `HybridLiveDataScannerSpec_cxx` to properly resolve imports.
+namespace NitroDataScanner { class HybridLiveDataScannerSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("NitroDataScanner-Swift.h")

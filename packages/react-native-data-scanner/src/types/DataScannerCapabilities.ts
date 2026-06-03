@@ -1,14 +1,16 @@
 import type { BarcodeFormat } from './BarcodeFormat'
+import type { DataScannerApi } from './DataScannerApi'
+import type { ScanCodeOptions } from './ScanCodeOptions'
 
 /**
  * Represents camera scanner features currently available to
- * {@linkcode DataScannerFactory}.
+ * {@linkcode DataScannerApi}.
  *
- * @see {@linkcode DataScannerFactory.getCapabilities}
+ * @see {@linkcode DataScannerApi.getCapabilities}
  */
 export interface DataScannerCapabilities {
   /**
-   * Whether {@linkcode DataScannerFactory.scanCode} can currently open a camera
+   * Whether {@linkcode DataScannerApi.scanCode} can currently open a camera
    * scanner.
    */
   isCodeScannerAvailable: boolean

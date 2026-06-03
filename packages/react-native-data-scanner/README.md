@@ -23,7 +23,7 @@ const capabilities = await DataScanner.getCapabilities()
 
 if (capabilities.isCodeScannerAvailable) {
   const code = await DataScanner.scanCode({
-    barcodeFormats: ['qr', 'ean-13'],
+    barcodeFormats: ['qr', 'ean-13'], // omit or pass ['all'] to scan every supported format
     enableAutoZoom: true,
     allowManualInput: true,
   })
@@ -32,14 +32,31 @@ if (capabilities.isCodeScannerAvailable) {
 }
 ```
 
+```tsx
+const scanner = await DataScanner.createLiveScanner({
+  barcodeFormats: ['all'],
+})
+
+scanner.setOnCodeScanned((code) => {
+  console.log(code.format, code.rawValue)
+})
+scanner.setOnError((error) => {
+  console.error(error)
+})
+
+await scanner.start()
+```
+
 ## Platform Notes
 
-iOS uses VisionKit `DataScannerViewController`. Add `NSCameraUsageDescription` to your app's `Info.plist`; scanning rejects before requesting camera access when the key is missing. VisionKit data scanning requires iOS 16 or newer and a supported device.
+iOS uses VisionKit `DataScannerViewController`. Add `NSCameraUsageDescription` to your app's `Info.plist`; scanning rejects before requesting camera access when the key is missing. VisionKit data scanning requires iOS 16 or newer and a supported device. The live scanner workflow is available on iOS.
 
-Android uses Google Play services Code Scanner (`play-services-code-scanner`). It does not require your app to request camera permission. The library manifest includes the `barcode_ui` ML Kit module metadata so Play services can download the scanner module during app install when supported.
+Android uses Google Play services Code Scanner (`play-services-code-scanner`). It does not require your app to request camera permission. The library manifest includes the `barcode_ui` ML Kit module metadata so Play services can download the scanner module during app install when supported. Google Code Scanner is a one-shot scanner UI, so `createLiveScanner()` rejects on Android.
 
 ## API
 
 `DataScanner.getCapabilities()` returns current availability, supported barcode formats, and whether manual input or auto-zoom are supported.
 
 `DataScanner.scanCode(options?)` opens the native scanner and resolves with the first scanned code. It rejects when scanning is unavailable, the user cancels, camera permission is denied on iOS, or the scanned code has no text payload.
+
+`DataScanner.createLiveScanner(options?)` creates a native live scanner object. Use `setOnCodeScanned()` and `setOnError()` before `start()`, and call `stop()` to dismiss the native scanner UI.
