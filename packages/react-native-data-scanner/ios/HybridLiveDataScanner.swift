@@ -1,3 +1,4 @@
+import Foundation
 import NitroModules
 import UIKit
 import VisionKit
@@ -6,8 +7,8 @@ import VisionKit
 final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
   private let options: ResolvedLiveDataScannerOptions
   private var scannerViewController: DataScannerViewController?
-  private var onCodeScanned: ((_ code: ScannedCode) -> Void)?
-  private var onError: ((_ error: Error) -> Void)?
+  private var codeScannedListeners: [UUID: (ScannedCode) -> Void] = [:]
+  private var errorListeners: [UUID: (Error) -> Void] = [:]
 
   init(options: ResolvedLiveDataScannerOptions) {
     self.options = options
@@ -59,12 +60,26 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
     return promise
   }
 
-  func setOnCodeScanned(callback: ((_ code: ScannedCode) -> Void)?) throws {
-    onCodeScanned = callback
+  func addOnCodeScannedListener(
+    callback: @escaping (_ code: ScannedCode) -> Void
+  ) throws -> ListenerSubscription {
+    let id = UUID()
+    codeScannedListeners[id] = callback
+
+    return ListenerSubscription { [weak self] in
+      self?.removeCodeScannedListener(id)
+    }
   }
 
-  func setOnError(callback: ((_ error: Error) -> Void)?) throws {
-    onError = callback
+  func addOnErrorListener(
+    callback: @escaping (_ error: Error) -> Void
+  ) throws -> ListenerSubscription {
+    let id = UUID()
+    errorListeners[id] = callback
+
+    return ListenerSubscription { [weak self] in
+      self?.removeErrorListener(id)
+    }
   }
 
   @MainActor
@@ -138,14 +153,34 @@ final class HybridLiveDataScanner: HybridLiveDataScannerSpec {
     }
 
     do {
-      onCodeScanned?(try ScannedCode(barcode: barcode))
+      emitCode(try ScannedCode(barcode: barcode))
     } catch {
       emitError(error)
     }
   }
 
+  private func emitCode(_ code: ScannedCode) {
+    let listeners = Array(codeScannedListeners.values)
+
+    listeners.forEach { listener in
+      listener(code)
+    }
+  }
+
   private func emitError(_ error: Error) {
-    onError?(error)
+    let listeners = Array(errorListeners.values)
+
+    listeners.forEach { listener in
+      listener(error)
+    }
+  }
+
+  private func removeCodeScannedListener(_ id: UUID) {
+    codeScannedListeners.removeValue(forKey: id)
+  }
+
+  private func removeErrorListener(_ id: UUID) {
+    errorListeners.removeValue(forKey: id)
   }
 }
 

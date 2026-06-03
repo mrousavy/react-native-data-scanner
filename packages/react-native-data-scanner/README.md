@@ -37,14 +37,18 @@ const scanner = await DataScanner.createLiveScanner({
   barcodeFormats: ['all'],
 })
 
-scanner.setOnCodeScanned((code) => {
+const codeSubscription = scanner.addOnCodeScannedListener((code) => {
   console.log(code.format, code.rawValue)
 })
-scanner.setOnError((error) => {
+const errorSubscription = scanner.addOnErrorListener((error) => {
   console.error(error)
 })
 
 await scanner.start()
+
+codeSubscription.remove()
+errorSubscription.remove()
+await scanner.stop()
 ```
 
 ## Platform Notes
@@ -59,4 +63,4 @@ Android uses Google Play services Code Scanner (`play-services-code-scanner`). I
 
 `DataScanner.scanCode(options?)` opens the native scanner and resolves with the first scanned code. It rejects when scanning is unavailable, the user cancels, camera permission is denied on iOS, or the scanned code has no text payload.
 
-`DataScanner.createLiveScanner(options?)` creates a native live scanner object. Use `setOnCodeScanned()` and `setOnError()` before `start()`, and call `stop()` to dismiss the native scanner UI.
+`DataScanner.createLiveScanner(options?)` creates a native live scanner object. Use `addOnCodeScannedListener()` and `addOnErrorListener()` before `start()`, and call `stop()` to dismiss the native scanner UI.

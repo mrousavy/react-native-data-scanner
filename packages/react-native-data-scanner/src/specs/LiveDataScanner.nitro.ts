@@ -1,5 +1,6 @@
 import type { HybridObject } from 'react-native-nitro-modules'
 import type { DataScannerApi } from '../types/DataScannerApi'
+import type { ListenerSubscription } from '../types/ListenerSubscription'
 import type { ScannedCode } from '../types/ScannedCode'
 
 /**
@@ -31,19 +32,24 @@ export interface LiveDataScanner
   stop(): Promise<void>
 
   /**
-   * Replaces the callback that receives recognized codes.
+   * Adds a listener that receives recognized codes.
    *
-   * Pass `undefined` to remove the callback.
+   * Remove the listener by calling {@linkcode ListenerSubscription.remove}.
    *
+   * @see {@linkcode ListenerSubscription}
    * @see {@linkcode ScannedCode}
    */
-  setOnCodeScanned(callback: ((code: ScannedCode) => void) | undefined): void
+  addOnCodeScannedListener(
+    callback: (code: ScannedCode) => void
+  ): ListenerSubscription
 
   /**
-   * Replaces the callback that receives live scanner errors after
+   * Adds a listener that receives live scanner errors after
    * {@linkcode LiveDataScanner.start} has resolved.
    *
-   * Pass `undefined` to remove the callback.
+   * Remove the listener by calling {@linkcode ListenerSubscription.remove}.
+   *
+   * @see {@linkcode ListenerSubscription}
    */
-  setOnError(callback: ((error: Error) => void) | undefined): void
+  addOnErrorListener(callback: (error: Error) => void): ListenerSubscription
 }

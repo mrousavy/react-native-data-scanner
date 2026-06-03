@@ -13,13 +13,15 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `ListenerSubscription` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ListenerSubscription; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
 
 #include <NitroModules/Promise.hpp>
+#include "ListenerSubscription.hpp"
 #include "ScannedCode.hpp"
 #include <functional>
-#include <optional>
 #include <exception>
 
 namespace margelo::nitro::datascanner {
@@ -49,14 +51,14 @@ namespace margelo::nitro::datascanner {
 
     public:
       // Properties
-      
+
 
     public:
       // Methods
       virtual std::shared_ptr<Promise<void>> start() = 0;
       virtual std::shared_ptr<Promise<void>> stop() = 0;
-      virtual void setOnCodeScanned(const std::optional<std::function<void(const ScannedCode& /* code */)>>& callback) = 0;
-      virtual void setOnError(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& callback) = 0;
+      virtual ListenerSubscription addOnCodeScannedListener(const std::function<void(const ScannedCode& /* code */)>& callback) = 0;
+      virtual ListenerSubscription addOnErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& callback) = 0;
 
     protected:
       // Hybrid Setup

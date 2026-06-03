@@ -17,6 +17,7 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 #include "JHybridLiveDataScannerSpec.hpp"
+#include "JFunc_void.hpp"
 #include "JFunc_void_ScannedCode.hpp"
 #include "JFunc_void_std__exception_ptr.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
@@ -45,6 +46,7 @@ void registerAllNatives() {
   // Register native JNI methods
   margelo::nitro::datascanner::JHybridDataScannerFactorySpec::CxxPart::registerNatives();
   margelo::nitro::datascanner::JHybridLiveDataScannerSpec::CxxPart::registerNatives();
+  margelo::nitro::datascanner::JFunc_void_cxx::registerNatives();
   margelo::nitro::datascanner::JFunc_void_ScannedCode_cxx::registerNatives();
   margelo::nitro::datascanner::JFunc_void_std__exception_ptr_cxx::registerNatives();
 

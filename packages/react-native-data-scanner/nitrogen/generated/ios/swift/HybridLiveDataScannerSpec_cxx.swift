@@ -84,7 +84,7 @@ open class HybridLiveDataScannerSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridLiveDataScannerSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridLiveDataScannerSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func stop() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -161,50 +161,38 @@ open class HybridLiveDataScannerSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
-  public final func setOnCodeScanned(callback: bridge.std__optional_std__function_void_const_ScannedCode_____code______) -> bridge.Result_void_ {
+  public final func addOnCodeScannedListener(callback: bridge.Func_void_ScannedCode) -> bridge.Result_ListenerSubscription_ {
     do {
-      try self.__implementation.setOnCodeScanned(callback: { () -> ((_ code: ScannedCode) -> Void)? in
-        if bridge.has_value_std__optional_std__function_void_const_ScannedCode_____code______(callback) {
-          let __unwrapped = bridge.get_std__optional_std__function_void_const_ScannedCode_____code______(callback)
-          return { () -> (ScannedCode) -> Void in
-            let __wrappedFunction = bridge.wrap_Func_void_ScannedCode(__unwrapped)
-            return { (__code: ScannedCode) -> Void in
-              __wrappedFunction.call(__code)
-            }
-          }()
-        } else {
-          return nil
+      let __result = try self.__implementation.addOnCodeScannedListener(callback: { () -> (ScannedCode) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_ScannedCode(callback)
+        return { (__code: ScannedCode) -> Void in
+          __wrappedFunction.call(__code)
         }
       }())
-      return bridge.create_Result_void_()
+      let __resultCpp = __result
+      return bridge.create_Result_ListenerSubscription_(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_void_(__exceptionPtr)
+      return bridge.create_Result_ListenerSubscription_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
-  public final func setOnError(callback: bridge.std__optional_std__function_void_const_std__exception_ptr_____error______) -> bridge.Result_void_ {
+  public final func addOnErrorListener(callback: bridge.Func_void_std__exception_ptr) -> bridge.Result_ListenerSubscription_ {
     do {
-      try self.__implementation.setOnError(callback: { () -> ((_ error: Error) -> Void)? in
-        if bridge.has_value_std__optional_std__function_void_const_std__exception_ptr_____error______(callback) {
-          let __unwrapped = bridge.get_std__optional_std__function_void_const_std__exception_ptr_____error______(callback)
-          return { () -> (Error) -> Void in
-            let __wrappedFunction = bridge.wrap_Func_void_std__exception_ptr(__unwrapped)
-            return { (__error: Error) -> Void in
-              __wrappedFunction.call(__error.toCpp())
-            }
-          }()
-        } else {
-          return nil
+      let __result = try self.__implementation.addOnErrorListener(callback: { () -> (Error) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_std__exception_ptr(callback)
+        return { (__error: Error) -> Void in
+          __wrappedFunction.call(__error.toCpp())
         }
       }())
-      return bridge.create_Result_void_()
+      let __resultCpp = __result
+      return bridge.create_Result_ListenerSubscription_(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_void_(__exceptionPtr)
+      return bridge.create_Result_ListenerSubscription_(__exceptionPtr)
     }
   }
 }

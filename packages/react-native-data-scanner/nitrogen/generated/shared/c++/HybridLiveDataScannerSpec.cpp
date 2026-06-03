@@ -16,8 +16,8 @@ namespace margelo::nitro::datascanner {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("start", &HybridLiveDataScannerSpec::start);
       prototype.registerHybridMethod("stop", &HybridLiveDataScannerSpec::stop);
-      prototype.registerHybridMethod("setOnCodeScanned", &HybridLiveDataScannerSpec::setOnCodeScanned);
-      prototype.registerHybridMethod("setOnError", &HybridLiveDataScannerSpec::setOnError);
+      prototype.registerHybridMethod("addOnCodeScannedListener", &HybridLiveDataScannerSpec::addOnCodeScannedListener);
+      prototype.registerHybridMethod("addOnErrorListener", &HybridLiveDataScannerSpec::addOnErrorListener);
     });
   }
 

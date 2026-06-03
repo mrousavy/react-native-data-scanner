@@ -18,6 +18,8 @@ namespace margelo::nitro::datascanner { struct DataScannerCapabilities; }
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
 // Forward declaration of `HybridLiveDataScannerSpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridLiveDataScannerSpec; }
+// Forward declaration of `ListenerSubscription` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ListenerSubscription; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
@@ -35,6 +37,7 @@ namespace NitroDataScanner { class HybridLiveDataScannerSpec_cxx; }
 #include "DataScannerCapabilities.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
 #include "HybridLiveDataScannerSpec.hpp"
+#include "ListenerSubscription.hpp"
 #include "ScannedCode.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <NitroModules/Promise.hpp>
@@ -314,36 +317,6 @@ namespace margelo::nitro::datascanner::bridge::swift {
     return Func_void_Wrapper(std::move(value));
   }
 
-  // pragma MARK: std::optional<std::function<void(const ScannedCode& /* code */)>>
-  /**
-   * Specialized version of `std::optional<std::function<void(const ScannedCode& / * code * /)>>`.
-   */
-  using std__optional_std__function_void_const_ScannedCode_____code______ = std::optional<std::function<void(const ScannedCode& /* code */)>>;
-  inline std::optional<std::function<void(const ScannedCode& /* code */)>> create_std__optional_std__function_void_const_ScannedCode_____code______(const std::function<void(const ScannedCode& /* code */)>& value) noexcept {
-    return std::optional<std::function<void(const ScannedCode& /* code */)>>(value);
-  }
-  inline bool has_value_std__optional_std__function_void_const_ScannedCode_____code______(const std::optional<std::function<void(const ScannedCode& /* code */)>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::function<void(const ScannedCode& /* code */)> get_std__optional_std__function_void_const_ScannedCode_____code______(const std::optional<std::function<void(const ScannedCode& /* code */)>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::optional<std::function<void(const std::exception_ptr& /* error */)>>
-  /**
-   * Specialized version of `std::optional<std::function<void(const std::exception_ptr& / * error * /)>>`.
-   */
-  using std__optional_std__function_void_const_std__exception_ptr_____error______ = std::optional<std::function<void(const std::exception_ptr& /* error */)>>;
-  inline std::optional<std::function<void(const std::exception_ptr& /* error */)>> create_std__optional_std__function_void_const_std__exception_ptr_____error______(const std::function<void(const std::exception_ptr& /* error */)>& value) noexcept {
-    return std::optional<std::function<void(const std::exception_ptr& /* error */)>>(value);
-  }
-  inline bool has_value_std__optional_std__function_void_const_std__exception_ptr_____error______(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::function<void(const std::exception_ptr& /* error */)> get_std__optional_std__function_void_const_std__exception_ptr_____error______(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& optional) noexcept {
-    return optional.value();
-  }
-
   // pragma MARK: Result<std::shared_ptr<Promise<void>>>
   using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
@@ -353,13 +326,13 @@ namespace margelo::nitro::datascanner::bridge::swift {
     return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
 
-  // pragma MARK: Result<void>
-  using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() noexcept {
-    return Result<void>::withValue();
+  // pragma MARK: Result<ListenerSubscription>
+  using Result_ListenerSubscription_ = Result<ListenerSubscription>;
+  inline Result_ListenerSubscription_ create_Result_ListenerSubscription_(const ListenerSubscription& value) noexcept {
+    return Result<ListenerSubscription>::withValue(value);
   }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
-    return Result<void>::withError(error);
+  inline Result_ListenerSubscription_ create_Result_ListenerSubscription_(const std::exception_ptr& error) noexcept {
+    return Result<ListenerSubscription>::withError(error);
   }
 
 } // namespace margelo::nitro::datascanner::bridge::swift

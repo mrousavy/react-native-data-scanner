@@ -50,14 +50,14 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
     std::shared_ptr<Promise<void>> start() override;
     std::shared_ptr<Promise<void>> stop() override;
-    void setOnCodeScanned(const std::optional<std::function<void(const ScannedCode& /* code */)>>& callback) override;
-    void setOnError(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& callback) override;
+    ListenerSubscription addOnCodeScannedListener(const std::function<void(const ScannedCode& /* code */)>& callback) override;
+    ListenerSubscription addOnErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& callback) override;
 
   private:
     jni::global_ref<JHybridLiveDataScannerSpec::JavaPart> _javaPart;

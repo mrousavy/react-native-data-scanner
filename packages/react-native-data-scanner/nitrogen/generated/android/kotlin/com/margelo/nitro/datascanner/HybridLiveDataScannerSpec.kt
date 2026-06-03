@@ -26,32 +26,32 @@ import com.margelo.nitro.core.HybridObject
 )
 abstract class HybridLiveDataScannerSpec: HybridObject() {
   // Properties
-  
+
 
   // Methods
   @DoNotStrip
   @Keep
   abstract fun start(): Promise<Unit>
-  
+
   @DoNotStrip
   @Keep
   abstract fun stop(): Promise<Unit>
-  
-  abstract fun setOnCodeScanned(callback: ((code: ScannedCode) -> Unit)?): Unit
-  
+
+  abstract fun addOnCodeScannedListener(callback: (code: ScannedCode) -> Unit): ListenerSubscription
+
   @DoNotStrip
   @Keep
-  private fun setOnCodeScanned_cxx(callback: Func_void_ScannedCode?): Unit {
-    val __result = setOnCodeScanned(callback?.let { it })
+  private fun addOnCodeScannedListener_cxx(callback: Func_void_ScannedCode): ListenerSubscription {
+    val __result = addOnCodeScannedListener(callback)
     return __result
   }
-  
-  abstract fun setOnError(callback: ((error: Throwable) -> Unit)?): Unit
-  
+
+  abstract fun addOnErrorListener(callback: (error: Throwable) -> Unit): ListenerSubscription
+
   @DoNotStrip
   @Keep
-  private fun setOnError_cxx(callback: Func_void_std__exception_ptr?): Unit {
-    val __result = setOnError(callback?.let { it })
+  private fun addOnErrorListener_cxx(callback: Func_void_std__exception_ptr): ListenerSubscription {
+    val __result = addOnErrorListener(callback)
     return __result
   }
 

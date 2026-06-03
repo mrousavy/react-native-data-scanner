@@ -7,6 +7,8 @@
 
 #include "JHybridLiveDataScannerSpec.hpp"
 
+// Forward declaration of `ListenerSubscription` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ListenerSubscription; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
 // Forward declaration of `BarcodeFormat` to properly resolve imports.
@@ -17,13 +19,16 @@ namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include <NitroModules/JUnit.hpp>
-#include "ScannedCode.hpp"
+#include "ListenerSubscription.hpp"
+#include "JListenerSubscription.hpp"
 #include <functional>
-#include <optional>
-#include "JFunc_void_ScannedCode.hpp"
+#include "JFunc_void.hpp"
 #include <NitroModules/JNICallable.hpp>
+#include "ScannedCode.hpp"
+#include "JFunc_void_ScannedCode.hpp"
 #include "JScannedCode.hpp"
 #include <string>
+#include <optional>
 #include "BarcodeFormat.hpp"
 #include "JBarcodeFormat.hpp"
 #include "BarcodeValueType.hpp"
@@ -61,7 +66,7 @@ namespace margelo::nitro::datascanner {
   }
 
   // Properties
-  
+
 
   // Methods
   std::shared_ptr<Promise<void>> JHybridLiveDataScannerSpec::start() {
@@ -94,13 +99,15 @@ namespace margelo::nitro::datascanner {
       return __promise;
     }();
   }
-  void JHybridLiveDataScannerSpec::setOnCodeScanned(const std::optional<std::function<void(const ScannedCode& /* code */)>>& callback) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<JFunc_void_ScannedCode::javaobject> /* callback */)>("setOnCodeScanned_cxx");
-    method(_javaPart, callback.has_value() ? JFunc_void_ScannedCode_cxx::fromCpp(callback.value()) : nullptr);
+  ListenerSubscription JHybridLiveDataScannerSpec::addOnCodeScannedListener(const std::function<void(const ScannedCode& /* code */)>& callback) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JListenerSubscription>(jni::alias_ref<JFunc_void_ScannedCode::javaobject> /* callback */)>("addOnCodeScannedListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_ScannedCode_cxx::fromCpp(callback));
+    return __result->toCpp();
   }
-  void JHybridLiveDataScannerSpec::setOnError(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& callback) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<JFunc_void_std__exception_ptr::javaobject> /* callback */)>("setOnError_cxx");
-    method(_javaPart, callback.has_value() ? JFunc_void_std__exception_ptr_cxx::fromCpp(callback.value()) : nullptr);
+  ListenerSubscription JHybridLiveDataScannerSpec::addOnErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& callback) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JListenerSubscription>(jni::alias_ref<JFunc_void_std__exception_ptr::javaobject> /* callback */)>("addOnErrorListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_std__exception_ptr_cxx::fromCpp(callback));
+    return __result->toCpp();
   }
 
 } // namespace margelo::nitro::datascanner

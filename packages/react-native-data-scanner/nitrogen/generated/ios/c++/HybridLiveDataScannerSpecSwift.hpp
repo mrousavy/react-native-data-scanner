@@ -12,6 +12,8 @@
 // Forward declaration of `HybridLiveDataScannerSpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridLiveDataScannerSpec_cxx; }
 
+// Forward declaration of `ListenerSubscription` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ListenerSubscription; }
 // Forward declaration of `ScannedCode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedCode; }
 // Forward declaration of `BarcodeFormat` to properly resolve imports.
@@ -20,10 +22,11 @@ namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
 
 #include <NitroModules/Promise.hpp>
-#include "ScannedCode.hpp"
+#include "ListenerSubscription.hpp"
 #include <functional>
-#include <optional>
+#include "ScannedCode.hpp"
 #include <string>
+#include <optional>
 #include "BarcodeFormat.hpp"
 #include "BarcodeValueType.hpp"
 #include <exception>
@@ -74,7 +77,7 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
@@ -94,17 +97,21 @@ namespace margelo::nitro::datascanner {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline void setOnCodeScanned(const std::optional<std::function<void(const ScannedCode& /* code */)>>& callback) override {
-      auto __result = _swiftPart.setOnCodeScanned(callback);
+    inline ListenerSubscription addOnCodeScannedListener(const std::function<void(const ScannedCode& /* code */)>& callback) override {
+      auto __result = _swiftPart.addOnCodeScannedListener(callback);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
     }
-    inline void setOnError(const std::optional<std::function<void(const std::exception_ptr& /* error */)>>& callback) override {
-      auto __result = _swiftPart.setOnError(callback);
+    inline ListenerSubscription addOnErrorListener(const std::function<void(const std::exception_ptr& /* error */)>& callback) override {
+      auto __result = _swiftPart.addOnErrorListener(callback);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:

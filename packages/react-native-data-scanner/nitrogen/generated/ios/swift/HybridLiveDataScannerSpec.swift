@@ -10,13 +10,13 @@ import NitroModules
 /// See ``HybridLiveDataScannerSpec``
 public protocol HybridLiveDataScannerSpec_protocol: HybridObject {
   // Properties
-  
+
 
   // Methods
   func start() throws -> Promise<Void>
   func stop() throws -> Promise<Void>
-  func setOnCodeScanned(callback: ((_ code: ScannedCode) -> Void)?) throws -> Void
-  func setOnError(callback: ((_ error: Error) -> Void)?) throws -> Void
+  func addOnCodeScannedListener(callback: @escaping (_ code: ScannedCode) -> Void) throws -> ListenerSubscription
+  func addOnErrorListener(callback: @escaping (_ error: Error) -> Void) throws -> ListenerSubscription
 }
 
 public extension HybridLiveDataScannerSpec_protocol {

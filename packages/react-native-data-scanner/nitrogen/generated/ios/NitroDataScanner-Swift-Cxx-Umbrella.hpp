@@ -20,6 +20,8 @@ namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
 // Forward declaration of `HybridLiveDataScannerSpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridLiveDataScannerSpec; }
+// Forward declaration of `ListenerSubscription` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ListenerSubscription; }
 // Forward declaration of `ResolvedLiveDataScannerOptions` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ResolvedLiveDataScannerOptions; }
 // Forward declaration of `ResolvedScanCodeOptions` to properly resolve imports.
@@ -36,6 +38,7 @@ namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 #include "DataScannerQualityLevel.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
 #include "HybridLiveDataScannerSpec.hpp"
+#include "ListenerSubscription.hpp"
 #include "ResolvedLiveDataScannerOptions.hpp"
 #include "ResolvedScanCodeOptions.hpp"
 #include "ScannedCode.hpp"
