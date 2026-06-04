@@ -8,14 +8,36 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `BarcodeValueType` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeValueType; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class DataScannerQualityLevel; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
+// Forward declaration of `ResolvedScanOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanOptions; }
+// Forward declaration of `ScannedCode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedCode; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
 // Include C++ defined types
+#include "BarcodeFormat.hpp"
+#include "BarcodeValueType.hpp"
+#include "DataScannerQualityLevel.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
+#include "ResolvedScanOptions.hpp"
+#include "ScannedCode.hpp"
+#include "TargetBarcodeFormat.hpp"
+#include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
 #include <memory>
+#include <optional>
+#include <string>
+#include <vector>
 
 // C++ helpers for Swift
 #include "NitroDataScanner-Swift-Cxx-Bridge.hpp"

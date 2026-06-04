@@ -13,9 +13,14 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `ScannedCode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedCode; }
+// Forward declaration of `ResolvedScanOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanOptions; }
 
-
-
+#include "ScannedCode.hpp"
+#include <NitroModules/Promise.hpp>
+#include "ResolvedScanOptions.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -48,7 +53,7 @@ namespace margelo::nitro::datascanner {
 
     public:
       // Methods
-      virtual void createDataScanner() = 0;
+      virtual std::shared_ptr<Promise<ScannedCode>> scan(const ResolvedScanOptions& options) = 0;
 
     protected:
       // Hybrid Setup

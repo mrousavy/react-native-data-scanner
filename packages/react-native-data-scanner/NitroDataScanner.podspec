@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     # Implementation (C++ objects)
     "cpp/**/*.{hpp,cpp}",
   ]
-  s.weak_frameworks = "VisionKit"
+  s.weak_frameworks = "VisionKit", "Vision"
 
   load 'nitrogen/generated/ios/NitroDataScanner+autolinking.rb'
   add_nitrogen_files(s)

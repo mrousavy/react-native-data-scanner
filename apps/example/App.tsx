@@ -6,10 +6,15 @@ import { DataScanner } from 'react-native-data-scanner'
 export default function App() {
   const [status, setStatus] = useState('Ready')
 
-  const createDataScanner = useCallback(() => {
+  const scan = useCallback(async () => {
     try {
-      DataScanner.createDataScanner()
-      setStatus('createDataScanner() returned')
+      setStatus('Scanning...')
+      const code = await DataScanner.scan({
+        formats: 'all',
+        qualityLevel: 'balanced',
+        enableAutoZoom: true,
+      })
+      setStatus(`${code.format}: ${code.rawValue}`)
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
       setStatus(message)
@@ -17,13 +22,13 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    createDataScanner()
-  }, [createDataScanner])
+    scan()
+  }, [scan])
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>react-native-data-scanner</Text>
-      <Button title="Create Data Scanner" onPress={createDataScanner} />
+      <Button title="Scan Code" onPress={scan} />
       <Text style={styles.status}>{status}</Text>
       <StatusBar style="auto" />
     </View>
