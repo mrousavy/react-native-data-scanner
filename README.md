@@ -92,3 +92,7 @@ The promise rejects when scanning is unavailable, the user cancels, another scan
 ## Android
 
 Uses Google ML Kit's Google code scanner through Google Play services. The library requests install-time download of the `barcode_ui` optional module through its Android manifest.
+
+## Advanced Use Cases
+
+For advanced use cases or an in-app `<Camera>` view, consider using [VisionCamera](https://visioncamera.margelo.com), a fully featured Camera library.
