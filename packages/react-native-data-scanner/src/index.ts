@@ -3,11 +3,12 @@ import type { DataScannerFactory } from './specs/DataScannerFactory.nitro'
 
 /**
  * One-shot data scanner.
+ *
+ * @see {@linkcode DataScannerFactory.scanBarcode}
  */
 export const DataScanner =
   NitroModules.createHybridObject<DataScannerFactory>('DataScannerFactory')
 
-export { targetBarcodeFormats } from './BarcodeFormat'
 export type { BarcodeFormat, TargetBarcodeFormat } from './BarcodeFormat'
 export type { ScanBarcodeOptions } from './ScanBarcodeOptions'
 export type { ScanQualityLevel } from './ScanQualityLevel'

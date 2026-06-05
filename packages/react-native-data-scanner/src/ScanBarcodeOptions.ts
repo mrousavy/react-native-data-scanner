@@ -2,7 +2,7 @@ import type { TargetBarcodeFormat } from './BarcodeFormat'
 import type { ScanQualityLevel } from './ScanQualityLevel'
 
 /**
- * Configures one barcode scan started by {@linkcode DataScanner.scanBarcode}.
+ * Configures one barcode scan.
  */
 export interface ScanBarcodeOptions {
   /**
@@ -11,12 +11,15 @@ export interface ScanBarcodeOptions {
    * Omit this to scan for every supported format, or pass a non-empty array to
    * limit scanning to specific formats.
    *
+   * @see {@linkcode TargetBarcodeFormat}
    * @default undefined
    */
   targetFormats?: TargetBarcodeFormat[]
 
   /**
    * Quality/performance tradeoff for barcode recognition.
+   *
+   * @see {@linkcode ScanQualityLevel}
    * @default 'balanced'
    * @platform iOS
    */

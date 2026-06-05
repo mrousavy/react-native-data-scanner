@@ -1,6 +1,4 @@
 /**
- * Controls the quality/performance tradeoff for {@linkcode ScanBarcodeOptions.qualityLevel}.
- *
- * @see {@linkcode ScanBarcodeOptions.qualityLevel}
+ * Controls the quality/performance tradeoff for barcode recognition.
  */
 export type ScanQualityLevel = 'fast' | 'balanced' | 'accurate'
