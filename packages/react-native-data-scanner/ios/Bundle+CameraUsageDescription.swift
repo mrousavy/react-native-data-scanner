@@ -3,9 +3,11 @@ import NitroModules
 
 extension Bundle {
   func checkCameraUsageDescription() throws {
-    let value = object(forInfoDictionaryKey: "NSCameraUsageDescription") as? String
-    guard let value, !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-      throw RuntimeError("Missing NSCameraUsageDescription in the app's Info.plist.")
+    guard let value = object(forInfoDictionaryKey: "NSCameraUsageDescription") else {
+      throw RuntimeError("Missing NSCameraUsageDescription in the app's Info.plist!")
+    }
+    guard let cameraUsageDescription = value as? String, !cameraUsageDescription.isEmpty else {
+      throw RuntimeError("The NSCameraUsageDescription in the app's Info.plist is not a valid string!")
     }
   }
 }
