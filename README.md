@@ -13,9 +13,29 @@ Fast one-shot QR/Barcode scanning for React Native powered by [Nitro Modules](ht
 npm install react-native-data-scanner react-native-nitro-modules
 ```
 
-### 2. Add a camera usage description (iOS only)
+### 2. Configure Camera Usage (iOS only)
 
-Add `NSCameraUsageDescription` to your app's `Info.plist`:
+#### A) Expo
+
+If you use Expo, add `NSCameraUsageDescription` to your Expo app config:
+
+```json
+{
+  "expo": {
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to scan barcodes with the camera."
+      }
+    }
+  }
+}
+```
+
+This library contains native code, so Expo apps need a development build or production build. It does not run inside Expo Go. Rebuild the native app after changing native config, for example with `npx expo run:ios` or EAS Build.
+
+#### B) Bare React Native
+
+If you use bare react-native CLI instead, add `NSCameraUsageDescription` to your app's `Info.plist`:
 
 ```xml
 <key>NSCameraUsageDescription</key>
@@ -41,7 +61,7 @@ async function scanBarcode() {
 
 That's it. Calling `scanBarcode(...)` presents the native scanner UI and resolves with the scanned barcode.
 
-## UI
+## UI Demo
 
 <p align="center">
   <img src="./img/screenshot_ios.png" alt="Barcode scanner on iPhone" width="42%" />
