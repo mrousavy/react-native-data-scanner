@@ -8,18 +8,39 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
+// Forward declaration of `ScanQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ScanQualityLevel; }
+// Forward declaration of `ScannedBarcode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedBarcode; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
 // Include C++ defined types
+#include "BarcodeFormat.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
+#include "ScanBarcodeOptions.hpp"
+#include "ScanQualityLevel.hpp"
+#include "ScannedBarcode.hpp"
+#include "TargetBarcodeFormat.hpp"
+#include <NitroModules/Promise.hpp>
+#include <NitroModules/PromiseHolder.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
+#include <functional>
 #include <memory>
+#include <optional>
+#include <string>
+#include <vector>
 
 /**
  * Contains specialized versions of C++ templated types so they can be accessed from Swift,
@@ -27,6 +48,133 @@ namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
  */
 namespace margelo::nitro::datascanner::bridge::swift {
 
+  // pragma MARK: std::shared_ptr<Promise<ScannedBarcode>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ScannedBarcode>>`.
+   */
+  using std__shared_ptr_Promise_ScannedBarcode__ = std::shared_ptr<Promise<ScannedBarcode>>;
+  inline std::shared_ptr<Promise<ScannedBarcode>> create_std__shared_ptr_Promise_ScannedBarcode__() noexcept {
+    return Promise<ScannedBarcode>::create();
+  }
+  inline PromiseHolder<ScannedBarcode> wrap_std__shared_ptr_Promise_ScannedBarcode__(std::shared_ptr<Promise<ScannedBarcode>> promise) noexcept {
+    return PromiseHolder<ScannedBarcode>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const ScannedBarcode& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ScannedBarcode&)>`.
+   */
+  using Func_void_ScannedBarcode = std::function<void(const ScannedBarcode& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ScannedBarcode& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ScannedBarcode_Wrapper final {
+  public:
+    explicit Func_void_ScannedBarcode_Wrapper(std::function<void(const ScannedBarcode& /* result */)>&& func): _function(std::make_unique<std::function<void(const ScannedBarcode& /* result */)>>(std::move(func))) {}
+    inline void call(ScannedBarcode result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ScannedBarcode& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ScannedBarcode create_Func_void_ScannedBarcode(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ScannedBarcode_Wrapper wrap_Func_void_ScannedBarcode(Func_void_ScannedBarcode value) noexcept {
+    return Func_void_ScannedBarcode_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  /**
+   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
+   */
+  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__exception_ptr_Wrapper final {
+  public:
+    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_unique<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
+    inline void call(std::exception_ptr error) const noexcept {
+      _function->operator()(error);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
+    return Func_void_std__exception_ptr_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<TargetBarcodeFormat>
+  /**
+   * Specialized version of `std::vector<TargetBarcodeFormat>`.
+   */
+  using std__vector_TargetBarcodeFormat_ = std::vector<TargetBarcodeFormat>;
+  inline std::vector<TargetBarcodeFormat> create_std__vector_TargetBarcodeFormat_(size_t size) noexcept {
+    std::vector<TargetBarcodeFormat> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<TargetBarcodeFormat>>
+  /**
+   * Specialized version of `std::optional<std::vector<TargetBarcodeFormat>>`.
+   */
+  using std__optional_std__vector_TargetBarcodeFormat__ = std::optional<std::vector<TargetBarcodeFormat>>;
+  inline std::optional<std::vector<TargetBarcodeFormat>> create_std__optional_std__vector_TargetBarcodeFormat__(const std::vector<TargetBarcodeFormat>& value) noexcept {
+    return std::optional<std::vector<TargetBarcodeFormat>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_TargetBarcodeFormat__(const std::optional<std::vector<TargetBarcodeFormat>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<TargetBarcodeFormat> get_std__optional_std__vector_TargetBarcodeFormat__(const std::optional<std::vector<TargetBarcodeFormat>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<ScanQualityLevel>
+  /**
+   * Specialized version of `std::optional<ScanQualityLevel>`.
+   */
+  using std__optional_ScanQualityLevel_ = std::optional<ScanQualityLevel>;
+  inline std::optional<ScanQualityLevel> create_std__optional_ScanQualityLevel_(const ScanQualityLevel& value) noexcept {
+    return std::optional<ScanQualityLevel>(value);
+  }
+  inline bool has_value_std__optional_ScanQualityLevel_(const std::optional<ScanQualityLevel>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ScanQualityLevel get_std__optional_ScanQualityLevel_(const std::optional<ScanQualityLevel>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
+    return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<ScanBarcodeOptions>
+  /**
+   * Specialized version of `std::optional<ScanBarcodeOptions>`.
+   */
+  using std__optional_ScanBarcodeOptions_ = std::optional<ScanBarcodeOptions>;
+  inline std::optional<ScanBarcodeOptions> create_std__optional_ScanBarcodeOptions_(const ScanBarcodeOptions& value) noexcept {
+    return std::optional<ScanBarcodeOptions>(value);
+  }
+  inline bool has_value_std__optional_ScanBarcodeOptions_(const std::optional<ScanBarcodeOptions>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ScanBarcodeOptions get_std__optional_ScanBarcodeOptions_(const std::optional<ScanBarcodeOptions>& optional) noexcept {
+    return optional.value();
+  }
+  
   // pragma MARK: std::shared_ptr<HybridDataScannerFactorySpec>
   /**
    * Specialized version of `std::shared_ptr<HybridDataScannerFactorySpec>`.
@@ -39,13 +187,13 @@ namespace margelo::nitro::datascanner::bridge::swift {
   using std__weak_ptr_HybridDataScannerFactorySpec_ = std::weak_ptr<HybridDataScannerFactorySpec>;
   inline std__weak_ptr_HybridDataScannerFactorySpec_ weakify_std__shared_ptr_HybridDataScannerFactorySpec_(const std::shared_ptr<HybridDataScannerFactorySpec>& strong) noexcept { return strong; }
   
-  // pragma MARK: Result<void>
-  using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() noexcept {
-    return Result<void>::withValue();
+  // pragma MARK: Result<std::shared_ptr<Promise<ScannedBarcode>>>
+  using Result_std__shared_ptr_Promise_ScannedBarcode___ = Result<std::shared_ptr<Promise<ScannedBarcode>>>;
+  inline Result_std__shared_ptr_Promise_ScannedBarcode___ create_Result_std__shared_ptr_Promise_ScannedBarcode___(const std::shared_ptr<Promise<ScannedBarcode>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ScannedBarcode>>>::withValue(value);
   }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
-    return Result<void>::withError(error);
+  inline Result_std__shared_ptr_Promise_ScannedBarcode___ create_Result_std__shared_ptr_Promise_ScannedBarcode___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ScannedBarcode>>>::withError(error);
   }
 
 } // namespace margelo::nitro::datascanner::bridge::swift

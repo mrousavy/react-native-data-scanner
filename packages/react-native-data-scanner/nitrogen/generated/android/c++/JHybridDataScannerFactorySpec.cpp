@@ -7,9 +7,32 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 
+// Forward declaration of `ScannedBarcode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedBarcode; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
+// Forward declaration of `ScanQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ScanQualityLevel; }
 
-
-
+#include "ScannedBarcode.hpp"
+#include <NitroModules/Promise.hpp>
+#include <NitroModules/JPromise.hpp>
+#include "JScannedBarcode.hpp"
+#include <string>
+#include "BarcodeFormat.hpp"
+#include "JBarcodeFormat.hpp"
+#include "ScanBarcodeOptions.hpp"
+#include <optional>
+#include "JScanBarcodeOptions.hpp"
+#include "TargetBarcodeFormat.hpp"
+#include <vector>
+#include "JTargetBarcodeFormat.hpp"
+#include "ScanQualityLevel.hpp"
+#include "JScanQualityLevel.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -44,9 +67,21 @@ namespace margelo::nitro::datascanner {
   
 
   // Methods
-  void JHybridDataScannerFactorySpec::createDataScanner() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("createDataScanner");
-    method(_javaPart);
+  std::shared_ptr<Promise<ScannedBarcode>> JHybridDataScannerFactorySpec::scanBarcode(const std::optional<ScanBarcodeOptions>& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JScanBarcodeOptions> /* options */)>("scanBarcode");
+    auto __result = method(_javaPart, options.has_value() ? JScanBarcodeOptions::fromCpp(options.value()) : nullptr);
+    return [&]() {
+      auto __promise = Promise<ScannedBarcode>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JScannedBarcode>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
   }
 
 } // namespace margelo::nitro::datascanner

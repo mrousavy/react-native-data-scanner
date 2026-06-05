@@ -14,6 +14,22 @@
 
 namespace margelo::nitro::datascanner::bridge::swift {
 
+  // pragma MARK: std::function<void(const ScannedBarcode& /* result */)>
+  Func_void_ScannedBarcode create_Func_void_ScannedBarcode(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_ScannedBarcode::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ScannedBarcode& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroDataScanner::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
+      swiftClosure.call(error);
+    };
+  }
+  
   // pragma MARK: std::shared_ptr<HybridDataScannerFactorySpec>
   std::shared_ptr<HybridDataScannerFactorySpec> create_std__shared_ptr_HybridDataScannerFactorySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     NitroDataScanner::HybridDataScannerFactorySpec_cxx swiftPart = NitroDataScanner::HybridDataScannerFactorySpec_cxx::fromUnsafe(swiftUnsafePointer);
