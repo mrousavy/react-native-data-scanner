@@ -12,6 +12,8 @@
 namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
 // Forward declaration of `ScannedBarcode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedBarcode; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
@@ -24,6 +26,7 @@ namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 // Include C++ defined types
 #include "BarcodeFormat.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
+#include "ScanBarcodeOptions.hpp"
 #include "ScannedBarcode.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <NitroModules/Promise.hpp>
@@ -32,6 +35,7 @@ namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 #include <exception>
 #include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -106,6 +110,51 @@ namespace margelo::nitro::datascanner::bridge::swift {
     std::vector<TargetBarcodeFormat> vector;
     vector.reserve(size);
     return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<TargetBarcodeFormat>>
+  /**
+   * Specialized version of `std::optional<std::vector<TargetBarcodeFormat>>`.
+   */
+  using std__optional_std__vector_TargetBarcodeFormat__ = std::optional<std::vector<TargetBarcodeFormat>>;
+  inline std::optional<std::vector<TargetBarcodeFormat>> create_std__optional_std__vector_TargetBarcodeFormat__(const std::vector<TargetBarcodeFormat>& value) noexcept {
+    return std::optional<std::vector<TargetBarcodeFormat>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_TargetBarcodeFormat__(const std::optional<std::vector<TargetBarcodeFormat>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<TargetBarcodeFormat> get_std__optional_std__vector_TargetBarcodeFormat__(const std::optional<std::vector<TargetBarcodeFormat>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
+    return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<ScanBarcodeOptions>
+  /**
+   * Specialized version of `std::optional<ScanBarcodeOptions>`.
+   */
+  using std__optional_ScanBarcodeOptions_ = std::optional<ScanBarcodeOptions>;
+  inline std::optional<ScanBarcodeOptions> create_std__optional_ScanBarcodeOptions_(const ScanBarcodeOptions& value) noexcept {
+    return std::optional<ScanBarcodeOptions>(value);
+  }
+  inline bool has_value_std__optional_ScanBarcodeOptions_(const std::optional<ScanBarcodeOptions>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ScanBarcodeOptions get_std__optional_ScanBarcodeOptions_(const std::optional<ScanBarcodeOptions>& optional) noexcept {
+    return optional.value();
   }
   
   // pragma MARK: std::shared_ptr<HybridDataScannerFactorySpec>

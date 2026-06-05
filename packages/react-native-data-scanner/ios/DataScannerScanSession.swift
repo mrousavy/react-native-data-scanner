@@ -12,11 +12,17 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
 
   @MainActor
   init(
-    options: ResolvedScanBarcodeOptions,
+    options: ScanBarcodeOptions?,
     promise: Promise<ScannedBarcode>,
     onFinish: @escaping () -> Void
   ) throws {
-    let symbologies = Set(options.targetFormats.flatMap { format in
+    let targetFormats = options?.targetFormats ?? TargetBarcodeFormat.allDataScannerFormats
+
+    guard !targetFormats.isEmpty else {
+      throw RuntimeError("targetFormats must not be empty.")
+    }
+
+    let symbologies = Set(targetFormats.flatMap { format in
       format.toVNBarcodeSymbologies()
     })
 

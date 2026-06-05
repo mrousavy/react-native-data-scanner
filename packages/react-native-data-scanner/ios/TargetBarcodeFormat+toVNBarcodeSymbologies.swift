@@ -1,6 +1,22 @@
 import Vision
 
 extension TargetBarcodeFormat {
+  static let allDataScannerFormats: [TargetBarcodeFormat] = [
+    .aztec,
+    .codabar,
+    .code128,
+    .code39,
+    .code93,
+    .dataMatrix,
+    .ean13,
+    .ean8,
+    .itf,
+    .pdf417,
+    .qr,
+    .upcA,
+    .upcE,
+  ]
+
   func toVNBarcodeSymbologies() -> [VNBarcodeSymbology] {
     switch self {
     case .aztec:

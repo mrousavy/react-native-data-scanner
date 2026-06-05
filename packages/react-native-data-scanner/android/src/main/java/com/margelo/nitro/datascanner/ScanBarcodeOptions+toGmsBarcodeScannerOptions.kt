@@ -2,7 +2,8 @@ package com.margelo.nitro.datascanner
 
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 
-internal fun ResolvedScanBarcodeOptions.toGmsBarcodeScannerOptions(): GmsBarcodeScannerOptions {
+internal fun ScanBarcodeOptions?.toGmsBarcodeScannerOptions(): GmsBarcodeScannerOptions {
+  val targetFormats = this?.targetFormats ?: TargetBarcodeFormat.entries.toTypedArray()
   if (targetFormats.isEmpty()) {
     throw IllegalArgumentException("targetFormats must not be empty.")
   }
@@ -16,7 +17,7 @@ internal fun ResolvedScanBarcodeOptions.toGmsBarcodeScannerOptions(): GmsBarcode
   val builder = GmsBarcodeScannerOptions.Builder()
     .setBarcodeFormats(firstFormat, *remainingFormats)
 
-  if (enableAutoZoom) {
+  if (this?.enableAutoZoom == true) {
     builder.enableAutoZoom()
   }
 

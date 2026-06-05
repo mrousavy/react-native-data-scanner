@@ -11,8 +11,8 @@
 namespace margelo::nitro::datascanner { struct ScannedBarcode; }
 // Forward declaration of `BarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
-// Forward declaration of `ResolvedScanBarcodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ResolvedScanBarcodeOptions; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
@@ -23,8 +23,9 @@ namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 #include <string>
 #include "BarcodeFormat.hpp"
 #include "JBarcodeFormat.hpp"
-#include "ResolvedScanBarcodeOptions.hpp"
-#include "JResolvedScanBarcodeOptions.hpp"
+#include "ScanBarcodeOptions.hpp"
+#include <optional>
+#include "JScanBarcodeOptions.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <vector>
 #include "JTargetBarcodeFormat.hpp"
@@ -62,9 +63,9 @@ namespace margelo::nitro::datascanner {
   
 
   // Methods
-  std::shared_ptr<Promise<ScannedBarcode>> JHybridDataScannerFactorySpec::scanBarcode(const ResolvedScanBarcodeOptions& options) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JResolvedScanBarcodeOptions> /* options */)>("scanBarcode");
-    auto __result = method(_javaPart, JResolvedScanBarcodeOptions::fromCpp(options));
+  std::shared_ptr<Promise<ScannedBarcode>> JHybridDataScannerFactorySpec::scanBarcode(const std::optional<ScanBarcodeOptions>& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JScanBarcodeOptions> /* options */)>("scanBarcode");
+    auto __result = method(_javaPart, options.has_value() ? JScanBarcodeOptions::fromCpp(options.value()) : nullptr);
     return [&]() {
       auto __promise = Promise<ScannedBarcode>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {

@@ -15,12 +15,13 @@
 
 // Forward declaration of `ScannedBarcode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedBarcode; }
-// Forward declaration of `ResolvedScanBarcodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ResolvedScanBarcodeOptions; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
 
 #include "ScannedBarcode.hpp"
 #include <NitroModules/Promise.hpp>
-#include "ResolvedScanBarcodeOptions.hpp"
+#include "ScanBarcodeOptions.hpp"
+#include <optional>
 
 namespace margelo::nitro::datascanner {
 
@@ -53,7 +54,7 @@ namespace margelo::nitro::datascanner {
 
     public:
       // Methods
-      virtual std::shared_ptr<Promise<ScannedBarcode>> scanBarcode(const ResolvedScanBarcodeOptions& options) = 0;
+      virtual std::shared_ptr<Promise<ScannedBarcode>> scanBarcode(const std::optional<ScanBarcodeOptions>& options) = 0;
 
     protected:
       // Hybrid Setup

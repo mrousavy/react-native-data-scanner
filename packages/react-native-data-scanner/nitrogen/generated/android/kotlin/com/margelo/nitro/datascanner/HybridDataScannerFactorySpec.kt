@@ -31,7 +31,7 @@ abstract class HybridDataScannerFactorySpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun scanBarcode(options: ResolvedScanBarcodeOptions): Promise<ScannedBarcode>
+  abstract fun scanBarcode(options: ScanBarcodeOptions?): Promise<ScannedBarcode>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

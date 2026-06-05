@@ -14,7 +14,7 @@ class HybridDataScannerFactory : HybridDataScannerFactorySpec() {
   private val mainHandler = Handler(Looper.getMainLooper())
   private var isScanning = false
 
-  override fun scanBarcode(options: ResolvedScanBarcodeOptions): Promise<ScannedBarcode> {
+  override fun scanBarcode(options: ScanBarcodeOptions?): Promise<ScannedBarcode> {
     val promise = Promise<ScannedBarcode>()
 
     mainHandler.post {

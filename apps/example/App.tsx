@@ -10,7 +10,6 @@ export default function App() {
     try {
       setStatus('Scanning...')
       const barcode = await DataScanner.scanBarcode({
-        targetFormats: 'all',
         enableAutoZoom: true,
       })
       setStatus(`${barcode.format}: ${barcode.value}`)

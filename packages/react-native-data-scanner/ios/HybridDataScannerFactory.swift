@@ -3,7 +3,7 @@ import NitroModules
 final class HybridDataScannerFactory: HybridDataScannerFactorySpec {
   private var activeScanSession: AnyObject?
 
-  func scanBarcode(options: ResolvedScanBarcodeOptions) throws -> Promise<ScannedBarcode> {
+  func scanBarcode(options: ScanBarcodeOptions?) throws -> Promise<ScannedBarcode> {
     let promise = Promise<ScannedBarcode>()
 
     DispatchQueue.main.async { [weak self] in

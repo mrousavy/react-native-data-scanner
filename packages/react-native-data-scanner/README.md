@@ -21,7 +21,7 @@ console.log(barcode.format, barcode.value)
 
 Presents the native scanner UI and resolves with the first barcode the user selects.
 
-- `targetFormats`: `'all'` or a non-empty array of barcode formats. Defaults to `'all'`.
+- `targetFormats`: optional non-empty array of barcode formats. Omit it to scan all supported formats.
 - `enableAutoZoom`: best-effort native auto-zoom preference. Defaults to `false`.
 
 The promise rejects when scanning is unavailable, the user cancels, another scan is already active, or the scanned barcode does not contain a decoded string value.

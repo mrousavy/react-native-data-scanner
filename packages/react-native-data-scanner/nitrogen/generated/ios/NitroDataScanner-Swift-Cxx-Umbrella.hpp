@@ -12,8 +12,8 @@
 namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 // Forward declaration of `HybridDataScannerFactorySpec` to properly resolve imports.
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
-// Forward declaration of `ResolvedScanBarcodeOptions` to properly resolve imports.
-namespace margelo::nitro::datascanner { struct ResolvedScanBarcodeOptions; }
+// Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
 // Forward declaration of `ScannedBarcode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedBarcode; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
@@ -22,13 +22,14 @@ namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 // Include C++ defined types
 #include "BarcodeFormat.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
-#include "ResolvedScanBarcodeOptions.hpp"
+#include "ScanBarcodeOptions.hpp"
 #include "ScannedBarcode.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 

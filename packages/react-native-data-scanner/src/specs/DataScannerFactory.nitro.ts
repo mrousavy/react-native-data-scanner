@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules'
-import type { ResolvedScanBarcodeOptions } from '../ResolvedScanBarcodeOptions'
+import type { ScanBarcodeOptions } from '../ScanBarcodeOptions'
 import type { ScannedBarcode } from '../ScannedBarcode'
 
 /**
@@ -15,5 +15,5 @@ export interface DataScannerFactory
    * @throws When scanning is unavailable, the scanner is canceled, or the scanned
    * barcode does not contain a decoded string value.
    */
-  scanBarcode(options: ResolvedScanBarcodeOptions): Promise<ScannedBarcode>
+  scanBarcode(options?: ScanBarcodeOptions): Promise<ScannedBarcode>
 }
