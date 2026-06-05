@@ -1,7 +1,7 @@
 import type { BarcodeFormat } from './BarcodeFormat'
 
 /**
- * Represents a barcode scanned by {@linkcode DataScanner.scanBarcode}.
+ * Represents a scanned barcode.
  */
 export interface ScannedBarcode {
   /**
@@ -10,7 +10,9 @@ export interface ScannedBarcode {
   value: string
 
   /**
-   * Format detected for {@linkcode ScannedBarcode.value}.
+   * Format detected for the scanned barcode value.
+   *
+   * @see {@linkcode BarcodeFormat}
    */
   format: BarcodeFormat
 }

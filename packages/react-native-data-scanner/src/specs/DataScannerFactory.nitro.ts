@@ -4,8 +4,6 @@ import type { ScannedBarcode } from '../ScannedBarcode'
 
 /**
  * Native entry point for one-shot data scanning.
- *
- * @see {@linkcode DataScanner.scanBarcode}
  */
 export interface DataScannerFactory extends HybridObject<{
   ios: 'swift'

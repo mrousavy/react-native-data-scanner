@@ -1,7 +1,5 @@
 /**
- * Represents a barcode format accepted by {@linkcode ScanBarcodeOptions.targetFormats}.
- *
- * @see {@linkcode targetBarcodeFormats}
+ * Represents a barcode format that can be requested by scan options.
  */
 export type TargetBarcodeFormat =
   | 'aztec'
@@ -19,27 +17,8 @@ export type TargetBarcodeFormat =
   | 'upc-e'
 
 /**
- * Represents the detected format of a {@linkcode ScannedBarcode}.
+ * Represents the detected barcode format.
  *
- * @see {@linkcode ScannedBarcode.format}
+ * @see {@linkcode TargetBarcodeFormat}
  */
 export type BarcodeFormat = TargetBarcodeFormat | 'unknown'
-
-/**
- * All barcode formats that can be requested by {@linkcode ScanBarcodeOptions.targetFormats}.
- */
-export const targetBarcodeFormats = [
-  'aztec',
-  'codabar',
-  'code-128',
-  'code-39',
-  'code-93',
-  'data-matrix',
-  'ean-13',
-  'ean-8',
-  'itf',
-  'pdf-417',
-  'qr',
-  'upc-a',
-  'upc-e',
-] as const satisfies readonly TargetBarcodeFormat[]
