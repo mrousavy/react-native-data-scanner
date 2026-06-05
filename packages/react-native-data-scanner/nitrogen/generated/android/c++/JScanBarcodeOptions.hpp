@@ -40,8 +40,8 @@ namespace margelo::nitro::datascanner {
       jni::local_ref<jni::JArrayClass<JTargetBarcodeFormat>> targetFormats = this->getFieldValue(fieldTargetFormats);
       static const auto fieldQualityLevel = clazz->getField<JScanQualityLevel>("qualityLevel");
       jni::local_ref<JScanQualityLevel> qualityLevel = this->getFieldValue(fieldQualityLevel);
-      static const auto fieldIsHighFrameRateTrackingEnabled = clazz->getField<jni::JBoolean>("isHighFrameRateTrackingEnabled");
-      jni::local_ref<jni::JBoolean> isHighFrameRateTrackingEnabled = this->getFieldValue(fieldIsHighFrameRateTrackingEnabled);
+      static const auto fieldEnableHighFrameRateTracking = clazz->getField<jni::JBoolean>("enableHighFrameRateTracking");
+      jni::local_ref<jni::JBoolean> enableHighFrameRateTracking = this->getFieldValue(fieldEnableHighFrameRateTracking);
       static const auto fieldEnableAutoZoom = clazz->getField<jni::JBoolean>("enableAutoZoom");
       jni::local_ref<jni::JBoolean> enableAutoZoom = this->getFieldValue(fieldEnableAutoZoom);
       return ScanBarcodeOptions(
@@ -56,7 +56,7 @@ namespace margelo::nitro::datascanner {
           return __vector;
         }(targetFormats)) : std::nullopt,
         qualityLevel != nullptr ? std::make_optional(qualityLevel->toCpp()) : std::nullopt,
-        isHighFrameRateTrackingEnabled != nullptr ? std::make_optional(static_cast<bool>(isHighFrameRateTrackingEnabled->value())) : std::nullopt,
+        enableHighFrameRateTracking != nullptr ? std::make_optional(static_cast<bool>(enableHighFrameRateTracking->value())) : std::nullopt,
         enableAutoZoom != nullptr ? std::make_optional(static_cast<bool>(enableAutoZoom->value())) : std::nullopt
       );
     }
@@ -83,7 +83,7 @@ namespace margelo::nitro::datascanner {
           return __array;
         }(value.targetFormats.value()) : nullptr,
         value.qualityLevel.has_value() ? JScanQualityLevel::fromCpp(value.qualityLevel.value()) : nullptr,
-        value.isHighFrameRateTrackingEnabled.has_value() ? jni::JBoolean::valueOf(value.isHighFrameRateTrackingEnabled.value()) : nullptr,
+        value.enableHighFrameRateTracking.has_value() ? jni::JBoolean::valueOf(value.enableHighFrameRateTracking.value()) : nullptr,
         value.enableAutoZoom.has_value() ? jni::JBoolean::valueOf(value.enableAutoZoom.value()) : nullptr
       );
     }

@@ -47,12 +47,12 @@ namespace margelo::nitro::datascanner {
   public:
     std::optional<std::vector<TargetBarcodeFormat>> targetFormats     SWIFT_PRIVATE;
     std::optional<ScanQualityLevel> qualityLevel     SWIFT_PRIVATE;
-    std::optional<bool> isHighFrameRateTrackingEnabled     SWIFT_PRIVATE;
+    std::optional<bool> enableHighFrameRateTracking     SWIFT_PRIVATE;
     std::optional<bool> enableAutoZoom     SWIFT_PRIVATE;
 
   public:
     ScanBarcodeOptions() = default;
-    explicit ScanBarcodeOptions(std::optional<std::vector<TargetBarcodeFormat>> targetFormats, std::optional<ScanQualityLevel> qualityLevel, std::optional<bool> isHighFrameRateTrackingEnabled, std::optional<bool> enableAutoZoom): targetFormats(targetFormats), qualityLevel(qualityLevel), isHighFrameRateTrackingEnabled(isHighFrameRateTrackingEnabled), enableAutoZoom(enableAutoZoom) {}
+    explicit ScanBarcodeOptions(std::optional<std::vector<TargetBarcodeFormat>> targetFormats, std::optional<ScanQualityLevel> qualityLevel, std::optional<bool> enableHighFrameRateTracking, std::optional<bool> enableAutoZoom): targetFormats(targetFormats), qualityLevel(qualityLevel), enableHighFrameRateTracking(enableHighFrameRateTracking), enableAutoZoom(enableAutoZoom) {}
 
   public:
     friend bool operator==(const ScanBarcodeOptions& lhs, const ScanBarcodeOptions& rhs) = default;
@@ -70,7 +70,7 @@ namespace margelo::nitro {
       return margelo::nitro::datascanner::ScanBarcodeOptions(
         JSIConverter<std::optional<std::vector<margelo::nitro::datascanner::TargetBarcodeFormat>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "targetFormats"))),
         JSIConverter<std::optional<margelo::nitro::datascanner::ScanQualityLevel>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "qualityLevel"))),
-        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isHighFrameRateTrackingEnabled"))),
+        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "enableHighFrameRateTracking"))),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "enableAutoZoom")))
       );
     }
@@ -78,7 +78,7 @@ namespace margelo::nitro {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "targetFormats"), JSIConverter<std::optional<std::vector<margelo::nitro::datascanner::TargetBarcodeFormat>>>::toJSI(runtime, arg.targetFormats));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "qualityLevel"), JSIConverter<std::optional<margelo::nitro::datascanner::ScanQualityLevel>>::toJSI(runtime, arg.qualityLevel));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "isHighFrameRateTrackingEnabled"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.isHighFrameRateTrackingEnabled));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "enableHighFrameRateTracking"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.enableHighFrameRateTracking));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "enableAutoZoom"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.enableAutoZoom));
       return obj;
     }
@@ -92,7 +92,7 @@ namespace margelo::nitro {
       }
       if (!JSIConverter<std::optional<std::vector<margelo::nitro::datascanner::TargetBarcodeFormat>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "targetFormats")))) return false;
       if (!JSIConverter<std::optional<margelo::nitro::datascanner::ScanQualityLevel>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "qualityLevel")))) return false;
-      if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isHighFrameRateTrackingEnabled")))) return false;
+      if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "enableHighFrameRateTracking")))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "enableAutoZoom")))) return false;
       return true;
     }

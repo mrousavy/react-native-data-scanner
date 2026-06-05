@@ -28,7 +28,7 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
       recognizedDataTypes: [.barcode(symbologies: Array(symbologies))],
       qualityLevel: options?.qualityLevel?.toDataScannerQualityLevel() ?? .balanced,
       recognizesMultipleItems: false,
-      isHighFrameRateTrackingEnabled: options?.isHighFrameRateTrackingEnabled ?? false,
+      isHighFrameRateTrackingEnabled: options?.enableHighFrameRateTracking ?? false,
       isPinchToZoomEnabled: true,
       isGuidanceEnabled: true,
       isHighlightingEnabled: true

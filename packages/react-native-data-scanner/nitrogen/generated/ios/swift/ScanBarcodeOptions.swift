@@ -18,7 +18,7 @@ public extension ScanBarcodeOptions {
   /**
    * Create a new instance of `ScanBarcodeOptions`.
    */
-  init(targetFormats: [TargetBarcodeFormat]?, qualityLevel: ScanQualityLevel?, isHighFrameRateTrackingEnabled: Bool?, enableAutoZoom: Bool?) {
+  init(targetFormats: [TargetBarcodeFormat]?, qualityLevel: ScanQualityLevel?, enableHighFrameRateTracking: Bool?, enableAutoZoom: Bool?) {
     self.init({ () -> bridge.std__optional_std__vector_TargetBarcodeFormat__ in
       if let __unwrappedValue = targetFormats {
         return bridge.create_std__optional_std__vector_TargetBarcodeFormat__({ () -> bridge.std__vector_TargetBarcodeFormat_ in
@@ -38,7 +38,7 @@ public extension ScanBarcodeOptions {
         return .init()
       }
     }(), { () -> bridge.std__optional_bool_ in
-      if let __unwrappedValue = isHighFrameRateTrackingEnabled {
+      if let __unwrappedValue = enableHighFrameRateTracking {
         return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
@@ -70,10 +70,10 @@ public extension ScanBarcodeOptions {
   }
   
   @inline(__always)
-  var isHighFrameRateTrackingEnabled: Bool? {
+  var enableHighFrameRateTracking: Bool? {
     return { () -> Bool? in
-      if bridge.has_value_std__optional_bool_(self.__isHighFrameRateTrackingEnabled) {
-        let __unwrapped = bridge.get_std__optional_bool_(self.__isHighFrameRateTrackingEnabled)
+      if bridge.has_value_std__optional_bool_(self.__enableHighFrameRateTracking) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__enableHighFrameRateTracking)
         return __unwrapped
       } else {
         return nil

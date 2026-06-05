@@ -26,14 +26,14 @@ export interface ScanBarcodeOptions {
   qualityLevel?: ScanQualityLevel
 
   /**
-   * Whether iOS should update recognized-item geometry at a higher frame rate.
+   * Enables higher-frame-rate updates for recognized-item geometry.
    *
    * This is mostly useful when tracking live recognized items. Android currently
    * ignores this preference.
    *
    * @default false
    */
-  isHighFrameRateTrackingEnabled?: boolean
+  enableHighFrameRateTracking?: boolean
 
   /**
    * Enables native auto-zoom when the current platform scanner supports it.
