@@ -127,8 +127,8 @@ set_avd_config() {
 set_avd_config "hw.camera.back" "virtualscene"
 set_avd_config "hw.camera.front" "none"
 set_avd_config "hw.keyboard" "yes"
-set_avd_config "disk.dataPartition.size" "4G"
-set_avd_config "vm.heapSize" "2048"
+set_avd_config "disk.dataPartition.size" "1G"
+set_avd_config "vm.heapSize" "1024"
 
 "$ADB" start-server >/dev/null
 
