@@ -8,8 +8,8 @@ export interface ScanBarcodeOptions {
   /**
    * Barcode formats to scan for.
    *
-   * Omit this to scan for every cross-platform format, or pass a non-empty
-   * array to limit scanning to specific formats.
+   * Omit this to scan for every supported format, or pass a non-empty array to
+   * limit scanning to specific formats.
    *
    * @default undefined
    */
@@ -17,30 +17,24 @@ export interface ScanBarcodeOptions {
 
   /**
    * Quality/performance tradeoff for barcode recognition.
-   *
-   * On iOS, this maps to VisionKit's scanner quality level. Android currently
-   * ignores this preference.
-   *
    * @default 'balanced'
+   * @platform iOS
    */
   qualityLevel?: ScanQualityLevel
 
   /**
    * Enables higher-frame-rate updates for recognized-item geometry.
    *
-   * This is mostly useful when tracking live recognized items. Android currently
-   * ignores this preference.
-   *
    * @default false
+   * @platform iOS
    */
   enableHighFrameRateTracking?: boolean
 
   /**
-   * Enables native auto-zoom when the current platform scanner supports it.
-   *
-   * Unsupported platforms ignore this preference and still scan normally.
+   * Enables automatic zoom while scanning distant barcodes.
    *
    * @default false
+   * @platform Android
    */
   enableAutoZoom?: boolean
 }

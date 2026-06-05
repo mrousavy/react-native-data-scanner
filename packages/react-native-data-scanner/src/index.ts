@@ -2,7 +2,7 @@ import { NitroModules } from 'react-native-nitro-modules'
 import type { DataScannerFactory } from './specs/DataScannerFactory.nitro'
 
 /**
- * Native one-shot data scanner.
+ * One-shot data scanner.
  */
 export const DataScanner =
   NitroModules.createHybridObject<DataScannerFactory>('DataScannerFactory')

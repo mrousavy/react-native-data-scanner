@@ -19,12 +19,12 @@ console.log(barcode.format, barcode.value)
 
 ### `DataScanner.scanBarcode(options?)`
 
-Presents the native scanner UI and resolves with the first barcode the user selects.
+Presents the scanner UI and resolves with the first barcode the user selects.
 
 - `targetFormats`: optional non-empty array of barcode formats. Omit it to scan all supported formats.
-- `qualityLevel`: iOS quality/performance preference. Defaults to `'balanced'`.
-- `enableHighFrameRateTracking`: iOS high-frame-rate geometry tracking preference. Defaults to `false`.
-- `enableAutoZoom`: best-effort native auto-zoom preference. Defaults to `false`.
+- `qualityLevel`: quality/performance preference. Defaults to `'balanced'`.
+- `enableHighFrameRateTracking`: high-frame-rate geometry tracking preference. Defaults to `false`.
+- `enableAutoZoom`: automatic zoom preference for distant barcodes. Defaults to `false`.
 
 The promise rejects when scanning is unavailable, the user cancels, another scan is already active, or the scanned barcode does not contain a decoded string value.
 

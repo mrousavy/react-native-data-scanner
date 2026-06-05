@@ -10,7 +10,7 @@ import type { ScannedBarcode } from '../ScannedBarcode'
 export interface DataScannerFactory
   extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   /**
-   * Presents the native scanner UI and resolves with the first scanned barcode.
+   * Presents the scanner UI and resolves with the first scanned barcode.
    *
    * @throws When scanning is unavailable, the scanner is canceled, or the scanned
    * barcode does not contain a decoded string value.
