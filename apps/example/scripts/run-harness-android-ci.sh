@@ -91,12 +91,19 @@ fi
 
 if ! "$EMULATOR" -list-avds | grep -Fxq "$AVD_NAME"; then
   echo "Creating Android emulator $AVD_NAME from $SYSTEM_IMAGE..."
-  printf 'no\n' | "$AVDMANAGER" create avd \
+  if ! printf 'no\n' | "$AVDMANAGER" create avd \
     --force \
     --name "$AVD_NAME" \
     --package "$SYSTEM_IMAGE" \
     --device "$PROFILE" \
-    -p "$AVD_DIR"
+    -p "$AVD_DIR"; then
+    echo "Hardware profile \"$PROFILE\" is unavailable. Retrying with avdmanager's default profile..."
+    printf 'no\n' | "$AVDMANAGER" create avd \
+      --force \
+      --name "$AVD_NAME" \
+      --package "$SYSTEM_IMAGE" \
+      -p "$AVD_DIR"
+  fi
 fi
 
 set_avd_config() {
