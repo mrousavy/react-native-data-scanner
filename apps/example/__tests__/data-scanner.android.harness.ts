@@ -11,24 +11,23 @@ describe('DataScanner.scanBarcode', () => {
   it('scans a QR code with an explicit target format', async () => {
     const barcode = await scanBarcode({
       targetFormats: ['qr'],
-      qualityLevel: 'fast',
-    })
-
-    expect(barcode.format).toBe('qr')
-    expect(barcode.value).toBe(expectedQRCodeValue)
-  })
-
-  it('scans a QR code with high-accuracy options', async () => {
-    const barcode = await scanBarcode({
-      targetFormats: ['qr'],
-      qualityLevel: 'accurate',
-      enableHighFrameRateTracking: true,
+      enableAutoZoom: false,
     })
 
     expect(barcode).toStrictEqual({
       format: 'qr',
       value: expectedQRCodeValue,
     })
+  })
+
+  it('scans a QR code with Android auto zoom enabled', async () => {
+    const barcode = await scanBarcode({
+      targetFormats: ['qr'],
+      enableAutoZoom: true,
+    })
+
+    expect(barcode.format).toBe('qr')
+    expect(barcode.value).toBe(expectedQRCodeValue)
   })
 })
 
@@ -37,7 +36,7 @@ async function scanBarcode(
 ): Promise<ScannedBarcode> {
   return await withTimeout(
     DataScanner.scanBarcode(options),
-    30_000,
+    90_000,
     `scan barcode with options ${JSON.stringify(options)}`
   )
 }

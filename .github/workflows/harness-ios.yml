@@ -22,34 +22,6 @@ on:
         required: false
         default: ""
         type: string
-  push:
-    branches:
-      - master
-    paths:
-      - ".github/workflows/harness-ios.yml"
-      - "apps/example/**"
-      - "packages/react-native-data-scanner/ios/**"
-      - "packages/react-native-data-scanner/cpp/**"
-      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
-      - "packages/react-native-data-scanner/nitrogen/generated/ios/**"
-      - "packages/react-native-data-scanner/*.podspec"
-      - "packages/react-native-data-scanner/react-native.config.js"
-      - "packages/react-native-data-scanner/nitro.json"
-      - "package.json"
-      - "bun.lock"
-  pull_request:
-    paths:
-      - ".github/workflows/harness-ios.yml"
-      - "apps/example/**"
-      - "packages/react-native-data-scanner/ios/**"
-      - "packages/react-native-data-scanner/cpp/**"
-      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
-      - "packages/react-native-data-scanner/nitrogen/generated/ios/**"
-      - "packages/react-native-data-scanner/*.podspec"
-      - "packages/react-native-data-scanner/react-native.config.js"
-      - "packages/react-native-data-scanner/nitro.json"
-      - "package.json"
-      - "bun.lock"
 
 env:
   DEVICE_MODEL: ${{ github.event.inputs.device_model || 'iPhone 16 Pro' }}

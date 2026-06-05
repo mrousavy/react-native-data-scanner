@@ -1,0 +1,126 @@
+name: Harness Android
+
+concurrency:
+  group: harness-android-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/harness-android.yml"
+      - "apps/example/**"
+      - "packages/react-native-data-scanner/android/**"
+      - "packages/react-native-data-scanner/cpp/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/android/**"
+      - "packages/react-native-data-scanner/react-native.config.js"
+      - "packages/react-native-data-scanner/nitro.json"
+      - "package.json"
+      - "bun.lock"
+  pull_request:
+    paths:
+      - ".github/workflows/harness-android.yml"
+      - "apps/example/**"
+      - "packages/react-native-data-scanner/android/**"
+      - "packages/react-native-data-scanner/cpp/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/android/**"
+      - "packages/react-native-data-scanner/react-native.config.js"
+      - "packages/react-native-data-scanner/nitro.json"
+      - "package.json"
+      - "bun.lock"
+
+permissions:
+  contents: read
+
+env:
+  ANDROID_API_LEVEL: "35"
+  ANDROID_COMPILE_SDK: "36"
+  ANDROID_BUILD_TOOLS: "36.0.0"
+  ANDROID_NDK_VERSION: "29.0.14206865"
+  HARNESS_ANDROID_API_LEVEL: "35"
+  HARNESS_ANDROID_BUNDLE_ID: com.margelo.datascanner.example
+  HARNESS_ANDROID_DEVICE: Pixel_8_API_35
+  HARNESS_ANDROID_PROFILE: pixel_8
+  HARNESS_ANDROID_SYSTEM_IMAGE_VARIANT: google_apis_playstore
+  HARNESS_ANDROID_MANAGED_AVD: "0"
+  HARNESS_DEBUG: 1
+
+jobs:
+  harness_android:
+    name: Harness Android
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Android SDK packages
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager \
+            "platform-tools" \
+            "emulator" \
+            "platforms;android-${ANDROID_COMPILE_SDK}" \
+            "build-tools;${ANDROID_BUILD_TOOLS}" \
+            "ndk;${ANDROID_NDK_VERSION}"
+
+      - name: Prebuild Android app
+        working-directory: apps/example
+        run: CI=1 bunx expo prebuild --platform android --clean --no-install
+
+      - name: Restore Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-${{ runner.arch }}-gradle-${{ hashFiles('bun.lock', 'apps/example/android/**/*.gradle*', 'apps/example/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-gradle-
+
+      - name: Build Android app
+        working-directory: apps/example/android
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Run Android Harness
+        run: apps/example/scripts/run-harness-android-ci.sh
+
+      - name: Upload Harness diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harness-android-diagnostics
+          path: apps/example/.harness/android
+          if-no-files-found: ignore

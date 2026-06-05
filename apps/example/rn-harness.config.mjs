@@ -2,6 +2,10 @@ import {
   applePlatform,
   appleSimulator,
 } from '@react-native-harness/platform-apple'
+import {
+  androidEmulator,
+  androidPlatform,
+} from '@react-native-harness/platform-android'
 
 const iosBundleId =
   process.env.HARNESS_IOS_BUNDLE_ID ?? 'com.margelo.datascanner.example'
@@ -22,10 +26,37 @@ const iosEnvironment =
       }
     : undefined
 
+const androidBundleId =
+  process.env.HARNESS_ANDROID_BUNDLE_ID ?? 'com.margelo.datascanner.example'
+const androidDevice = process.env.HARNESS_ANDROID_DEVICE ?? 'Pixel_8_API_35'
+const androidApiLevel = Number.parseInt(
+  process.env.HARNESS_ANDROID_API_LEVEL ?? '35',
+  10
+)
+const androidProfile = process.env.HARNESS_ANDROID_PROFILE ?? 'pixel_8'
+const shouldHarnessManageAndroidAvd =
+  process.env.HARNESS_ANDROID_MANAGED_AVD === '1' ||
+  process.env.HARNESS_ANDROID_MANAGED_AVD === 'true'
+const androidAvdConfig = shouldHarnessManageAndroidAvd
+  ? {
+      apiLevel: androidApiLevel,
+      profile: androidProfile,
+      diskSize: '4G',
+      heapSize: '2G',
+      snapshot: { enabled: false },
+    }
+  : undefined
+
 const config = {
   entryPoint: './index.ts',
   appRegistryComponentName: 'main',
   runners: [
+    androidPlatform({
+      name: 'android',
+      device: androidEmulator(androidDevice, androidAvdConfig),
+      bundleId: androidBundleId,
+      activityName: '.MainActivity',
+    }),
     applePlatform({
       name: 'ios',
       device: appleSimulator(iosDevice, iosVersion),
@@ -37,7 +68,7 @@ const config = {
         : undefined,
     }),
   ],
-  defaultRunner: 'ios',
+  defaultRunner: process.env.HARNESS_DEFAULT_RUNNER ?? 'android',
   bridgeTimeout: 120_000,
   bundleStartTimeout: 90_000,
   maxAppRestarts: 3,
