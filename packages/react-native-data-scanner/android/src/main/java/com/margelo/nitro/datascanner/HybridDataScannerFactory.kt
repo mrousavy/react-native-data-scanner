@@ -5,6 +5,9 @@ import com.facebook.proguard.annotations.DoNotStrip
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
+import com.margelo.nitro.datascanner.extensions.await
+import com.margelo.nitro.datascanner.extensions.toGmsBarcodeScannerOptions
+import com.margelo.nitro.datascanner.extensions.toScannedBarcode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 

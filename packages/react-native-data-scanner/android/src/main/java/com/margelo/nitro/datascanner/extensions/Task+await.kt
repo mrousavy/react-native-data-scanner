@@ -1,4 +1,4 @@
-package com.margelo.nitro.datascanner
+package com.margelo.nitro.datascanner.extensions
 
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine

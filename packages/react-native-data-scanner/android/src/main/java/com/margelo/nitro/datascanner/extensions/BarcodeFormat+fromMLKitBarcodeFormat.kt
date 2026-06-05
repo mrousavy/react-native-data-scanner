@@ -1,6 +1,7 @@
-package com.margelo.nitro.datascanner
+package com.margelo.nitro.datascanner.extensions
 
 import com.google.mlkit.vision.barcode.common.Barcode
+import com.margelo.nitro.datascanner.BarcodeFormat
 
 internal fun BarcodeFormat.Companion.fromMLKitBarcodeFormat(
   @Barcode.BarcodeFormat format: Int,
