@@ -125,13 +125,21 @@ open class HybridDataScannerFactorySpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func createDataScanner() -> bridge.Result_void_ {
+  public final func scan(options: ResolvedScanOptions) -> bridge.Result_std__shared_ptr_Promise_Barcode___ {
     do {
-      try self.__implementation.createDataScanner()
-      return bridge.create_Result_void_()
+      let __result = try self.__implementation.scan(options: options)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_Barcode__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_Barcode__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_Barcode__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_Barcode___(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_void_(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_Barcode___(__exceptionPtr)
     }
   }
 }

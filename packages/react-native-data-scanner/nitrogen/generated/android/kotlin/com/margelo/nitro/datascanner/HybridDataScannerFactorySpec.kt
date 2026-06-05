@@ -10,6 +10,7 @@ package com.margelo.nitro.datascanner
 import androidx.annotation.Keep
 import com.facebook.jni.HybridData
 import com.facebook.proguard.annotations.DoNotStrip
+import com.margelo.nitro.core.Promise
 import com.margelo.nitro.core.HybridObject
 
 /**
@@ -30,7 +31,7 @@ abstract class HybridDataScannerFactorySpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun createDataScanner(): Unit
+  abstract fun scan(options: ResolvedScanOptions): Promise<Barcode>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

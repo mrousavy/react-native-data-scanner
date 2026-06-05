@@ -1,7 +1,5 @@
-import { NitroModules } from 'react-native-nitro-modules'
-import type { DataScannerFactory } from './specs/DataScannerFactory.nitro'
-
-export const DataScanner =
-  NitroModules.createHybridObject<DataScannerFactory>('DataScannerFactory')
-
-export type { DataScannerFactory } from './specs/DataScannerFactory.nitro'
+export { DataScanner, scan } from './DataScanner'
+export type { DataScannerModule } from './DataScanner'
+export type { ScanOptions, TargetBarcodeFormats } from './ScanOptions'
+export type { Barcode } from './specs/Barcode'
+export type { BarcodeFormat, TargetBarcodeFormat } from './specs/BarcodeFormat'

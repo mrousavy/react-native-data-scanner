@@ -7,9 +7,28 @@
 
 #include "JHybridDataScannerFactorySpec.hpp"
 
+// Forward declaration of `Barcode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct Barcode; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `ResolvedScanOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanOptions; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
-
-
+#include "Barcode.hpp"
+#include <NitroModules/Promise.hpp>
+#include <NitroModules/JPromise.hpp>
+#include "JBarcode.hpp"
+#include "BarcodeFormat.hpp"
+#include "JBarcodeFormat.hpp"
+#include <string>
+#include <optional>
+#include "ResolvedScanOptions.hpp"
+#include "JResolvedScanOptions.hpp"
+#include "TargetBarcodeFormat.hpp"
+#include <vector>
+#include "JTargetBarcodeFormat.hpp"
 
 namespace margelo::nitro::datascanner {
 
@@ -44,9 +63,21 @@ namespace margelo::nitro::datascanner {
   
 
   // Methods
-  void JHybridDataScannerFactorySpec::createDataScanner() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("createDataScanner");
-    method(_javaPart);
+  std::shared_ptr<Promise<Barcode>> JHybridDataScannerFactorySpec::scan(const ResolvedScanOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JResolvedScanOptions> /* options */)>("scan");
+    auto __result = method(_javaPart, JResolvedScanOptions::fromCpp(options));
+    return [&]() {
+      auto __promise = Promise<Barcode>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JBarcode>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
   }
 
 } // namespace margelo::nitro::datascanner
