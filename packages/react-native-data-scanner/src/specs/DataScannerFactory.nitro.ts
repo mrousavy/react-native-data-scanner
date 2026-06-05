@@ -7,8 +7,10 @@ import type { ScannedBarcode } from '../ScannedBarcode'
  *
  * @see {@linkcode DataScanner.scanBarcode}
  */
-export interface DataScannerFactory
-  extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+export interface DataScannerFactory extends HybridObject<{
+  ios: 'swift'
+  android: 'kotlin'
+}> {
   /**
    * Presents the scanner UI and resolves with the first scanned barcode.
    *

@@ -10,13 +10,12 @@ internal fun ScanBarcodeOptions?.toGmsBarcodeScannerOptions(): GmsBarcodeScanner
     throw IllegalArgumentException("targetFormats must not be empty.")
   }
 
-  val mlKitFormats = targetFormats.map { format ->
-    format.toMLKitBarcodeFormat()
-  }
+  val mlKitFormats = targetFormats.map { it.toMLKitBarcodeFormat() }
   val firstFormat = mlKitFormats.first()
   val remainingFormats = mlKitFormats.drop(1).toIntArray()
 
-  val builder = GmsBarcodeScannerOptions.Builder()
+  val builder = GmsBarcodeScannerOptions
+    .Builder()
     .setBarcodeFormats(firstFormat, *remainingFormats)
 
   if (this?.enableAutoZoom == true) {
