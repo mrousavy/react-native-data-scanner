@@ -112,7 +112,7 @@ jobs:
 
       - name: Build Android app
         working-directory: apps/example/android
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+        run: ./gradlew assembleDebug --no-daemon --stacktrace -PreactNativeArchitectures=x86_64
 
       - name: Run Android Harness
         run: apps/example/scripts/run-harness-android-ci.sh
