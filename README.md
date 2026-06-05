@@ -15,9 +15,12 @@ npm install react-native-data-scanner react-native-nitro-modules
 
 ### 2. Configure Camera Usage (iOS only)
 
-#### A) Expo
+Choose the setup that matches your app:
 
-If you use Expo, add `NSCameraUsageDescription` to your Expo app config:
+<details>
+<summary><strong>Expo</strong></summary>
+
+Add [`NSCameraUsageDescription`](https://developer.apple.com/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription) to your Expo app config (e.g. `app.json`):
 
 ```json
 {
@@ -33,14 +36,19 @@ If you use Expo, add `NSCameraUsageDescription` to your Expo app config:
 
 This library contains native code, so Expo apps need a development build or production build. It does not run inside Expo Go. Rebuild the native app after changing native config, for example with `npx expo run:ios` or EAS Build.
 
-#### B) Bare React Native
+</details>
 
-If you use bare react-native CLI instead, add `NSCameraUsageDescription` to your app's `Info.plist`:
+<details>
+<summary><strong>Bare React Native</strong></summary>
+
+Add [`NSCameraUsageDescription`](https://developer.apple.com/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription) to your app's `Info.plist`:
 
 ```xml
 <key>NSCameraUsageDescription</key>
 <string>Scan barcodes.</string>
 ```
+
+</details>
 
 Android does not require additional setup.
 
