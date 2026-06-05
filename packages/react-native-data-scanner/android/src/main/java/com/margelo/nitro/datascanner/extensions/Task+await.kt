@@ -5,7 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-internal suspend fun <T> Task<T>.await(): T {
+internal suspend fun <T> Task<T>.await(cancellationMessage: String = "Task was canceled."): T {
   return suspendCancellableCoroutine { continuation ->
     addOnSuccessListener { result ->
       if (continuation.isActive) {
@@ -19,7 +19,7 @@ internal suspend fun <T> Task<T>.await(): T {
     }
     addOnCanceledListener {
       if (continuation.isActive) {
-        continuation.resumeWithException(RuntimeException("Barcode scan was canceled."))
+        continuation.resumeWithException(RuntimeException(cancellationMessage))
       }
     }
   }

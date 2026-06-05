@@ -6,6 +6,7 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 import com.margelo.nitro.datascanner.extensions.await
+import com.margelo.nitro.datascanner.extensions.ensureModuleInstalled
 import com.margelo.nitro.datascanner.extensions.toGmsBarcodeScannerOptions
 import com.margelo.nitro.datascanner.extensions.toScannedBarcode
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +31,11 @@ class HybridDataScannerFactory : HybridDataScannerFactorySpec() {
         val scannerOptions = options.toGmsBarcodeScannerOptions()
         val scanner = GmsBarcodeScanning.getClient(activity, scannerOptions)
 
-        scanner.startScan().await().toScannedBarcode()
+        // Wait until the Google Play Services binary has been downloaded
+        scanner.ensureModuleInstalled(activity)
+        // Perform actual scan
+        val barcode = scanner.startScan().await("Barcode scan was canceled.")
+        return@async barcode.toScannedBarcode()
       } finally {
         isScanning = false
       }
