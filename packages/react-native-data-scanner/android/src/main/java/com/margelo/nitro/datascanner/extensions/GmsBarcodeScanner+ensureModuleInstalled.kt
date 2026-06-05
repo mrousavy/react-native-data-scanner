@@ -45,14 +45,16 @@ internal suspend fun GmsBarcodeScanner.ensureModuleInstalled(context: Context) {
     .build()
 
   try {
-    val response = moduleInstallClient
+    // This only waits until Google Play Services accepts the install request.
+    val installRequestResponse = moduleInstallClient
       .installModules(request)
       .await(MODULE_INSTALL_CANCELED_MESSAGE)
 
-    if (response.areModulesAlreadyInstalled()) {
+    if (installRequestResponse.areModulesAlreadyInstalled()) {
       return
     }
 
+    // If the module was not already installed, wait for the listener's terminal install state.
     installCompletion.await()
   } finally {
     moduleInstallClient.unregisterListener(installStatusListener)
