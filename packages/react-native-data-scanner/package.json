@@ -1,7 +1,7 @@
 {
   "name": "react-native-data-scanner",
   "version": "0.0.1",
-  "description": "react-native-data-scanner",
+  "description": "Fast platform-native barcode scanning for React Native with Nitro Modules.",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -26,35 +26,53 @@
     "app.plugin.js",
     "nitro.json",
     "*.podspec",
+    "LICENSE",
     "README.md"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf android/build node_modules/**/android/build lib",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --fix",
-    "lint-ci": "eslint \"**/*.{js,ts,tsx}\" -f @jamesacarr/github-actions --max-warnings 0",
-    "typescript": "tsc",
-    "specs": "tsc --noEmit false && nitrogen --logLevel=\"debug\""
+    "lint-ci": "eslint \"**/*.{js,ts,tsx}\" --max-warnings 0",
+    "typescript": "tsc --build --force",
+    "specs": "bun run typescript && nitrogen --logLevel=\"debug\""
   },
   "keywords": [
     "react-native",
-    "nitro"
+    "react-native-barcode-scanner",
+    "barcode",
+    "barcode-scanner",
+    "qr-code",
+    "qr-scanner",
+    "scanner",
+    "data-scanner",
+    "native-scanner",
+    "visionkit",
+    "ml-kit",
+    "google-code-scanner",
+    "nitro",
+    "nitro-modules",
+    "ios",
+    "android"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrousavy/nitro.git"
+    "url": "git+https://github.com/mrousavy/react-native-data-scanner.git",
+    "directory": "packages/react-native-data-scanner"
   },
   "author": "Marc Rousavy <me@mrousavy.com> (https://github.com/mrousavy)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrousavy/nitro/issues"
+    "url": "https://github.com/mrousavy/react-native-data-scanner/issues"
   },
-  "homepage": "https://github.com/mrousavy/nitro#readme",
+  "homepage": "https://github.com/mrousavy/react-native-data-scanner#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@react-native/eslint-config": "0.85.3",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
     "@types/react": "^19.2.15",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
@@ -71,32 +89,6 @@
     "react-native": "*",
     "react-native-nitro-modules": "*"
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "warn",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,

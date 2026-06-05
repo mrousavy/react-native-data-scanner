@@ -1,0 +1,1 @@
+packages/react-native-data-scanner/README.md

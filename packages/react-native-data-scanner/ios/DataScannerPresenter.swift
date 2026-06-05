@@ -5,7 +5,8 @@ enum DataScannerPresenter {
   @MainActor
   static func topPresentedViewController() throws -> UIViewController {
     let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
-    let window = scenes
+    let window =
+      scenes
       .flatMap(\.windows)
       .first { $0.isKeyWindow }
 

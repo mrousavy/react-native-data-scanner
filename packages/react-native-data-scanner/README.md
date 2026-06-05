@@ -1,6 +1,8 @@
 # react-native-data-scanner
 
-One-shot barcode scanning for React Native, implemented as a Nitro Module.
+Fast one-shot barcode scanning for React Native, implemented as a Nitro Module and backed by platform-native scanner UIs.
+
+On Android, scanning is provided through Google Play services and does not require camera permission from your app.
 
 ## Usage
 
