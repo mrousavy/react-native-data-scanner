@@ -26,10 +26,6 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
       format.toVNBarcodeSymbologies()
     })
 
-    guard !symbologies.isEmpty else {
-      throw RuntimeError("targetFormats must not be empty.")
-    }
-
     scannerViewController = DataScannerViewController(
       recognizedDataTypes: [.barcode(symbologies: Array(symbologies))],
       qualityLevel: .balanced,
