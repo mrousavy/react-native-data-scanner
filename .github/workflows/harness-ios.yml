@@ -1,0 +1,261 @@
+name: Harness iOS
+
+concurrency:
+  group: harness-ios-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      device_model:
+        description: "Preferred iOS Simulator device model"
+        required: false
+        default: "iPhone 16 Pro"
+        type: string
+      ios_version:
+        description: "Preferred iOS runtime version. Leave empty to use any available matching device."
+        required: false
+        default: ""
+        type: string
+      xcode_version:
+        description: "Preferred Xcode version. Leave empty to use the runner default."
+        required: false
+        default: ""
+        type: string
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/harness-ios.yml"
+      - "apps/example/**"
+      - "packages/react-native-data-scanner/ios/**"
+      - "packages/react-native-data-scanner/cpp/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/ios/**"
+      - "packages/react-native-data-scanner/*.podspec"
+      - "packages/react-native-data-scanner/react-native.config.js"
+      - "packages/react-native-data-scanner/nitro.json"
+      - "package.json"
+      - "bun.lock"
+  pull_request:
+    paths:
+      - ".github/workflows/harness-ios.yml"
+      - "apps/example/**"
+      - "packages/react-native-data-scanner/ios/**"
+      - "packages/react-native-data-scanner/cpp/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/shared/**"
+      - "packages/react-native-data-scanner/nitrogen/generated/ios/**"
+      - "packages/react-native-data-scanner/*.podspec"
+      - "packages/react-native-data-scanner/react-native.config.js"
+      - "packages/react-native-data-scanner/nitro.json"
+      - "package.json"
+      - "bun.lock"
+
+env:
+  DEVICE_MODEL: ${{ github.event.inputs.device_model || 'iPhone 16 Pro' }}
+  IOS_VERSION: ${{ github.event.inputs.ios_version || '' }}
+  XCODE_VERSION: ${{ github.event.inputs.xcode_version || '' }}
+  IOS_BUNDLE_ID: com.margelo.datascanner.example
+  HARNESS_IOS_BUNDLE_ID: com.margelo.datascanner.example
+  IOS_SCHEME: DataScannerExample
+  IOS_APP_PATH: apps/example/ios/build/Build/Products/Debug-iphonesimulator/DataScannerExample.app
+  HARNESS_DEBUG: 1
+
+jobs:
+  harness_ios:
+    name: Harness iOS
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Select Xcode
+        run: |
+          set -euo pipefail
+
+          if [ -n "$XCODE_VERSION" ] && [ -d "/Applications/Xcode_${XCODE_VERSION}.app" ]; then
+            sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+          fi
+
+          xcodebuild -version
+
+      - name: Install npm dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Prebuild iOS app
+        working-directory: apps/example
+        run: CI=1 bunx expo prebuild --platform ios --clean --no-install
+
+      - name: Restore CocoaPods cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            apps/example/ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-${{ runner.arch }}-pods-${{ hashFiles('bun.lock', 'apps/example/ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-pods-
+
+      - name: Install Pods
+        working-directory: apps/example/ios
+        run: pod install
+
+      - name: Boot iOS Simulator
+        run: |
+          set -euo pipefail
+
+          selection="$(
+            xcrun simctl list devices available --json | node -e '
+              const fs = require("fs");
+              const data = JSON.parse(fs.readFileSync(0, "utf8"));
+              const preferredModel = process.env.DEVICE_MODEL;
+              const preferredVersion = process.env.IOS_VERSION;
+
+              const candidates = Object.entries(data.devices ?? {})
+                .filter(([runtime]) => runtime.includes("iOS"))
+                .flatMap(([runtime, devices]) =>
+                  (devices ?? [])
+                    .filter((device) => device.isAvailable !== false)
+                    .map((device) => {
+                      const runtimeMatch = runtime.match(/iOS-(\d+(?:-\d+)*)$/);
+                      const version = runtimeMatch?.[1]?.replace(/-/g, ".") ?? "";
+                      return { runtime, version, device };
+                    })
+                );
+
+              const exact =
+                preferredVersion === ""
+                  ? undefined
+                  : candidates.find(({ version, device }) =>
+                      device.name === preferredModel && version === preferredVersion
+                    );
+              const matchingModel = candidates.find(({ device }) => device.name === preferredModel);
+              const matchingPhone = candidates.find(({ device }) => device.name.includes("iPhone"));
+              const fallback = candidates[0];
+              const selected = exact ?? matchingModel ?? matchingPhone ?? fallback;
+
+              if (selected == null) {
+                console.error("No available iOS simulator found.");
+                process.exit(1);
+              }
+
+              process.stdout.write(JSON.stringify({
+                udid: selected.device.udid,
+                name: selected.device.name,
+                version: selected.version,
+              }));
+            '
+          )"
+
+          echo "$selection"
+          echo "SIMULATOR_UDID=$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).udid)' "$selection")" >> "$GITHUB_ENV"
+          echo "HARNESS_IOS_DEVICE=$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).name)' "$selection")" >> "$GITHUB_ENV"
+          echo "HARNESS_IOS_VERSION=$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).version)' "$selection")" >> "$GITHUB_ENV"
+
+          simulator_udid="$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).udid)' "$selection")"
+          xcrun simctl boot "$simulator_udid" &
+          boot_pid=$!
+          boot_deadline=$((SECONDS + 120))
+          boot_timed_out=0
+
+          while kill -0 "$boot_pid" >/dev/null 2>&1; do
+            if (( SECONDS >= boot_deadline )); then
+              echo "Timed out waiting for simctl boot to return. Continuing with bootstatus..."
+              kill "$boot_pid" >/dev/null 2>&1 || true
+              wait "$boot_pid" >/dev/null 2>&1 || true
+              boot_timed_out=1
+              break
+            fi
+
+            sleep 2
+          done
+
+          if [ "$boot_timed_out" = "0" ]; then
+            set +e
+            wait "$boot_pid"
+            boot_status=$?
+            set -e
+
+            if [ "$boot_status" -ne 0 ]; then
+              echo "simctl boot exited with status $boot_status; continuing with bootstatus..."
+            fi
+          fi
+
+          xcrun simctl bootstatus "$simulator_udid" -b &
+          bootstatus_pid=$!
+          bootstatus_timed_out=0
+          boot_deadline=$((SECONDS + 240))
+
+          while kill -0 "$bootstatus_pid" >/dev/null 2>&1; do
+            if (( SECONDS >= boot_deadline )); then
+              echo "Timed out waiting for simulator bootstatus. Checking simulator state..."
+              kill "$bootstatus_pid" >/dev/null 2>&1 || true
+              wait "$bootstatus_pid" >/dev/null 2>&1 || true
+
+              state="$(
+                xcrun simctl list devices available --json | node -e '
+                  const fs = require("fs");
+                  const data = JSON.parse(fs.readFileSync(0, "utf8"));
+                  const udid = process.argv[1];
+                  const devices = Object.values(data.devices ?? {}).flat();
+                  process.stdout.write(devices.find((device) => device.udid === udid)?.state ?? "");
+                ' "$simulator_udid"
+              )"
+
+              echo "Simulator state after bootstatus timeout: ${state:-unknown}"
+              if [ "$state" = "Booted" ]; then
+                bootstatus_timed_out=1
+                break
+              fi
+
+              xcrun simctl list devices available
+              exit 1
+            fi
+
+            sleep 2
+          done
+
+          if [ "$bootstatus_timed_out" = "0" ]; then
+            wait "$bootstatus_pid"
+          fi
+
+      - name: Restore DerivedData cache
+        uses: actions/cache@v5
+        with:
+          path: apps/example/ios/build
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-dd-${{ hashFiles('bun.lock', 'apps/example/ios/Podfile.lock', 'apps/example/ios/**/*.pbxproj') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-xcode-dd-
+
+      - name: Build iOS app
+        working-directory: apps/example/ios
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -workspace "${IOS_SCHEME}.xcworkspace" \
+            -scheme "$IOS_SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "id=$SIMULATOR_UDID" \
+            -derivedDataPath build \
+            -UseModernBuildSystem=YES \
+            ONLY_ACTIVE_ARCH=YES \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Install iOS app
+        run: xcrun simctl install "$SIMULATOR_UDID" "$IOS_APP_PATH"
+
+      - name: Run Harness tests with serve-sim camera
+        working-directory: apps/example
+        run: bash ./scripts/run-harness-ios-ci.sh

@@ -11,14 +11,23 @@
     "react-native": "0.85.3"
   },
   "devDependencies": {
+    "@react-native-harness/platform-apple": "1.4.0-rc.1",
     "@types/react": "~19.2.2",
+    "jest": "^29.7.0",
+    "react-native-harness": "1.4.0-rc.1",
+    "serve-sim": "0.1.39",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test:harness": "react-native-harness",
+    "test:harness:ios": "react-native-harness --harnessRunner ios"
+  },
+  "engines": {
+    "node": ">=20.19.4"
   },
   "private": true
 }

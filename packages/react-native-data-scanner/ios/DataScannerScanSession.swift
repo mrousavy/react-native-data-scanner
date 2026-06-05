@@ -66,6 +66,24 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
 
   @MainActor
   func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
+    finish(with: item)
+  }
+
+  @MainActor
+  func dataScanner(
+    _ dataScanner: DataScannerViewController,
+    didAdd addedItems: [RecognizedItem],
+    allItems: [RecognizedItem]
+  ) {
+    guard let item = addedItems.first else {
+      return
+    }
+
+    finish(with: item)
+  }
+
+  @MainActor
+  private func finish(with item: RecognizedItem) {
     switch item {
     case .barcode(let barcode):
       do {

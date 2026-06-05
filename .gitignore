@@ -70,6 +70,9 @@ android/keystores/debug.keystore
 
 # Expo
 .expo/
+apps/example/.harness/
+apps/example/android/
+apps/example/ios/
 
 # Turborepo
 .turbo/
