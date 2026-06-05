@@ -22,9 +22,7 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
       throw RuntimeError("targetFormats must not be empty.")
     }
 
-    let symbologies = Set(targetFormats.flatMap { format in
-      format.toVNBarcodeSymbologies()
-    })
+    let symbologies = Set(targetFormats.flatMap { $0.toVNBarcodeSymbologies() })
 
     scannerViewController = DataScannerViewController(
       recognizedDataTypes: [.barcode(symbologies: Array(symbologies))],
