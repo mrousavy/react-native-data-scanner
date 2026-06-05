@@ -35,7 +35,7 @@ class HybridDataScannerFactory : HybridDataScannerFactorySpec() {
         scanner.ensureModuleInstalled(activity)
         // Perform actual scan
         val barcode = scanner.startScan().await("Barcode scan was canceled.")
-        barcode.toScannedBarcode()
+        return@async barcode.toScannedBarcode()
       } finally {
         isScanning = false
       }
