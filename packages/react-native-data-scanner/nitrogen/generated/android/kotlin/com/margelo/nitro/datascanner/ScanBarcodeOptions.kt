@@ -23,6 +23,12 @@ data class ScanBarcodeOptions(
   val targetFormats: Array<TargetBarcodeFormat>?,
   @DoNotStrip
   @Keep
+  val qualityLevel: ScanQualityLevel?,
+  @DoNotStrip
+  @Keep
+  val isHighFrameRateTrackingEnabled: Boolean?,
+  @DoNotStrip
+  @Keep
   val enableAutoZoom: Boolean?
 ) {
   /* primary constructor */
@@ -31,12 +37,16 @@ data class ScanBarcodeOptions(
     if (this === other) return true
     if (other !is ScanBarcodeOptions) return false
     return Objects.deepEquals(this.targetFormats, other.targetFormats)
+      && Objects.deepEquals(this.qualityLevel, other.qualityLevel)
+      && Objects.deepEquals(this.isHighFrameRateTrackingEnabled, other.isHighFrameRateTrackingEnabled)
       && Objects.deepEquals(this.enableAutoZoom, other.enableAutoZoom)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
       targetFormats,
+      qualityLevel,
+      isHighFrameRateTrackingEnabled,
       enableAutoZoom
     ).contentDeepHashCode()
   }
@@ -49,8 +59,8 @@ data class ScanBarcodeOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(targetFormats: Array<TargetBarcodeFormat>?, enableAutoZoom: Boolean?): ScanBarcodeOptions {
-      return ScanBarcodeOptions(targetFormats, enableAutoZoom)
+    private fun fromCpp(targetFormats: Array<TargetBarcodeFormat>?, qualityLevel: ScanQualityLevel?, isHighFrameRateTrackingEnabled: Boolean?, enableAutoZoom: Boolean?): ScanBarcodeOptions {
+      return ScanBarcodeOptions(targetFormats, qualityLevel, isHighFrameRateTrackingEnabled, enableAutoZoom)
     }
   }
 }

@@ -10,5 +10,6 @@ export const DataScanner =
 export { targetBarcodeFormats } from './BarcodeFormat'
 export type { BarcodeFormat, TargetBarcodeFormat } from './BarcodeFormat'
 export type { ScanBarcodeOptions } from './ScanBarcodeOptions'
+export type { ScanQualityLevel } from './ScanQualityLevel'
 export type { ScannedBarcode } from './ScannedBarcode'
 export type { DataScannerFactory } from './specs/DataScannerFactory.nitro'

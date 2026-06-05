@@ -14,6 +14,8 @@ namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 namespace margelo::nitro::datascanner { class HybridDataScannerFactorySpec; }
 // Forward declaration of `ScanBarcodeOptions` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
+// Forward declaration of `ScanQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ScanQualityLevel; }
 // Forward declaration of `ScannedBarcode` to properly resolve imports.
 namespace margelo::nitro::datascanner { struct ScannedBarcode; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
@@ -27,6 +29,7 @@ namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 #include "BarcodeFormat.hpp"
 #include "HybridDataScannerFactorySpec.hpp"
 #include "ScanBarcodeOptions.hpp"
+#include "ScanQualityLevel.hpp"
 #include "ScannedBarcode.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <NitroModules/Promise.hpp>
@@ -124,6 +127,21 @@ namespace margelo::nitro::datascanner::bridge::swift {
     return optional.has_value();
   }
   inline std::vector<TargetBarcodeFormat> get_std__optional_std__vector_TargetBarcodeFormat__(const std::optional<std::vector<TargetBarcodeFormat>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<ScanQualityLevel>
+  /**
+   * Specialized version of `std::optional<ScanQualityLevel>`.
+   */
+  using std__optional_ScanQualityLevel_ = std::optional<ScanQualityLevel>;
+  inline std::optional<ScanQualityLevel> create_std__optional_ScanQualityLevel_(const ScanQualityLevel& value) noexcept {
+    return std::optional<ScanQualityLevel>(value);
+  }
+  inline bool has_value_std__optional_ScanQualityLevel_(const std::optional<ScanQualityLevel>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ScanQualityLevel get_std__optional_ScanQualityLevel_(const std::optional<ScanQualityLevel>& optional) noexcept {
     return optional.value();
   }
   

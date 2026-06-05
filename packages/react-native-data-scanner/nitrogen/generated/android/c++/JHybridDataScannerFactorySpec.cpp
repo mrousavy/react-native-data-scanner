@@ -15,6 +15,8 @@ namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
 namespace margelo::nitro::datascanner { struct ScanBarcodeOptions; }
 // Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
 namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
+// Forward declaration of `ScanQualityLevel` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class ScanQualityLevel; }
 
 #include "ScannedBarcode.hpp"
 #include <NitroModules/Promise.hpp>
@@ -29,6 +31,8 @@ namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 #include "TargetBarcodeFormat.hpp"
 #include <vector>
 #include "JTargetBarcodeFormat.hpp"
+#include "ScanQualityLevel.hpp"
+#include "JScanQualityLevel.hpp"
 
 namespace margelo::nitro::datascanner {
 

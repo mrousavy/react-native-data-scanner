@@ -10,7 +10,9 @@
 #include <fbjni/fbjni.h>
 #include "ScanBarcodeOptions.hpp"
 
+#include "JScanQualityLevel.hpp"
 #include "JTargetBarcodeFormat.hpp"
+#include "ScanQualityLevel.hpp"
 #include "TargetBarcodeFormat.hpp"
 #include <optional>
 #include <vector>
@@ -36,6 +38,10 @@ namespace margelo::nitro::datascanner {
       static const auto clazz = javaClassStatic();
       static const auto fieldTargetFormats = clazz->getField<jni::JArrayClass<JTargetBarcodeFormat>>("targetFormats");
       jni::local_ref<jni::JArrayClass<JTargetBarcodeFormat>> targetFormats = this->getFieldValue(fieldTargetFormats);
+      static const auto fieldQualityLevel = clazz->getField<JScanQualityLevel>("qualityLevel");
+      jni::local_ref<JScanQualityLevel> qualityLevel = this->getFieldValue(fieldQualityLevel);
+      static const auto fieldIsHighFrameRateTrackingEnabled = clazz->getField<jni::JBoolean>("isHighFrameRateTrackingEnabled");
+      jni::local_ref<jni::JBoolean> isHighFrameRateTrackingEnabled = this->getFieldValue(fieldIsHighFrameRateTrackingEnabled);
       static const auto fieldEnableAutoZoom = clazz->getField<jni::JBoolean>("enableAutoZoom");
       jni::local_ref<jni::JBoolean> enableAutoZoom = this->getFieldValue(fieldEnableAutoZoom);
       return ScanBarcodeOptions(
@@ -49,6 +55,8 @@ namespace margelo::nitro::datascanner {
           }
           return __vector;
         }(targetFormats)) : std::nullopt,
+        qualityLevel != nullptr ? std::make_optional(qualityLevel->toCpp()) : std::nullopt,
+        isHighFrameRateTrackingEnabled != nullptr ? std::make_optional(static_cast<bool>(isHighFrameRateTrackingEnabled->value())) : std::nullopt,
         enableAutoZoom != nullptr ? std::make_optional(static_cast<bool>(enableAutoZoom->value())) : std::nullopt
       );
     }
@@ -59,7 +67,7 @@ namespace margelo::nitro::datascanner {
      */
     [[maybe_unused]]
     static jni::local_ref<JScanBarcodeOptions::javaobject> fromCpp(const ScanBarcodeOptions& value) {
-      using JSignature = JScanBarcodeOptions(jni::alias_ref<jni::JArrayClass<JTargetBarcodeFormat>>, jni::alias_ref<jni::JBoolean>);
+      using JSignature = JScanBarcodeOptions(jni::alias_ref<jni::JArrayClass<JTargetBarcodeFormat>>, jni::alias_ref<JScanQualityLevel>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -74,6 +82,8 @@ namespace margelo::nitro::datascanner {
           }
           return __array;
         }(value.targetFormats.value()) : nullptr,
+        value.qualityLevel.has_value() ? JScanQualityLevel::fromCpp(value.qualityLevel.value()) : nullptr,
+        value.isHighFrameRateTrackingEnabled.has_value() ? jni::JBoolean::valueOf(value.isHighFrameRateTrackingEnabled.value()) : nullptr,
         value.enableAutoZoom.has_value() ? jni::JBoolean::valueOf(value.enableAutoZoom.value()) : nullptr
       );
     }

@@ -18,7 +18,7 @@ public extension ScanBarcodeOptions {
   /**
    * Create a new instance of `ScanBarcodeOptions`.
    */
-  init(targetFormats: [TargetBarcodeFormat]?, enableAutoZoom: Bool?) {
+  init(targetFormats: [TargetBarcodeFormat]?, qualityLevel: ScanQualityLevel?, isHighFrameRateTrackingEnabled: Bool?, enableAutoZoom: Bool?) {
     self.init({ () -> bridge.std__optional_std__vector_TargetBarcodeFormat__ in
       if let __unwrappedValue = targetFormats {
         return bridge.create_std__optional_std__vector_TargetBarcodeFormat__({ () -> bridge.std__vector_TargetBarcodeFormat_ in
@@ -28,6 +28,18 @@ public extension ScanBarcodeOptions {
           }
           return __vector
         }())
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_ScanQualityLevel_ in
+      if let __unwrappedValue = qualityLevel {
+        return bridge.create_std__optional_ScanQualityLevel_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = isHighFrameRateTrackingEnabled {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -46,6 +58,23 @@ public extension ScanBarcodeOptions {
       if bridge.has_value_std__optional_std__vector_TargetBarcodeFormat__(self.__targetFormats) {
         let __unwrapped = bridge.get_std__optional_std__vector_TargetBarcodeFormat__(self.__targetFormats)
         return __unwrapped.map({ __item in __item })
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var qualityLevel: ScanQualityLevel? {
+    return self.__qualityLevel.value
+  }
+  
+  @inline(__always)
+  var isHighFrameRateTrackingEnabled: Bool? {
+    return { () -> Bool? in
+      if bridge.has_value_std__optional_bool_(self.__isHighFrameRateTrackingEnabled) {
+        let __unwrapped = bridge.get_std__optional_bool_(self.__isHighFrameRateTrackingEnabled)
+        return __unwrapped
       } else {
         return nil
       }
