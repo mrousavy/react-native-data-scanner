@@ -33,7 +33,6 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
       isGuidanceEnabled: true,
       isHighlightingEnabled: true
     )
-    scannerViewController.title = "Scan Barcode"
     navigationController = UINavigationController(rootViewController: scannerViewController)
     self.promise = promise
     self.onFinish = onFinish
