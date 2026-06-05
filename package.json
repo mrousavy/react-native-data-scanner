@@ -23,9 +23,13 @@
     "lint:swift": "./scripts/lint-swift.sh",
     "lint:kotlin": "./scripts/lint-kotlin.sh",
     "ci": "bun run lint && bun run typecheck && bun run specs:check",
+    "release": "./scripts/release.sh",
     "example": "bun run --cwd apps/example",
     "example:android": "bun run --cwd apps/example android",
     "example:ios": "bun run --cwd apps/example ios",
     "example:start": "bun run --cwd apps/example start"
+  },
+  "devDependencies": {
+    "release-it": "^20.2.0"
   }
 }
