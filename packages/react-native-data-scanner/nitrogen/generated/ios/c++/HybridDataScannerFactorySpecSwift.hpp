@@ -12,9 +12,22 @@
 // Forward declaration of `HybridDataScannerFactorySpec_cxx` to properly resolve imports.
 namespace NitroDataScanner { class HybridDataScannerFactorySpec_cxx; }
 
+// Forward declaration of `ScannedBarcode` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ScannedBarcode; }
+// Forward declaration of `BarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class BarcodeFormat; }
+// Forward declaration of `ResolvedScanBarcodeOptions` to properly resolve imports.
+namespace margelo::nitro::datascanner { struct ResolvedScanBarcodeOptions; }
+// Forward declaration of `TargetBarcodeFormat` to properly resolve imports.
+namespace margelo::nitro::datascanner { enum class TargetBarcodeFormat; }
 
-
-
+#include "ScannedBarcode.hpp"
+#include <NitroModules/Promise.hpp>
+#include <string>
+#include "BarcodeFormat.hpp"
+#include "ResolvedScanBarcodeOptions.hpp"
+#include "TargetBarcodeFormat.hpp"
+#include <vector>
 
 #include "NitroDataScanner-Swift-Cxx-Umbrella.hpp"
 
@@ -66,11 +79,13 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Methods
-    inline void createDataScanner() override {
-      auto __result = _swiftPart.createDataScanner();
+    inline std::shared_ptr<Promise<ScannedBarcode>> scanBarcode(const ResolvedScanBarcodeOptions& options) override {
+      auto __result = _swiftPart.scanBarcode(std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:

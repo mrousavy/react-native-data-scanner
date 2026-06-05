@@ -54,7 +54,7 @@ namespace margelo::nitro::datascanner {
 
   public:
     // Methods
-    void createDataScanner() override;
+    std::shared_ptr<Promise<ScannedBarcode>> scanBarcode(const ResolvedScanBarcodeOptions& options) override;
 
   private:
     jni::global_ref<JHybridDataScannerFactorySpec::JavaPart> _javaPart;

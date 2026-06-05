@@ -1,14 +1,19 @@
 import type { HybridObject } from 'react-native-nitro-modules'
+import type { ResolvedScanBarcodeOptions } from '../ResolvedScanBarcodeOptions'
+import type { ScannedBarcode } from '../ScannedBarcode'
 
 /**
- * Entry point for creating native data scanner instances.
+ * Native entry point for one-shot data scanning.
+ *
+ * @see {@linkcode DataScanner.scanBarcode}
  */
 export interface DataScannerFactory
   extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   /**
-   * Creates a native data scanner.
+   * Presents the native scanner UI and resolves with the first scanned barcode.
    *
-   * @throws This is intentionally not implemented yet.
+   * @throws When scanning is unavailable, the scanner is canceled, or the scanned
+   * barcode does not contain a decoded string value.
    */
-  createDataScanner(): void
+  scanBarcode(options: ResolvedScanBarcodeOptions): Promise<ScannedBarcode>
 }

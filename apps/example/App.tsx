@@ -1,29 +1,29 @@
 import { StatusBar } from 'expo-status-bar'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import { DataScanner } from 'react-native-data-scanner'
 
 export default function App() {
   const [status, setStatus] = useState('Ready')
 
-  const createDataScanner = useCallback(() => {
+  const scanBarcode = useCallback(async () => {
     try {
-      DataScanner.createDataScanner()
-      setStatus('createDataScanner() returned')
+      setStatus('Scanning...')
+      const barcode = await DataScanner.scanBarcode({
+        targetFormats: 'all',
+        enableAutoZoom: true,
+      })
+      setStatus(`${barcode.format}: ${barcode.value}`)
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
       setStatus(message)
     }
   }, [])
 
-  useEffect(() => {
-    createDataScanner()
-  }, [createDataScanner])
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>react-native-data-scanner</Text>
-      <Button title="Create Data Scanner" onPress={createDataScanner} />
+      <Button title="Scan Barcode" onPress={scanBarcode} />
       <Text style={styles.status}>{status}</Text>
       <StatusBar style="auto" />
     </View>
