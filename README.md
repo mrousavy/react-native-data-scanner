@@ -43,20 +43,10 @@ That's it. Calling `scanBarcode(...)` presents the native scanner UI and resolve
 
 ## UI
 
-<table>
-  <tr>
-    <th>iOS</th>
-    <th>Android</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./img/screenshot_ios.png" width="100%" />
-    </td>
-    <td>
-      <img src="./img/screenshot_android.jpg" width="100%" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="./img/screenshot_ios.png" alt="Barcode scanner on iPhone" width="42%" />
+  <img src="./img/screenshot_android.png" alt="Barcode scanner on Android" width="40%" />
+</p>
 
 ## API
 
