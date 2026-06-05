@@ -71,6 +71,31 @@ if [ ! -f "$HARNESS_APP_PATH" ]; then
   exit 1
 fi
 
+APK_SOURCE="$HARNESS_APP_PATH"
+APK_COPY="$ARTIFACT_DIR/app-debug.apk"
+if [ "$APK_SOURCE" != "$APK_COPY" ]; then
+  cp "$APK_SOURCE" "$APK_COPY"
+fi
+HARNESS_APP_PATH="$APK_COPY"
+export HARNESS_APP_PATH
+
+echo "Free disk before Android build-output cleanup:"
+df -h "$ANDROID_AVD_HOME" "$ANDROID_HOME" "$ARTIFACT_DIR" || true
+
+rm -rf \
+  "$APP_DIR/android/.gradle" \
+  "$APP_DIR/android/build" \
+  "$APP_DIR/android/app/build" \
+  "$ROOT_DIR/packages/react-native-data-scanner/android/build"
+find "$ROOT_DIR/node_modules" "$ROOT_DIR/packages" \
+  -path '*/android/build' \
+  -type d \
+  -prune \
+  -exec rm -rf {} + 2>/dev/null || true
+
+echo "Free disk after Android build-output cleanup:"
+df -h "$ANDROID_AVD_HOME" "$ANDROID_HOME" "$ARTIFACT_DIR" || true
+
 echo "Installing Android SDK packages for $SYSTEM_IMAGE..."
 yes | "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --licenses >/dev/null || true
 "$SDKMANAGER" --sdk_root="$ANDROID_HOME" \
@@ -127,8 +152,11 @@ set_avd_config() {
 set_avd_config "hw.camera.back" "virtualscene"
 set_avd_config "hw.camera.front" "none"
 set_avd_config "hw.keyboard" "yes"
-set_avd_config "disk.dataPartition.size" "1G"
+set_avd_config "disk.dataPartition.size" "1073741824"
 set_avd_config "vm.heapSize" "1024"
+
+echo "Android AVD config:"
+grep -E '^(image.sysdir.1|hw.device.name|disk.dataPartition.size|vm.heapSize|hw.ramSize|hw.camera.back|hw.camera.front)=' "$AVD_CONFIG" || true
 
 "$ADB" start-server >/dev/null
 
@@ -177,6 +205,7 @@ if [ -z "$ADB_ID" ]; then
     -no-snapshot-save \
     -camera-back virtualscene \
     -camera-front none \
+    -partition-size 1024 \
     -virtualscene-poster "wall=$QR_ASSET" \
     -virtualscene-poster "table=$QR_ASSET" \
     -no-metrics \
