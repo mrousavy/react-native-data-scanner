@@ -1,0 +1,114 @@
+name: Build iOS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - '.github/workflows/build-ios.yml'
+      - 'apps/example/**'
+      - 'packages/react-native-data-scanner/src/**'
+      - 'packages/react-native-data-scanner/ios/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/shared/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/ios/**'
+      - 'packages/react-native-data-scanner/package.json'
+      - 'packages/react-native-data-scanner/*.podspec'
+      - 'packages/react-native-data-scanner/react-native.config.js'
+      - 'packages/react-native-data-scanner/nitro.json'
+      - 'bun.lock'
+      - 'package.json'
+  pull_request:
+    paths:
+      - '.github/workflows/build-ios.yml'
+      - 'apps/example/**'
+      - 'packages/react-native-data-scanner/src/**'
+      - 'packages/react-native-data-scanner/ios/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/shared/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/ios/**'
+      - 'packages/react-native-data-scanner/package.json'
+      - 'packages/react-native-data-scanner/*.podspec'
+      - 'packages/react-native-data-scanner/react-native.config.js'
+      - 'packages/react-native-data-scanner/nitro.json'
+      - 'bun.lock'
+      - 'package.json'
+
+permissions:
+  contents: read
+
+env:
+  USE_CCACHE: 1
+  XCODE_VERSION: '26.5'
+  IOS_SIMULATOR_DESTINATION: 'platform=iOS Simulator,arch=arm64,name=iPhone 17 Pro'
+
+jobs:
+  build:
+    name: Build iOS Example App
+    runs-on: macOS-26
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install npm dependencies (bun)
+        run: bun install --frozen-lockfile
+
+      - name: Prebuild iOS project
+        run: bun run --cwd apps/example expo prebuild --platform ios --no-install
+
+      - name: Install Ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          max-size: 1.5G
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode${{ env.XCODE_VERSION }}-ccache-apps-example-ios
+          create-symlink: true
+
+      - name: Setup ccache behavior
+        run: |
+          echo "CCACHE_SLOPPINESS=clang_index_store,file_stat_matches,include_file_ctime,include_file_mtime,ivfsoverlay,pch_defines,modules,system_headers,time_macros" >> $GITHUB_ENV
+          echo "CCACHE_FILECLONE=true" >> $GITHUB_ENV
+          echo "CCACHE_DEPEND=true" >> $GITHUB_ENV
+          echo "CCACHE_INODECACHE=true" >> $GITHUB_ENV
+
+      - name: Select Xcode ${{ env.XCODE_VERSION }}
+        run: sudo xcode-select -s "/Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer"
+
+      - name: Restore Pods cache
+        uses: actions/cache@v5
+        with:
+          path: apps/example/ios/Pods
+          key: ${{ runner.os }}-${{ runner.arch }}-pods-${{ hashFiles('bun.lock', 'apps/example/ios/Podfile', 'apps/example/ios/Podfile.lock', 'packages/react-native-data-scanner/*.podspec') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-pods-
+
+      - name: Install Pods
+        working-directory: apps/example/ios
+        run: pod install --repo-update
+
+      - name: Restore DerivedData cache
+        uses: actions/cache@v5
+        with:
+          path: apps/example/ios/build
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode${{ env.XCODE_VERSION }}-dd-${{ hashFiles('bun.lock', 'apps/example/ios/Podfile', 'apps/example/ios/Podfile.lock', 'packages/react-native-data-scanner/*.podspec') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-xcode${{ env.XCODE_VERSION }}-dd-
+
+      - name: Install xcbeautify
+        run: command -v xcbeautify || brew install xcbeautify
+
+      - name: Build App
+        working-directory: apps/example/ios
+        run: |
+          set -o pipefail
+          xcodebuild \
+            CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ \
+            -derivedDataPath build -UseModernBuildSystem=YES \
+            -workspace DataScannerExample.xcworkspace \
+            -scheme DataScannerExample \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination '${{ env.IOS_SIMULATOR_DESTINATION }}' \
+            -showBuildTimingSummary \
+            ONLY_ACTIVE_ARCH=YES \
+            build \
+            CODE_SIGNING_ALLOWED=NO | xcbeautify --renderer github-actions

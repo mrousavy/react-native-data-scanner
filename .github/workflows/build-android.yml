@@ -1,0 +1,84 @@
+name: Build Android
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - '.github/workflows/build-android.yml'
+      - 'apps/example/**'
+      - 'packages/react-native-data-scanner/src/**'
+      - 'packages/react-native-data-scanner/android/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/shared/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/android/**'
+      - 'packages/react-native-data-scanner/package.json'
+      - 'packages/react-native-data-scanner/react-native.config.js'
+      - 'packages/react-native-data-scanner/nitro.json'
+      - 'bun.lock'
+      - 'package.json'
+  pull_request:
+    paths:
+      - '.github/workflows/build-android.yml'
+      - 'apps/example/**'
+      - 'packages/react-native-data-scanner/src/**'
+      - 'packages/react-native-data-scanner/android/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/shared/**'
+      - 'packages/react-native-data-scanner/nitrogen/generated/android/**'
+      - 'packages/react-native-data-scanner/package.json'
+      - 'packages/react-native-data-scanner/react-native.config.js'
+      - 'packages/react-native-data-scanner/nitro.json'
+      - 'bun.lock'
+      - 'package.json'
+
+permissions:
+  contents: read
+
+env:
+  # Build a single ABI in CI to reduce native compile time.
+  TARGET_ANDROID_ARCH: x86_64
+
+jobs:
+  build:
+    name: Build Android Example App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install npm dependencies (bun)
+        run: bun install --frozen-lockfile
+
+      - name: Prebuild Android project
+        run: bun run --cwd apps/example expo prebuild --platform android --no-install
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          java-package: jdk
+
+      - name: Restore Gradle/CMake cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            apps/example/android/.gradle
+            apps/example/android/app/.cxx
+          key: ${{ runner.os }}-gradle-${{ env.TARGET_ANDROID_ARCH }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/CMakeLists.txt', '**/*.cmake', 'bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-${{ env.TARGET_ANDROID_ARCH }}-
+            ${{ runner.os }}-gradle-
+
+      - name: Run Gradle Build for apps/example/android/
+        working-directory: apps/example/android
+        run: ./gradlew :app:assembleDebug --no-daemon --build-cache -PreactNativeArchitectures=${{ env.TARGET_ANDROID_ARCH }}
+
+      # Gradle cache doesn't like daemons.
+      - name: Stop Gradle Daemon
+        if: always()
+        working-directory: apps/example/android
+        run: ./gradlew --stop
