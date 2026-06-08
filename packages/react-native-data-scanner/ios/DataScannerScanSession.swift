@@ -80,6 +80,42 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
     }
   }
 
+
+  @MainActor
+  func dataScanner(
+    _ dataScanner: DataScannerViewController,
+    didAdd addedItems: [RecognizedItem],
+    allItems: [RecognizedItem]
+  ) {
+    resolveFirstBarcode(in: addedItems)
+  }
+         
+  @MainActor
+  func dataScanner(
+    _ dataScanner: DataScannerViewController,
+    didUpdate updatedItems: [RecognizedItem],
+    allItems: [RecognizedItem]
+  ) {
+    resolveFirstBarcode(in: updatedItems)
+  }
+
+  @MainActor
+  private func resolveFirstBarcode(in items: [RecognizedItem]) {
+    guard !didFinish else { return }
+
+    for item in items {
+      guard case .barcode(let barcode) = item else { continue }
+      guard barcode.payloadStringValue != nil else { continue }
+
+      do {
+        finish(with: try barcode.toScannedBarcode())
+      } catch {
+        finish(with: error)
+      }
+      return
+    }
+  }
+
   @MainActor
   func dataScanner(
     _ dataScanner: DataScannerViewController,
