@@ -1,6 +1,6 @@
 {
   "name": "react-native-data-scanner",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fast platform-native barcode scanning for React Native with Nitro Modules.",
   "main": "lib/index",
   "module": "lib/index",
