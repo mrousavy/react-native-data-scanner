@@ -80,7 +80,6 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
     }
   }
 
-
   @MainActor
   func dataScanner(
     _ dataScanner: DataScannerViewController,
@@ -89,7 +88,7 @@ final class DataScannerScanSession: NSObject, DataScannerViewControllerDelegate,
   ) {
     resolveFirstBarcode(in: addedItems)
   }
-         
+
   @MainActor
   func dataScanner(
     _ dataScanner: DataScannerViewController,
