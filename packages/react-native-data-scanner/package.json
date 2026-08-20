@@ -89,6 +89,11 @@
     "react-native": "*",
     "react-native-nitro-modules": "*"
   },
+  "peerDependenciesMeta": {
+    "react-native-nitro-modules": {
+      "optional": true
+    }
+  },
   "release-it": {
     "npm": {
       "publish": true
