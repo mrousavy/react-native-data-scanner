@@ -15,7 +15,7 @@ namespace margelo::nitro::datascanner {
   using namespace facebook;
 
   /**
-   * The C++ JNI bridge between the C++ enum "ScanQualityLevel" and the the Kotlin enum "ScanQualityLevel".
+   * The C++ JNI bridge between the C++ enum "ScanQualityLevel" and the Kotlin enum "ScanQualityLevel".
    */
   struct JScanQualityLevel final: public jni::JavaClass<JScanQualityLevel> {
   public:
