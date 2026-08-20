@@ -19,7 +19,7 @@ namespace margelo::nitro::datascanner {
   using namespace facebook;
 
   /**
-   * The C++ JNI bridge between the C++ struct "ScannedBarcode" and the the Kotlin data class "ScannedBarcode".
+   * The C++ JNI bridge between the C++ struct "ScannedBarcode" and the Kotlin data class "ScannedBarcode".
    */
   struct JScannedBarcode final: public jni::JavaClass<JScannedBarcode> {
   public:
